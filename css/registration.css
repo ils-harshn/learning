@@ -6,10 +6,6 @@ body {
     overflow-x: hidden;
 }
 
-/* div {
-    border: 0.5px solid red;
-} */
-
 .center-items {
     width: calc(100vw - 12px);
     height: 100vh;
@@ -21,16 +17,14 @@ body {
 }
 
 .form-container {
-    height: fit-content;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
 }
 
 .form-container .card {
-    /* width: 400px;
-    height: 500px; */
-    width: 25em;
-    height: 31.5em;
+    width: 350px;
+    height: 600px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 6px #00000029;
     border-radius: 20px;
@@ -46,6 +40,7 @@ body {
     letter-spacing: 0px;
     color: #000000;
     font-weight: bolder;
+    font-size: 20px;
 }
 
 .card .card-body .card-caption {
@@ -171,7 +166,7 @@ label[for=remember-me] {
     margin-top: 18px;
     width: 346px;
     height: 38px;
-    margin-left: 20px;
+    margin-left: 8px;
     text-align: center;
     letter-spacing: 0px;
     color: #000000;
@@ -190,4 +185,48 @@ label[for=remember-me] {
         margin-left: 20px;
         width: 100vw;
     }
+}
+
+/* div {
+    border: 0.5px solid red;
+} */
+
+.my-input-group {
+    width: 48%;
+}
+
+.my-input-group input {
+    width: 100%;
+    padding: 8px 0 8px 10px;
+    background: #F7FAFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    outline: none;
+}
+
+.my-input-group input::placeholder {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #222222;
+}
+
+.tabs {
+    margin-top: 20px;
+}
+
+.tabs .active {
+    border-bottom: 3px solid #386CB5;
+    min-width: 48%;
+    font-weight: 600;
+    color: #386CB5;
+    font-size: 14px;
+}
+
+.tabs div {
+    border-bottom: 3px solid #AFC4E1;
+    min-width: 48%;
+    font-weight: 600;
+    color: #AFC4E1;
 }

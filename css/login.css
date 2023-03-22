@@ -164,6 +164,10 @@ label[for=remember-me] {
     border-radius: 6px;
     outline: none;
     border: none;
+}
+
+.card-bottom button a {
+    text-decoration: none;
     color: white;
 }
 
