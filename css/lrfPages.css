@@ -1,0 +1,126 @@
+body {
+    background-image: url('../assets/img/Bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* div {
+    border: 0.5px solid red;
+} */
+
+.center-items {
+    width: calc(100vw - 12px);
+    height: 100vh;
+}
+
+.logo {
+    width: 25em;
+    height: 6.25em;
+}
+
+.form-container {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container .card {
+    /* width: 400px;
+    height: 500px; */
+    width: 25em;
+    height: 31.5em;
+
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #00000029;
+    border-radius: 20px;
+}
+
+.card .card-body {
+    margin: 20px;
+}
+
+
+.card .card-body .card-title {
+    text-align: left;
+    letter-spacing: 0px;
+    color: #000000;
+    font-weight: bolder;
+}
+
+.card .card-body .card-caption {
+    font-size: 16px;
+    text-align: left;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.5;
+}
+
+.input-group {
+    border-radius: 6px;
+    background: #F7FAFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.input-group .form-control {
+    background: #F7FAFF 0% 0% no-repeat padding-box;
+    border: none;
+    outline: none;
+}
+
+.input-group .form-control:focus {
+    box-shadow: none;
+}
+
+.input-group .form-control::placeholder {
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #222222;
+}
+
+.input-group-img,
+.input-group-icon {
+    display: flex;
+    width: 36px;
+    height: 39px;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group-img img {
+    width: 12px;
+    height: fit-content;
+}
+
+.input-group-icon img {
+    width: 16px;
+    height: fit-content;
+}
+
+.form-control-error {
+    border-bottom: 2px solid #FF0000;
+}
+
+.error {
+    /* font: normal normal normal 12px/17px Open Sans; */
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #FF0000;
+}
+
+@media (max-width: 828px) {
+    .logo {
+        width: 20em;
+        height: fit-content;
+    }
+}
+
+@media (max-width: 700px) {
+    .form-container {
+        margin-left: 20px;
+        width: 100vw;
+    }
+}
