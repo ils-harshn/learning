@@ -23,31 +23,59 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">REGISTRATION</h4>
-                        <div class="tabs d-flex justify-content-between">
-                            <div class="text-center active">STEP 01</div>
-                            <div class="text-center">STEP 02</div>
-                        </div>
-                        <form>
-                            <div class="d-flex justify-content-between mt-3">
-                                <div class="my-input-group">
-                                    <input type="text" placeholder="First Name" required>
+                        <div class="control-overflow">
+                            <div class="tabs d-flex justify-content-between">
+                                <div class="text-center active">STEP 01</div>
+                                <div class="text-center">STEP 02</div>
+                            </div>
+                            <form>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <div class="my-input-group">
+                                        <input type="text" placeholder="First Name" required>
+                                    </div>
+                                    <div class="my-input-group">
+                                        <input type="text" placeholder="Last Name" required>
+                                    </div>
                                 </div>
-                                <div class="my-input-group">
-                                    <input type="text" placeholder="Last Name" required>
+
+                                <div class="input-group form-control-error mt-3">
+                                    <input type="email" class="form-control" placeholder="Email ID" name="email">
                                 </div>
-                            </div>
+                                <!-- error -->
+                                <div class="col-12">
+                                    <span id="invalid-email" class="error">*Please enter valid email address</span>
+                                </div>
 
-                            <div class="input-group form-control-error mt-3">
-                                <input type="email" class="form-control" placeholder="Email ID" name="email">
-                            </div>
-                            <!-- error -->
-                            <div class="col-12">
-                                <span id="invalid-email" class="error">*Please enter valid email address</span>
-                            </div>
+                                <div class="create-password-title">Create Password</div>
+                                <p class="create-password-helper-text">Password must contain one special character, one
+                                    capital letter and be at least 6 characters long.</p>
 
 
-                        </form>
-                        <div class="card-bottom d-flex justify-content-between align-items-center">
+                                <div class="input-group mt-3">
+                                    <input type="password" class="form-control" placeholder="Enter Password"
+                                        name="password">
+                                </div>
+
+                                <div class="input-group form-control-error mt-3">
+                                    <input type="password" class="form-control" placeholder="Confirm Password"
+                                        name="confirm-password">
+                                </div>
+                                <!-- error -->
+                                <div class="col-12">
+                                    <span id="invalid-confirm-password" class="error">*Password does not match</span>
+                                </div>
+                                <div class="register-button-container">
+                                    <button type="submit" class="register-button">
+                                        <span>NEXT STEP</span>
+                                        <img src="../assets/img/arrow-right.png" alt="">
+                                    </button>
+                                </div>
+                            </form>
+                            <hr />
+                            <div class="card-bottom d-flex justify-content-between align-items-center">
+                                <span>Do have an account?</span>
+                                <button class="login-button"><a href="login.html">LOGIN</a></button>
+                            </div>
                         </div>
                     </div>
                 </div>

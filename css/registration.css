@@ -32,6 +32,26 @@ body {
 
 .card .card-body {
     margin: 20px;
+    position: relative;
+}
+
+.control-overflow {
+    overflow-y: scroll;
+    height: 510px;
+    /* border: 2px solid red; */
+}
+
+
+.control-overflow::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.control-overflow {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 
@@ -41,6 +61,9 @@ body {
     color: #000000;
     font-weight: bolder;
     font-size: 20px;
+    position: sticky;
+    background-color: #FFFFFF;
+    top: 0;
 }
 
 .card .card-body .card-caption {
@@ -127,24 +150,37 @@ label[for=remember-me] {
     color: #0974DD;
 }
 
-.login-button {
+.register-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     margin-top: 25px;
     outline: none;
     border: none;
-    width: 100%;
-    height: 50px;
+    width: 50%;
+    height: 40px;
     color: white;
     background: transparent linear-gradient(270deg, #386CB5 0%, #669FED 100%) 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 5px #386CB566;
+    padding: 0 5px 0 15px;
     border-radius: 6px;
 }
 
+.register-button img {
+    padding: 10px;
+    /* width: 45px; */
+    width: fit-content;
+    height: fit-content;
+    /* height: 5px; */
+    object-fit: fill;
+}
+
 .card-bottom {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .card-bottom span {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0px;
     color: #000000;
@@ -159,7 +195,12 @@ label[for=remember-me] {
     border-radius: 6px;
     outline: none;
     border: none;
+}
+
+.card-bottom button a {
+    font-weight: 600;
     color: white;
+    text-decoration: none;
 }
 
 .copyright-text {
@@ -172,24 +213,6 @@ label[for=remember-me] {
     color: #000000;
     font-size: 12px;
 }
-
-@media (max-width: 828px) {
-    .logo {
-        width: 20em;
-        height: fit-content;
-    }
-}
-
-@media (max-width: 700px) {
-    .form-container {
-        margin-left: 20px;
-        width: 100vw;
-    }
-}
-
-/* div {
-    border: 0.5px solid red;
-} */
 
 .my-input-group {
     width: 48%;
@@ -229,4 +252,50 @@ label[for=remember-me] {
     min-width: 48%;
     font-weight: 600;
     color: #AFC4E1;
+}
+
+.create-password-title {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+.create-password-helper-text {
+    margin-top: 10px;
+    font-size: 12px;
+    /* font: normal normal normal 16px/22px Open Sans; */
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.5;
+}
+
+.register-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+/* @media (max-width: 828px) {
+    .logo {
+        width: 20em;
+        height: fit-content;
+    }
+} */
+
+@media (max-width: 828px) {
+    .logo {
+        width: 15em;
+        height: fit-content;
+        margin: 20px 0 20px 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .form-container {
+        margin-left: 20px;
+        width: 100vw;
+    }
 }

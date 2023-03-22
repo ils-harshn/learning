@@ -167,6 +167,7 @@ label[for=remember-me] {
 }
 
 .card-bottom button a {
+    font-weight: 600;
     text-decoration: none;
     color: white;
 }
