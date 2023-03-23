@@ -30,7 +30,7 @@ body {
     /* width: 400px;
     height: 500px; */
     width: 25em;
-    height: 33em;
+    height: 22em;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 6px #00000029;
     border-radius: 20px;
@@ -127,7 +127,7 @@ label[for=remember-me] {
     color: #0974DD;
 }
 
-.login-button {
+.forget-button {
     margin-top: 25px;
     outline: none;
     border: none;
@@ -141,7 +141,7 @@ label[for=remember-me] {
     transition: 300ms opacity;
 }
 
-.login-button:hover {
+.forget-button:hover {
     opacity: 1;
 }
 
@@ -165,12 +165,6 @@ label[for=remember-me] {
     border-radius: 6px;
     outline: none;
     border: none;
-    opacity: 0.5;
-    transition: 300ms opacity;
-}
-
-.card-bottom button:hover {
-    opacity: 1;
 }
 
 .card-bottom button a {
