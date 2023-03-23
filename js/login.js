@@ -17,9 +17,15 @@ function validateLogin(e) {
     if (is_valid_email == false) {
         email_error_ele.innerHTML = "*Please enter valid email address";
         document.getElementById("email").style.borderBottom = "2px solid #FF0000"
-    } 
+    } else {
+        email_error_ele.innerHTML = "";
+        document.getElementById("email").style.borderBottom = ""
+    }
     if (is_valid_password == false) {
         password_error_ele.innerHTML = "*Required";
         document.getElementById("password").style.borderBottom = "2px solid #FF0000"
+    } else {
+        password_error_ele.innerHTML = "";
+        document.getElementById("password").style.borderBottom = ""
     } 
 }
