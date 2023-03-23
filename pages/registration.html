@@ -42,18 +42,18 @@
                                 <div class="text-center">STEP 02</div>
                             </div>
                             <div id="step-01">
-                                <form onsubmit="getToNextStep(event)">
+                                <form onsubmit="validateFormStep1(event)">
                                     <div class="d-flex justify-content-between mt-3">
                                         <div class="input-group my-2">
                                             <div class="form-floating mb-3">
-                                                <input type="email" class="form-control my-2-form-control"
+                                                <input type="text" name="first-name" class="form-control my-2-form-control"
                                                     id="first-name" placeholder="First Name">
                                                 <label for="first-name">First Name</label>
                                             </div>
                                         </div>
                                         <div class="input-group my-2">
                                             <div class="form-floating mb-3">
-                                                <input type="email" class="form-control my-2-form-control"
+                                                <input name="last-name" type="text" class="form-control my-2-form-control"
                                                     id="last-name" placeholder="Last Name">
                                                 <label for="last-name">Last Name</label>
                                             </div>
@@ -70,16 +70,16 @@
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="email"
+                                            <input name="email" type="text" class="form-control" id="email"
                                                 placeholder="Email address">
                                             <label for="email">Email address</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-2">
-                                        <span id="invalid-email" class="error">*Please enter valid email address</span>
+                                        <span id="invalid-email" class="error"></span>
                                     </div>
                                     <!-- phone -->
-                                    <div class="contact-number-input">
+                                    <div class="contact-number-input mt-3">
                                         <input type="number" class="form-control" placeholder="Mobile Number"
                                             id="contact-number" onkeyup="validateContactNumber()" name="number"
                                             autocomplete="off" contextmenu="false">
@@ -103,7 +103,7 @@
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" id="password"
+                                            <input type="password" name="password" class="form-control" id="password"
                                                 placeholder="Enter Password">
                                             <label for="password">Enter Password</label>
                                         </div>
@@ -119,12 +119,10 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <span id="invalid-password" class="error">*Password should contain aleast one
-                                            speacial
-                                            character</span>
+                                        <span id="invalid-password" class="error"></span>
                                     </div>
 
-                                    <div class="input-group">
+                                    <div class="input-group mt-3">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text d-flex justify-content-end align-items-center">
                                                 <span class="input-group-img">
@@ -133,14 +131,13 @@
                                             </div>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input type="password" class="form-control" id="confirm-password"
+                                            <input name="confirm-password" type="password" class="form-control" id="confirm-password"
                                                 placeholder="Confirm Password">
                                             <label for="confirm-password">Confirm Password</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <span id="invalid-confirm-password" class="error">*Password does not
-                                            match</span>
+                                        <span id="invalid-confirm-password" class="error"></span>
                                     </div>
 
                                     <div class="register-button-container">
@@ -220,7 +217,7 @@
                                 </div>
 
                                 <div class="card-bottom d-flex justify-content-between align-items-center">
-                                    <span onclick="getToPrevStep()"><img src="../assets/svg/arrow-left.svg"
+                                    <span onclick="getToPrevStep()" style="cursor: pointer;"><img src="../assets/svg/arrow-left.svg"
                                             style="width: 26px;" />Step Back</span>
                                     <button class="create-button"><a href="login.html">CREATE ACCOUNT</a></button>
                                 </div>
