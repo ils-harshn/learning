@@ -38,116 +38,189 @@
                         <h4 class="card-title">REGISTRATION</h4>
                         <div class="control-overflow">
                             <div class="tabs d-flex justify-content-between">
-                                <div class="text-center active">STEP 01</div>
-                                <div class="text-center">STEP 02</div>
+                                <div class="text-center">STEP 01</div>
+                                <div class="text-center active">STEP 02</div>
                             </div>
-                            <form>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <div class="input-group my-2">
-                                        <div class="form-floating mb-3">
-                                            <input type="email" class="form-control my-2-form-control" id="first-name"
-                                                placeholder="First Name">
-                                            <label for="first-name">First Name</label>
+                            <div id="step-01" style="display: none;">
+                                <form>
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <div class="input-group my-2">
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control my-2-form-control"
+                                                    id="first-name" placeholder="First Name">
+                                                <label for="first-name">First Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="input-group my-2">
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control my-2-form-control"
+                                                    id="last-name" placeholder="Last Name">
+                                                <label for="last-name">Last Name</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="input-group my-2">
-                                        <div class="form-floating mb-3">
-                                            <input type="email" class="form-control my-2-form-control" id="last-name"
-                                                placeholder="Last Name">
-                                            <label for="last-name">Last Name</label>
-                                        </div>
-                                    </div>
-                                </div>
 
 
-                                <div class="input-group mt-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text d-flex justify-content-end align-items-center">
-                                            <span class="input-group-img">
-                                                <img src="../assets/svg/email.svg" alt="">
-                                            </span>
+                                    <div class="input-group mt-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text d-flex justify-content-end align-items-center">
+                                                <span class="input-group-img">
+                                                    <img src="../assets/svg/email.svg" alt="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Email address">
+                                            <label for="email">Email address</label>
                                         </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="email" placeholder="Email address">
-                                        <label for="email">Email address</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 mb-2">
-                                    <span id="invalid-email" class="error">*Please enter valid email address</span>
-                                </div>
-                                <!-- phone -->
-                                <div class="contact-number-input">
-                                    <input type="number" class="form-control" placeholder="Mobile Number"
-                                        id="contact-number" onkeyup="validateContactNumber()" name="number"
-                                        autocomplete="off" contextmenu="false">
                                     <div class="col-12 mb-2">
-                                        <span class="error contact-number-error"></span>
+                                        <span id="invalid-email" class="error">*Please enter valid email address</span>
                                     </div>
-                                </div>
-                                <!-- end-phone -->
-                                <div class="create-password-title">Create Password</div>
-                                <p class="create-password-helper-text">Password must contain one special character, one
-                                    capital letter and be at least 6 characters long.</p>
-
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text d-flex justify-content-end align-items-center">
-                                            <span class="input-group-img">
-                                                <img src="../assets/svg/padlock.svg" alt="">
-                                            </span>
+                                    <!-- phone -->
+                                    <div class="contact-number-input">
+                                        <input type="number" class="form-control" placeholder="Mobile Number"
+                                            id="contact-number" onkeyup="validateContactNumber()" name="number"
+                                            autocomplete="off" contextmenu="false">
+                                        <div class="col-12 mb-2">
+                                            <span class="error contact-number-error"></span>
                                         </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="password"
-                                            placeholder="Enter Password">
-                                        <label for="password">Enter Password</label>
-                                    </div>
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text d-flex justify-content-center align-items-center">
-                                            <span class="input-group-img">
-                                                <img src="../assets/svg/eye (1).svg" alt="">
-                                            </span>
+                                    <!-- end-phone -->
+                                    <div class="create-password-title">Create Password</div>
+                                    <p class="create-password-helper-text">Password must contain one special character,
+                                        one
+                                        capital letter and be at least 6 characters long.</p>
+
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text d-flex justify-content-end align-items-center">
+                                                <span class="input-group-img">
+                                                    <img src="../assets/svg/padlock.svg" alt="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control" id="password"
+                                                placeholder="Enter Password">
+                                            <label for="password">Enter Password</label>
+                                        </div>
+                                        <div class="input-group-prepend">
+                                            <div
+                                                class="input-group-text d-flex justify-content-center align-items-center">
+                                                <span class="input-group-img">
+                                                    <img src="../assets/svg/eye (1).svg" alt="">
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-12">
-                                    <span id="invalid-password" class="error">*Password should contain aleast one
-                                        speacial
-                                        character</span>
-                                </div>
+                                    <div class="col-12">
+                                        <span id="invalid-password" class="error">*Password should contain aleast one
+                                            speacial
+                                            character</span>
+                                    </div>
 
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text d-flex justify-content-end align-items-center">
-                                            <span class="input-group-img">
-                                                <img src="../assets/svg/padlock.svg" alt="">
-                                            </span>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text d-flex justify-content-end align-items-center">
+                                                <span class="input-group-img">
+                                                    <img src="../assets/svg/padlock.svg" alt="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control" id="confirm-password"
+                                                placeholder="Confirm Password">
+                                            <label for="confirm-password">Confirm Password</label>
                                         </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="confirm-password"
-                                            placeholder="Confirm Password">
-                                        <label for="confirm-password">Confirm Password</label>
+                                    <div class="col-12">
+                                        <span id="invalid-confirm-password" class="error">*Password does not
+                                            match</span>
                                     </div>
+
+                                    <div class="register-button-container">
+                                        <button type="submit" class="register-button">
+                                            <span>NEXT STEP</span>
+                                            <img src="../assets/svg/arrow-right.svg" alt="">
+                                        </button>
+                                    </div>
+                                </form>
+                                <hr />
+                                <div class="card-bottom d-flex justify-content-between align-items-center">
+                                    <span>Do have an account?</span>
+                                    <button class="login-button"><a href="login.html">LOGIN</a></button>
                                 </div>
-                                <div class="col-12">
-                                    <span id="invalid-confirm-password" class="error">*Password does not match</span>
+                            </div>
+                            <div id="step-02">
+                                <form>
+                                    <div class="input-group mt-4">
+                                        <div class="form-floating mb-3 my-1-form-floating">
+                                            <input type="text" class="form-control" id="institute"
+                                                placeholder="School / University / Institute Name*">
+                                            <label for="institute">School / University / Institute Name*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <span id="invalid-institute" class="error">*Required</span>
+                                    </div>
+
+                                    <div class="input-group mt-2">
+                                        <div class="form-floating mb-3 my-1-form-floating">
+                                            <input type="text" class="form-control" id="state" placeholder="State*">
+                                            <label for="state">State*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <span id="invalid-state" class="error">*Required</span>
+                                    </div>
+
+                                    <div class="input-group mt-2">
+                                        <div class="form-floating mb-3 my-1-form-floating">
+                                            <input type="text" class="form-control" id="city" placeholder="City*">
+                                            <label for="city">City</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <span id="invalid-city" class="error">*Required</span>
+                                    </div>
+
+                                    <div class="input-group mt-2">
+                                        <div class="form-floating mb-3 my-1-form-floating">
+                                            <input type="text" class="form-control" id="country" placeholder="Country">
+                                            <label for="country">Country*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <span id="invalid-country" class="error">*Required</span>
+                                    </div>
+
+                                    <div class="input-group mt-2">
+                                        <div class="form-floating mb-3 my-1-form-floating">
+                                            <input type="text" class="form-control" id="zipcode"
+                                                placeholder="Zip Code*">
+                                            <label for="zipcode">Zip Code*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <span id="invalid-zipcode" class="error">*Required</span>
+                                    </div>
+                                </form>
+                                <div class="d-flex align-items-betweem terms-and-conditions">
+                                    <input type="checkbox" class="form-check-input shadow-none rounded-circle"
+                                        id="terms-and-conditions" checked>
+                                    <label for="terms-and-conditions">
+                                        I agree to the <a href="">Terms of service</a> and <a href="">Privacy Policy</a>.
+                                    </label>
                                 </div>
 
-                                <div class="register-button-container">
-                                    <button type="submit" class="register-button">
-                                        <span>NEXT STEP</span>
-                                        <img src="../assets/svg/arrow-right.svg" alt="">
-                                    </button>
+                                <div class="card-bottom d-flex justify-content-between align-items-center">
+                                    <span><img src="../assets/svg/arrow-left.svg" style="width: 26px;"/>Step Back</span>
+                                    <button class="create-button"><a href="login.html">CREATE ACCOUNT</a></button>
                                 </div>
-                            </form>
-                            <hr />
-                            <div class="card-bottom d-flex justify-content-between align-items-center">
-                                <span>Do have an account?</span>
-                                <button class="login-button"><a href="login.html">LOGIN</a></button>
                             </div>
                         </div>
                     </div>
@@ -157,8 +230,6 @@
                     <b>Powered with Synapse Xtreme Engine (SXE)</b>
                 </div>
             </div>
-
-            <!-- comment -->
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

@@ -138,6 +138,11 @@ label[for=remember-me] {
 }
 
 .card-bottom button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     font-weight: 600;
     color: white;
     text-decoration: none;
@@ -277,5 +282,51 @@ label[for=remember-me] {
     width: 100%;
 }
 
+/* div {
+    border: 2px solid red;
+} */
+.my-1-form-floating {
+    width: 100%;
+}
+
+.my-1-form-floating label {
+    font-size: 14px;
+}
+
+.form-check-input {
+    width: 14px;
+    height: 14px;
+}
+
+.form-check-input:checked {
+    background-color: #08D152;
+    outline: none;
+    border: none;
+}
+
+label[for=terms-and-conditions] {
+    margin-left: 10px;
+    font-size: 12px;
+    /* font: normal normal normal 16px/22px Open Sans; */
+    letter-spacing: 0px;
+    color: #00000080;
+}
+
+.terms-and-conditions a {
+    font-weight: 600;
+    color: #386CB5;
+    text-decoration: none;
+}
+
+.card-bottom .create-button {
+    font-size: 12px;
+    width: 120px;
+    height: 50px;
+    background: transparent linear-gradient(270deg, #386CB5 0%, #669FED 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 5px #386CB566;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+}
 
 /* error */
