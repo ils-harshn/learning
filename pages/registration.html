@@ -16,7 +16,7 @@
 <body>
     <div class="row center-items align-items-center">
         <div class="col-12 col-md-6 text-center">
-            <img class="logo mx-auto" src="../assets/img/Logo.png" alt="logo">
+            <img class="logo mx-auto" src="../assets/svg/Logo.svg" alt="logo">
         </div>
         <div class="col-12 col-md-6 form-container">
             <div>
@@ -30,19 +30,38 @@
                             </div>
                             <form>
                                 <div class="d-flex justify-content-between mt-3">
-                                    <div class="my-input-group">
-                                        <input type="text" placeholder="First Name" required>
+                                    <div class="input-group my-2">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control my-2-form-control" id="first-name"
+                                                placeholder="First Name">
+                                            <label for="first-name">First Name</label>
+                                        </div>
                                     </div>
-                                    <div class="my-input-group">
-                                        <input type="text" placeholder="Last Name" required>
+                                    <div class="input-group my-2">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control my-2-form-control" id="last-name"
+                                                placeholder="Last Name">
+                                            <label for="last-name">Last Name</label>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="input-group form-control-error mt-3">
-                                    <input type="email" class="form-control" placeholder="Email ID" name="email">
+
+                                <div class="input-group mt-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text d-flex justify-content-end align-items-center">
+                                            <span class="input-group-img">
+                                                <!-- <img src="../assets/img/email.png" alt=""> -->
+                                                <img src="../assets/svg/email.svg" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="email" placeholder="Email address">
+                                        <label for="email">Email address</label>
+                                    </div>
                                 </div>
-                                <!-- error -->
-                                <div class="col-12">
+                                <div class="col-12 mb-2">
                                     <span id="invalid-email" class="error">*Please enter valid email address</span>
                                 </div>
 
@@ -51,23 +70,57 @@
                                     capital letter and be at least 6 characters long.</p>
 
 
-                                <div class="input-group mt-3">
-                                    <input type="password" class="form-control" placeholder="Enter Password"
-                                        name="password">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text d-flex justify-content-end align-items-center">
+                                            <span class="input-group-img">
+                                                <img src="../assets/svg/padlock.svg" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="password"
+                                            placeholder="Enter Password">
+                                        <label for="password">Enter Password</label>
+                                    </div>
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text d-flex justify-content-center align-items-center">
+                                            <span class="input-group-img">
+                                                <img src="../assets/svg/eye (1).svg" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="input-group form-control-error mt-3">
-                                    <input type="password" class="form-control" placeholder="Confirm Password"
-                                        name="confirm-password">
+                                <div class="col-12">
+                                    <span id="invalid-password" class="error">*Password should contain aleast one
+                                        speacial
+                                        character</span>
                                 </div>
-                                <!-- error -->
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text d-flex justify-content-end align-items-center">
+                                            <span class="input-group-img">
+                                                <img src="../assets/svg/padlock.svg" alt="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control" id="confirm-password"
+                                            placeholder="Confirm Password">
+                                        <label for="confirm-password">Confirm Password</label>
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <span id="invalid-confirm-password" class="error">*Password does not match</span>
                                 </div>
+
                                 <div class="register-button-container">
                                     <button type="submit" class="register-button">
                                         <span>NEXT STEP</span>
-                                        <img src="../assets/img/arrow-right.png" alt="">
+                                        <!-- <img src="../assets/img/arrow-right.png" alt=""> -->
+                                        <img src="../assets/svg/arrow-right.svg" alt="">
                                     </button>
                                 </div>
                             </form>
