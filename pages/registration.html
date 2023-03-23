@@ -41,8 +41,8 @@
                                 <div class="text-center active">STEP 01</div>
                                 <div class="text-center">STEP 02</div>
                             </div>
-                            <div id="step-01" style="">
-                                <form>
+                            <div id="step-01">
+                                <form onsubmit="getToNextStep(event)">
                                     <div class="d-flex justify-content-between mt-3">
                                         <div class="input-group my-2">
                                             <div class="form-floating mb-3">
@@ -111,7 +111,7 @@
                                             <div
                                                 class="input-group-text d-flex justify-content-center align-items-center">
                                                 <span class="input-group-img">
-                                                    <img src="../assets/svg/eye (1).svg" alt="">
+                                                    <img src="../assets/svg/eye (1).svg" alt="" onclick="changeEye(event)" data-state="shown">
                                                 </span>
                                             </div>
                                         </div>
@@ -155,7 +155,7 @@
                                     <button class="login-button"><a href="login.html">LOGIN</a></button>
                                 </div>
                             </div>
-                            <div id="step-02" style="display: none;">
+                            <div id="step-02">
                                 <form>
                                     <div class="input-group mt-4">
                                         <div class="form-floating mb-3 my-1-form-floating">
@@ -218,7 +218,7 @@
                                 </div>
 
                                 <div class="card-bottom d-flex justify-content-between align-items-center">
-                                    <span><img src="../assets/svg/arrow-left.svg" style="width: 26px;"/>Step Back</span>
+                                    <span onclick="getToPrevStep()"><img src="../assets/svg/arrow-left.svg" style="width: 26px;"/>Step Back</span>
                                     <button class="create-button"><a href="login.html">CREATE ACCOUNT</a></button>
                                 </div>
                             </div>
@@ -239,6 +239,8 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <script src="../js/contact-number.js"></script>
+    <script src="../js/registration.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 
 </html>

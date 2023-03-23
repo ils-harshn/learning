@@ -347,4 +347,26 @@ label[for=terms-and-conditions] {
     opacity: 1;
 }
 
-/* error */
+#step-01 {
+    display: block;
+    animation: fadeInAnimation ease 300ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+#step-02 {
+    display: none;
+    animation: fadeInAnimation ease 300ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
