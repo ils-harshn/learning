@@ -17,6 +17,13 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/registration.css">
+    <link rel="stylesheet" href="../css/contact-number.css">
+
+
+    <!-- phone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <!-- end-phone -->
 </head>
 
 <body>
@@ -57,7 +64,6 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text d-flex justify-content-end align-items-center">
                                             <span class="input-group-img">
-                                                <!-- <img src="../assets/img/email.png" alt=""> -->
                                                 <img src="../assets/svg/email.svg" alt="">
                                             </span>
                                         </div>
@@ -70,7 +76,16 @@
                                 <div class="col-12 mb-2">
                                     <span id="invalid-email" class="error">*Please enter valid email address</span>
                                 </div>
-
+                                <!-- phone -->
+                                <div class="contact-number-input">
+                                    <input type="number" class="form-control" placeholder="Mobile Number"
+                                        id="contact-number" onkeyup="validateContactNumber()" name="number"
+                                        autocomplete="off" contextmenu="false">
+                                    <div class="col-12 mb-2">
+                                        <span class="error contact-number-error"></span>
+                                    </div>
+                                </div>
+                                <!-- end-phone -->
                                 <div class="create-password-title">Create Password</div>
                                 <p class="create-password-helper-text">Password must contain one special character, one
                                     capital letter and be at least 6 characters long.</p>
@@ -125,7 +140,6 @@
                                 <div class="register-button-container">
                                     <button type="submit" class="register-button">
                                         <span>NEXT STEP</span>
-                                        <!-- <img src="../assets/img/arrow-right.png" alt=""> -->
                                         <img src="../assets/svg/arrow-right.svg" alt="">
                                     </button>
                                 </div>
@@ -153,6 +167,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+    <script src="../js/contact-number.js"></script>
 </body>
 
 </html>

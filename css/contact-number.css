@@ -1,0 +1,44 @@
+#contact-number {
+    height: 60px;
+    width: 100%;
+    background: #F7FAFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    opacity: 1;
+    text-align: left;
+    /*font: normal normal 600 16px/22px Open Sans; */
+    letter-spacing: 0px;
+    color: #222222;
+    opacity: 1;
+}
+
+#contact-number::placeholder {
+    color: #000000 !important;
+    font-weight: 600;
+}
+
+.iti {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.iti--separate-dial-code .iti__selected-flag {
+    background-color: white !important;
+}
+
+.iti__selected-flag {
+    border-radius: 6px;
+}
+
+.iti__country-list {
+    width: 275px;
+    overflow-x: hidden;
+}
+
+
+#contact-number::-webkit-outer-spin-button,
+#contact-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
