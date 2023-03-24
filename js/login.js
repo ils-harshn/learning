@@ -8,7 +8,7 @@ function validateLogin(e) {
     let password = form.get("password");
     let is_valid_email = validateEmail(email);
     let is_valid_password = validatePassword(password);
-    
+
 
     if (is_valid_email && is_valid_password) {
         alert("Successfull")
@@ -27,5 +27,5 @@ function validateLogin(e) {
     } else {
         password_error_ele.innerHTML = "";
         document.getElementById("password").style.borderBottom = ""
-    } 
+    }
 }

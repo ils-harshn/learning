@@ -39,6 +39,6 @@
 
 #contact-number::-webkit-outer-spin-button,
 #contact-number::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }

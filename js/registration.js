@@ -27,25 +27,17 @@ function getToPrevStep() {
     scrollTop()
 }
 
-
 function validateFormStep1(e) {
     e.preventDefault();
     let form = new FormData(e.target)
-    let email_error_ele = document.getElementById("invalid-email");
-    let password_error_ele = document.getElementById("invalid-password");
-    let first_name_ele = document.getElementById("first-name");
-    let last_name_ele = document.getElementById("last-name");
-    let confirm_password_error_ele = document.getElementById("invalid-confirm-password");
-    // var form = new FormData(document.getElementById("form"));
     let email = form.get("email");
     let password = form.get("password");
     let first_name = form.get("first-name");
     let last_name = form.get("last-name");
     let confirm_password = form.get("confirm-password")
 
-
     let is_valid_email = validateEmail(email);
-    let is_valid_password = validatePassword(password);
+    let is_valid_password = validatePassword(password, true);
     let is_contact_number_valid = validateContactNumber()
     let is_first_name_valid = first_name.length > 0
     let is_last_name_valid = last_name.length > 0
@@ -56,35 +48,23 @@ function validateFormStep1(e) {
         getToNextStep()
     }
 
-    if (is_valid_email == false) {
-        email_error_ele.innerHTML = "*Please enter valid email address";
-        document.getElementById("email").style.borderBottom = "2px solid #FF0000"
-    } else {
-        email_error_ele.innerHTML = "";
-        document.getElementById("email").style.borderBottom = ""
-    }
-    if (is_valid_password == false) {
-        password_error_ele.innerHTML = "*Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:";
-        document.getElementById("password").style.borderBottom = "2px solid #FF0000"
-    } else {
-        password_error_ele.innerHTML = "";
-        document.getElementById("password").style.borderBottom = ""
-    }
-    if (is_first_name_valid == false) {
-        first_name_ele.style.borderBottom = "2px solid #FF0000";
-    } else {
-        first_name_ele.style.borderBottom = "";
-    }
-    if (is_last_name_valid == false) {
-        last_name_ele.style.borderBottom = "2px solid #FF0000";
-    } else {
-        last_name_ele.style.borderBottom = "";
-    }
-    if (is_confirm_password == false) {
-        confirm_password_error_ele.innerHTML = "*Password Dose not Match";
-    }else {
-        confirm_password_error_ele.innerHTML = "";
-        document.getElementById("confirm-password").style.borderBottom = ""
-    }
+    check(is_valid_email, "email", "*Please enter valid email address", "email")
+    check(is_valid_password, "password", "*Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:", "password")
+    check(is_confirm_password, "confirm-password", "*Password Dose not Match", "confirm-password")
+    check(is_first_name_valid, undefined, "", "first-name")
+    check(is_last_name_valid, undefined, "", "last-name")
     scrollTop()
+}
+
+function validateFormStep2(e) {
+    e.preventDefault()
+    let form = new FormData(e.target)
+    let is_success = true;
+
+    form.forEach((value, key) => {
+        is_success &&= check_length(value)
+        check(value, key, "*Required", key)
+
+    })
+    if (is_success) alert("Done!");
 }

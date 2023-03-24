@@ -212,27 +212,63 @@ label[for=remember-me] {
     justify-content: flex-end;
 }
 
-
-
-/* @media (max-width: 828px) {
+@media (max-width: 280px) {
     .logo {
-        width: 20em;
-        height: fit-content;
+        padding: 0 0 0 3.5em;
+        /* border: 2px solid red; */
     }
-} */
+
+    .card .card-body .card-title {
+        font-size: 19px;
+    }
+
+    .form-container .card {
+        width: 75%;
+        margin-left: 4em;
+    }
+
+    .copyright-text {
+        padding: 0 0 0 8em;
+        width: 100%;
+    }
+
+    .form-container .form-control {
+        width: 7em;
+    }
+
+    #step-01 form label {
+        font-size: 12px;
+    }
+
+    #step-01 .my-2 {
+        width: 48%;
+    }
+
+    #step-01 .my-2 .form-control {
+        width: 100%;
+    }
+
+    #step-01 #password {
+        width: 5em;
+    }
+
+
+}
+
+
+
+@media (max-width: 700px) and (min-width: 281px) {
+    .form-container {
+        margin-left: 20px;
+        width: 100vw;
+    }
+}
 
 @media (max-width: 828px) {
     .logo {
         width: 15em;
         height: fit-content;
         margin: 20px 0 20px 0;
-    }
-}
-
-@media (max-width: 700px) {
-    .form-container {
-        margin-left: 20px;
-        width: 100vw;
     }
 }
 
@@ -345,6 +381,11 @@ label[for=terms-and-conditions] {
 
 .card-bottom .create-button:hover {
     opacity: 1;
+}
+
+.card-bottom .create-button span {
+    font-size: 12px;
+    color: white;
 }
 
 #step-01 {
