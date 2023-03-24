@@ -55,7 +55,6 @@ function validateFormStep1(e) {
     let is_confirm_password = (password == confirm_password);
 
     if (is_valid_email && is_valid_password && is_contact_number_valid && is_first_name_valid && is_last_name_valid && is_confirm_password) {
-        alert("Successfull")
         getToNextStep()
     }
 
