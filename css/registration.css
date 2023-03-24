@@ -255,12 +255,21 @@ label[for=remember-me] {
 
 }
 
-
-
 @media (max-width: 700px) and (min-width: 281px) {
+    .form-container .form-control {
+        width: 12.87em;
+    }
     .form-container {
         margin-left: 20px;
         width: 100vw;
+    }
+
+    #step-02 .form-floating .form-control {
+        width: 100%;
+    }
+
+    .register-button {
+        font-size: 12px;
     }
 }
 
