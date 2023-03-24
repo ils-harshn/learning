@@ -204,17 +204,45 @@ label[for=remember-me] {
 }
 
 
-@media (max-width: 828px) {
-    .logo {
-        width: 20em;
-        height: fit-content;
-        /* margin-bottom: 10px; */
+@media (max-width: 280px) {
+    .form-container .card {
+        margin-top: 20px;
+        margin-left: 4em;
+        width: 75%;
+    }
+    .form-control {
+        width: 10em;
     }
 }
 
+@media (max-width: 420px) and (min-width: 281px) {
+    .form-container .card {
+        width: 90%;
+        margin-left: 20px;
+    }
+
+    .form-control {
+        width: 12em;
+    }
+}
+
+
 @media (max-width: 700px) {
+    .logo {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
     .form-container {
         margin-left: 20px;
         width: 100vw;
+    }
+}
+
+@media (max-width: 828px) {
+    .logo {
+        margin: 10px 0 10px 0;
+        width: 20em;
+        height: fit-content;
+        /* margin-bottom: 10px; */
     }
 }
