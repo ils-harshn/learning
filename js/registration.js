@@ -6,6 +6,15 @@ function show(ele, value = "block") {
     ele.style.display = value;
 }
 
+
+function showStep(index) {
+    let elements = document.getElementsByClassName("tab-step");
+    for (let i = 0; i < 2; i++) {
+        elements[i].classList.remove("active")
+    }
+    elements[index].classList.add("active");
+}
+
 function scrollTop() {
     let controllOverFlow = document.getElementsByClassName("control-overflow")[0]
     controllOverFlow.scrollTo(0, 0);
@@ -16,6 +25,7 @@ function getToNextStep() {
     let step_2 = document.getElementById("step-02");
     hide(step_1)
     show(step_2)
+    showStep(1)
     scrollTop()
 }
 
@@ -24,6 +34,7 @@ function getToPrevStep() {
     let step_2 = document.getElementById("step-02");
     hide(step_2)
     show(step_1)
+    showStep(0)
     scrollTop()
 }
 
@@ -68,3 +79,6 @@ function validateFormStep2(e) {
     })
     if (is_success) alert("Done!");
 }
+
+
+showStep(0)
