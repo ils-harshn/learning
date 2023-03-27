@@ -413,22 +413,6 @@ label[for=terms-and-conditions] {
     }
 }
 
-
-/* @media only screen and (max-width: 860px) {  
-    .center-items {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        align-items: center;
-        justify-content: space-evenly;
-    } 
-
-    .form-container {
-        margin-left: 18px;
-        width: 100vw;
-    }
-} */
-
 @media (max-width: 860px) and (min-width: 768px) {
     .logo {
         width: 75%;
@@ -447,39 +431,40 @@ label[for=terms-and-conditions] {
     }
 }
 
-@media (max-width: 768px) and (min-width: 468px) {
+@media (max-width: 460px) {
     .logo {
-        margin: 20px;
-    }
-
-    .form-container {
-        overflow: hidden;
-        /* border: 2px solid red; */
-        margin-left: 4%;
+        width: 75%;
     }
 
     .form-container .card {
-        width: 90%;
-        margin-left: 4%;
-    }
-}
-
-@media (max-width: 468px) {
-    .logo-container {
-        margin-left: 10%;
-        /* border: 2px solid red; */
-    }
-
-    .logo {
-        width: 90%;
-    }
-
-    .form-container .card {
-        margin-left: 11%;
-        width: 90%;
+        margin-left: 14%;
+        width: 75%;
     }
 
     .form-container .form-floating .form-control {
-        width: 100% !important;
+        width: 160px;
+    }
+
+    .copyright-text {
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .form-container .card {
+        width: 65%;
+        margin-left: 25%;
+    }
+
+    .form-container .form-floating .form-control {
+        width: 120px;
+    }
+
+    .form-container .form-floating .form-control+label {
+        font-size: 12px;
+    }
+
+    .copyright-text {
+        margin-left: 70px;
     }
 }

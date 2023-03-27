@@ -203,27 +203,14 @@ label[for=remember-me] {
     color: #FF0000;
 }
 
-
-@media (max-width: 280px) {
-    .form-container .card {
-        margin-top: 20px;
-        margin-left: 4em;
-        width: 75%;
-    }
-
-    .form-control {
-        width: 10em;
-    }
-}
-
-@media (max-width: 420px) and (min-width: 281px) {
+@media (max-width: 420px) and (min-width: 280px) {
     .form-container .card {
         width: 90%;
         margin-left: 20px;
     }
 
     .form-control {
-        width: 12em;
+        width: 11.5em;
     }
 }
 
