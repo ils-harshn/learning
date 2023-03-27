@@ -461,6 +461,11 @@ label[for=terms-and-conditions] {
 }
 
 @media (max-width: 360px) {
+    .logo-container {
+        width: 100vw;
+        margin-left: 30px;
+    }
+    
     .form-container .card {
         width: 65%;
         margin-left: 26%;

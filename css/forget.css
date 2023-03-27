@@ -30,7 +30,7 @@ body {
     /* width: 400px;
     height: 500px; */
     width: 25em;
-    height: 22em;
+    height: 20em;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 6px #00000029;
     border-radius: 20px;
@@ -199,6 +199,11 @@ label[for=remember-me] {
 
 
 @media (max-width: 828px) {
+    .logo-container {
+        display: flex;
+        justify-content: center;
+    }
+
     .logo {
         width: 20em;
         height: fit-content;
@@ -214,13 +219,17 @@ label[for=remember-me] {
 }
 
 @media (max-width: 440px) {
+    .logo-container {
+        margin-left: 20px;
+        width: 100vw;
+    }
     .form-container .card {
         width: 90%;
-        margin: 6%;
+        margin: 4.5%;
     }
 
     .form-container .form-control {
-        width: 100%;
+        width: 190px;
     }
 }
 

@@ -12,3 +12,5 @@ function validateForget(e) {
         alert("Successfull")
     }
 }
+
+// alert(window.screen.width)
