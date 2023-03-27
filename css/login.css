@@ -165,12 +165,6 @@ label[for=remember-me] {
     border-radius: 6px;
     outline: none;
     border: none;
-    opacity: 0.5;
-    transition: 300ms opacity;
-}
-
-.card-bottom button:hover {
-    opacity: 1;
 }
 
 .card-bottom button a {
