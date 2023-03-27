@@ -200,6 +200,7 @@ label[for=remember-me] {
 @media (max-width: 340px) {
     .form-container .card {
         width: 80%;
+        height: 560px;
         margin-left: 15%;
     }
 
