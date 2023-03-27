@@ -431,13 +431,23 @@ label[for=terms-and-conditions] {
     }
 }
 
+@media (max-width: 768px) {
+    .form-container .card {
+        margin-left: 6%;
+    }
+
+    .copyright-text {
+        margin-left: 30px;
+    }
+}
+
 @media (max-width: 460px) {
     .logo {
         width: 75%;
     }
 
     .form-container .card {
-        margin-left: 14%;
+        margin-left: 17%;
         width: 75%;
     }
 
@@ -446,14 +456,14 @@ label[for=terms-and-conditions] {
     }
 
     .copyright-text {
-        margin-left: 15px;
+        margin-left: 30px;
     }
 }
 
 @media (max-width: 360px) {
     .form-container .card {
         width: 65%;
-        margin-left: 25%;
+        margin-left: 26%;
     }
 
     .form-container .form-floating .form-control {
@@ -466,5 +476,22 @@ label[for=terms-and-conditions] {
 
     .copyright-text {
         margin-left: 70px;
+    }
+}
+
+@media (max-width: 310px) {
+    .form-container .card {
+        margin-left: 30%;
+    }
+
+    .copyright-text {
+        margin-left: 120px;
+    }
+}
+
+@media (max-width: 460px) {
+    .register-button {
+        font-size: 12px;
+        width: 120px;
     }
 }

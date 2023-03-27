@@ -212,3 +212,24 @@ label[for=remember-me] {
         width: 100vw;
     }
 }
+
+@media (max-width: 440px) {
+    .form-container .card {
+        width: 90%;
+        margin: 6%;
+    }
+
+    .form-container .form-control {
+        width: 100%;
+    }
+}
+
+@media (max-width: 340px) {
+    .form-container .card {
+        width: 80%;
+        margin-left: 15%;
+    }
+    .form-container .form-control {
+        width: 160px;
+    }
+}
