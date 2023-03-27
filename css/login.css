@@ -197,7 +197,18 @@ label[for=remember-me] {
     color: #FF0000;
 }
 
-@media (max-width: 420px) and (min-width: 280px) {
+@media (max-width: 340px) {
+    .form-container .card {
+        width: 80%;
+        margin-left: 15%;
+    }
+
+    .form-control {
+        width: 9em;
+    }
+}
+
+@media (max-width: 420px) and (min-width: 340px) {
     .form-container .card {
         width: 90%;
         margin-left: 20px;
