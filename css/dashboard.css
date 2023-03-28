@@ -49,6 +49,7 @@ header {
     padding: 10px;
     font-size: 24px;
     display: none;
+    cursor: pointer;
 }
 
 .sidebar .logo {
@@ -234,7 +235,7 @@ main .container {
     color: white;
     font-size: 32px;
     display: none;
-
+    cursor: pointer;
 }
 
 /* .side-header .menu-button:hover  */
