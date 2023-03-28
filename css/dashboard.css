@@ -1,1 +1,130 @@
 /* dashboard css */
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans';
+    background: #F3F4F9 0% 0% no-repeat padding-box;
+}
+
+/* header */
+
+header {
+    height: 90px;
+    background: #487FCC 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #15223214;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0px;
+    color: #ffffff;
+}
+
+.side-header {
+    display: flex;
+}
+
+.sidebar {
+    width: 260px;
+    min-height: 90vh;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+}
+
+.title {
+    margin-left: 30px;
+}
+
+.add-new-school {
+    width: 190px;
+    height: 44px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000026;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #386CB5;
+    text-transform: uppercase;
+}
+
+.add-new-school span {
+    font-size: 20px;
+    margin: 0;
+}
+
+.options {
+    display: flex;
+    align-items: start;
+}
+
+.notification {
+    margin: 8px 30px 0 10px;
+    width: 24px;
+    height: 24px;
+    background: transparent url('../assets/svg/ic-bell.svg') 0% 0% no-repeat padding-box;
+    opacity: 1;
+    position: relative;
+}
+
+.notification .badge {
+    position: absolute;
+    top: -4;
+    right: -4;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    background: #F0142F 0% 0% no-repeat padding-box;
+    border-radius: 12px;
+    font-size: 11px;
+    font-family: 'Poppins';
+    /* font: normal normal normal 12px/18px Poppins; */
+    letter-spacing: 0.07px;
+    color: #FFFFFF;
+}
+
+.profile {
+    width: 206px;
+    height: 36px;
+    opacity: 1;
+}
+
+.profile {
+    display: flex;
+    justify-content: first baseline;
+    align-items: center;
+}
+
+.profile img {
+    width: 36px;
+    height: 36px;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-right: 8px;
+}
+
+.profile .name {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    margin-right: 0;
+    overflow: hidden;
+    width: 124px;    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.profile div i {
+    font-size: 18px;
+    margin-left: 20px;
+    color: white;
+}

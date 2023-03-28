@@ -7,12 +7,40 @@
     <meta name="description" content="Web site created using HTML, CSS, JavaScript and Bootstrap">
     <link rel="apple-touch-icon" href="./assets/logo/logo.png">
 
+    <!-- links and scripts -->
+    <script src="https://kit.fontawesome.com/0c9e474dd2.js" crossorigin="anonymous"></script>
+    
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;800&family=Poppins:wght@100;300&display=swap"
+        rel="stylesheet">
+    <!-- end fonts -->
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <title>Chronicle Cloud</title>
 </head>
+
 <body>
     <header>
-        
+        <div class="side-header">
+            <div class="sidebar"></div>
+            <span class="title">Dashboard</span>
+        </div>
+        <div class="options">
+            <button class="add-new-school">&#43; ADD NEW SCHOOL</button>
+            <div class="notification">
+                <span class="badge">2</span>
+            </div>
+            <div class="profile">
+                <div>
+                    <img src="../assets/img/profile-icon.png" alt="">
+                </div>
+                <div class="name">Harsh Narwariya</div>
+                <div><i class="fa-solid fa-angle-down"></i></div>
+            </div>
+        </div>
     </header>
     <script src="../js/dashboard.js"></script>
 </body>
