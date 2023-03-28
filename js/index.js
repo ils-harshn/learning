@@ -1,7 +1,8 @@
 function changeEye(e) {
     let state = e.target.getAttribute("data-state");
     if (state == "shown") {
-        e.target.src = "../assets/svg/closed-eye.svg"
+        // e.target.src = "../assets/svg/closed-eye.svg"
+        e.target.src = "../assets/img/closed-eye.png"
         e.target.setAttribute("data-state", "hidden")
         document.getElementById("password").type = "string"
     } else {
