@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <link rel="shortcut icon" href="./assets/logo/Favicon96.png" sizes="96x96">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using HTML, CSS, JavaScript and Bootstrap">
+    <link rel="apple-touch-icon" href="./assets/logo/logo.png">
+    <title>Index - Chronicle Cloud</title>
+    <style>
+        body {
+            background-image: url('./assets/img/Bg.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            /* align-items: center; */
+            text-decoration: none;
+            list-style: none;
+        }
+
+        ul li {
+            /* border: 2px solid #494949; */
+            min-width: 240px;
+            /* height: fit-content; */
+            flex: 1;
+            display: flex;
+            margin: 2px;
+            padding: 0;
+            transition: box-shadow 300ms;
+            /* border: 1px solid red; */
+        }
+
+        ul li:hover {
+            box-shadow: 0px 1px 20px #00000029;
+        }
+
+        ul li a {
+            color: black;
+            font-weight: 600;
+            font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            text-align: center;
+            /* border: 1px solid red; */
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a href="./pages/login.html">Login</a></li>
+        <li><a href="./pages/registration.html">Register</a></li>
+        <li><a href="./pages/forget.html">Forget</a></li>
+        <li><a href="./pages/dashboard.html">Dashboard</a></li>
+    </ul>
+</body>
+
+</html>
