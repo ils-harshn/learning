@@ -4,19 +4,21 @@ body {
     margin: 0;
     font-family: 'Open Sans';
     background: #F3F4F9 0% 0% no-repeat padding-box;
+    /* overflow: hidden; */
 }
 
 /* header */
 
 header {
+    /* width: 100vw; */
     height: 90px;
     background: #487FCC 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 4px #15223214;
     padding: 30px;
     display: flex;
     justify-content: space-between;
-    /* position: absolute; */
-    /* width: 100vw; */
+    /* position: absolute;
+    width: 100vw; */
 }
 
 .title {
@@ -196,4 +198,32 @@ header {
     font-size: 18px;
     margin-left: 20px;
     color: white;
+}
+
+
+/* main */
+
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* border: 1px solid green; */
+}
+
+main .container {
+    border: 1px solid red;
+    margin-top: 6em;
+    margin-left: 290px;
+    height: 87.5vh;
+    overflow-y: scroll;
+}
+
+.sidebar.hide {
+    display: none;
+}
+
+.sidebar {
+    z-index: 1000;
 }
