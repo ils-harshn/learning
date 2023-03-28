@@ -10,7 +10,6 @@ body {
 /* header */
 
 header {
-    /* width: 100vw; */
     height: 90px;
     background: #487FCC 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 4px #15223214;
@@ -40,6 +39,16 @@ header {
     border-radius: 10px;
     margin: 0;
     padding: 0;
+    z-index: 100;
+    position: relative;
+}
+
+.sidebar-close-btn {
+    position: absolute;
+    left: 220px;
+    padding: 10px;
+    font-size: 24px;
+    display: none;
 }
 
 .sidebar .logo {
@@ -102,6 +111,7 @@ header {
     font-weight: 600;
     color: #386CB5;
 }
+
 /* 
 .sidebar {
     display: none;
@@ -134,6 +144,7 @@ header {
 .options {
     display: flex;
     align-items: start;
+    z-index: 90;
 }
 
 .notification {
@@ -200,7 +211,6 @@ header {
     color: white;
 }
 
-
 /* main */
 
 main {
@@ -208,22 +218,84 @@ main {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh);
     /* border: 1px solid green; */
 }
 
 main .container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-top: 6em;
     margin-left: 290px;
-    height: 87.5vh;
+    height: calc(100vh - 6em);
     overflow-y: scroll;
 }
 
-.sidebar.hide {
+.side-header .menu-button {
+    color: white;
+    font-size: 32px;
     display: none;
+
 }
 
-.sidebar {
-    z-index: 1000;
+/* .side-header .menu-button:hover  */
+
+@media (max-width: 940px) {
+    .sidebar {
+        display: none;
+    }
+
+    main .container {
+        margin-left: 0;
+    }
+
+    .side-header .menu-button {
+        display: block;
+        z-index: 90;
+    }
+
+    .sidebar-close-btn {
+        display: block;
+    }
+    
+    .sidebar.active {
+        display: block;
+        position: absolute;
+    }
 }
+
+@media (max-width: 695px) {
+    .add-new-school {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .notification {
+        display: none;
+    }
+
+    .options .profile div:first-child{
+        display: none;
+    }
+
+    .options .profile .name {
+        display: none;
+    }
+
+    .options {
+        width: 20px;
+        height: 35px;
+        justify-content: end;
+    }
+}
+
+@media (max-width: 300px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .sidebar .sidebar-close-btn {
+        top: 0;
+        left: 160px
+    }
+} 
