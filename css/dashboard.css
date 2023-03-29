@@ -238,9 +238,75 @@ main .container {
     cursor: pointer;
 }
 
-/* .side-header .menu-button:hover  */
+/* cards */
+.cards {
+    display: flex;
+    justify-content: space-evenly;
+}
 
-@media (max-width: 940px) {
+.cards .card {
+    width: 20%;
+    /* height: 160px; */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #0000001A;
+    border-radius: 10px;
+    padding: 10px 16px 10px 16px;
+}
+
+.cards .card .card-title {
+    text-align: left;
+    /* font: normal normal 600 16px/22px Open Sans; */
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #000000;
+    text-transform: uppercase;
+    opacity: 0.4;
+}
+
+.cards .card .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards .card .card-body span.count {
+    text-align: left;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+.cards .card .card-body span span {
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}
+
+.cards .card .card-bottom {
+    margin-top: 10px;
+}
+
+.cards .card .card-bottom small {
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 0.4;
+}
+
+.cards .card .card-body .icon {
+    border-radius: 50%;
+    padding: 14px;
+    opacity: 1;
+    color: white;
+    opacity: 1;
+}
+
+
+/* @media (max-width: 940px) { */
+@media (max-width: 1000px) {
     .sidebar {
         display: none;
     }
@@ -257,7 +323,7 @@ main .container {
     .sidebar-close-btn {
         display: block;
     }
-    
+
     .sidebar.active {
         display: block;
         position: absolute;
@@ -275,7 +341,7 @@ main .container {
         display: none;
     }
 
-    .options .profile div:first-child{
+    .options .profile div:first-child {
         display: none;
     }
 
@@ -299,4 +365,31 @@ main .container {
         top: 0;
         left: 160px
     }
-} 
+}
+
+
+@media (max-width: 800px) {
+    .cards {
+        /* justify-content: space-between; */
+        flex-wrap: wrap;
+    }
+
+    .cards .card {
+        min-width: 40%;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 524px) {
+    .cards .card {
+        min-width: 35%;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 350px) {
+    .cards .card {
+        min-width: 80%;
+        margin: 10px;
+    }
+}
