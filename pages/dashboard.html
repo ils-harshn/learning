@@ -82,7 +82,8 @@
                     </div>
                     <div class="card-body">
                         <span class="count">04 <span>Active</span></span>
-                        <span class="material-icons-outlined icon" style="background: transparent linear-gradient(158deg, #6D6AE3 0%, #6664D8 100%) 0% 0% no-repeat padding-box;">home_work</span>
+                        <span class="material-icons-outlined icon"
+                            style="background: transparent linear-gradient(158deg, #6D6AE3 0%, #6664D8 100%) 0% 0% no-repeat padding-box;">home_work</span>
                     </div>
                     <div class="card-bottom">
                         <small>Total Schools: 12</small>
@@ -97,7 +98,8 @@
                     <div class="card-body">
                         <span class="count">84 <span>Active</span></span>
                         <!-- <span class="material-icons-outlined icon" style="background: transparent linear-gradient(158deg, #6D6AE3 0%, #6664D8 100%) 0% 0% no-repeat padding-box;">home_work</span> -->
-                        <span class="fa-solid fa-user-tie icon" style="background: transparent linear-gradient(158deg, #FB9A40 0%, #F88820 100%) 0% 0% no-repeat padding-box; padding: 18px;"></span>
+                        <span class="fa-solid fa-user-tie icon"
+                            style="background: transparent linear-gradient(158deg, #FB9A40 0%, #F88820 100%) 0% 0% no-repeat padding-box; padding: 18px;"></span>
                     </div>
                     <div class="card-bottom">
                         <small>Total Teachers: 98</small>
@@ -111,7 +113,8 @@
                     </div>
                     <div class="card-body">
                         <span class="count">125 <span>Active</span></span>
-                        <span class="material-icons-outlined icon" style="background: transparent linear-gradient(158deg, #FFC05D 0%, #F8A829 100%) 0% 0% no-repeat padding-box;">person</span>
+                        <span class="material-icons-outlined icon"
+                            style="background: transparent linear-gradient(158deg, #FFC05D 0%, #F8A829 100%) 0% 0% no-repeat padding-box;">person</span>
                     </div>
                     <div class="card-bottom">
                         <small>Total Rosters: 130</small>
@@ -125,12 +128,140 @@
                     </div>
                     <div class="card-body">
                         <span class="count">76 <span>Active</span></span>
-                        <span class="material-icons-outlined icon" style="background: transparent linear-gradient(158deg, #44D58C 0%, #2CBE59 100%) 0% 0% no-repeat padding-box;">fact_check</span>
+                        <span class="material-icons-outlined icon"
+                            style="background: transparent linear-gradient(158deg, #44D58C 0%, #2CBE59 100%) 0% 0% no-repeat padding-box;">fact_check</span>
                     </div>
                     <div class="card-bottom">
                         <small>Total Classes: 79</small>
                     </div>
                 </div>
+            </div>
+
+            <style>
+                .table-container {
+                    /* border: 1px solid red; */
+                    overflow-x: auto;
+                    padding: 5px 20px 10px 20px;
+                    margin: 20px;
+                    background: #FFFFFF 0% 0% no-repeat padding-box;
+                    box-shadow: 0px 1px 6px #0000001A;
+                    border-radius: 10px 10px 0px 0px
+                }
+
+                .table-container p.table-title {
+                    /* font-size: 18px; */
+                    font-weight: 600;
+                    letter-spacing: 0px;
+                    color: #444B48;
+                }
+
+                .table-container table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                .table-container table thead tr {
+                    /* text-align: left; */
+                    border-bottom: 1px solid #7e84a33e;
+                    /* opacity: 0.5; */
+                }
+
+                .table-container table thead tr th[scope="col"] {
+                    text-align: left;
+                    font-weight: 600;
+                    font-size: 14px;
+                    letter-spacing: 0px;
+                    color: #7E84A3;
+                    text-transform: uppercase;
+                    opacity: 1;
+                    padding: 0px 0px 20px 10px;
+                }
+
+                .table-container table thead tr th[scope="col"] i {
+                    color: black;
+                    font-size: 10px;
+                    text-transform: capitalize;
+                }
+
+                .table-container table tbody tr td {
+                    /* margin: 10px; */
+                    padding: 10px;
+                    font-size: 14px;
+                    font-weight: 400;
+                    letter-spacing: 0px;
+                    color: #000000;
+                }
+
+                .table-container table tbody tr th {
+                    width: 80px;
+                    height: 80px;
+                    text-align: left;
+                }
+
+                .table-container table tbody tr th img {
+                    width: 60px;
+                    height: 60px;
+                    border: 1px solid #EEEEEE;
+                }
+
+                .table-container table tbody tr td:last-child a {
+                    text-decoration: none;
+                    font-size: 16px;
+                    letter-spacing: 0px;
+                    color: #487FCC;
+                }
+
+                .table-container table tbody tr td:last-child a i {
+                    margin-right: -6px;
+                }
+            </style>
+            <div class="table-container">
+                <p class="table-title">School List</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Logo</th>
+                            <th scope="col">School Name</th>
+                            <th scope="col">School Contact</th>
+                            <th scope="col">School Size <i>Roster / Teacher</i></th>
+                            <th scope="col">Data Usage</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"> <img src="../assets/img/table-1.png"></th>
+                            <td>School_Name, School name goes here… </td>
+                            <td>school_name@email.com <br> +91 731 987 321, +91 98765 43210</td>
+                            <td>176 / 12</td>
+                            <td><b>256</b><span class="text-mute">/500 mb</span></td>
+                            <td>Active</td>
+                            <td><a href="#" class="text-decoration-none"><i class="fa-solid fa-eye"></i> &nbsp; View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> <img src="../assets/img/table-2.png"></th>
+                            <td>Queen’s College</td>
+                            <td>Queen'scollege@email.com <br> +91 731 987 321, +91 98765 43210</td>
+                            <td>225 / 18</td>
+                            <td><b>103</b><span class="text-mute">/500 mb</span></td>
+                            <td>Active</td>
+                            <td><a href="#" class="text-decoration-none"><i class="fa-solid fa-eye"></i> &nbsp; View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> <img src="../assets/img/table-2.png"></th>
+                            <td>Golden International School</td>
+                            <td>Goldeninternationalschool@email.com <br> +91 731 987 321, +91 98765 43210</td>
+                            <td>364 / 30</td>
+                            <td><b>324</b><span class="text-mute">/500 mb</span></td>
+                            <td>Active</td>
+                            <td><a href="#" class="text-decoration-none"><i class="fa-solid fa-eye"></i> &nbsp; View</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
