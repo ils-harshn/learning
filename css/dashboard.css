@@ -50,6 +50,13 @@ header {
     font-size: 24px;
     display: none;
     cursor: pointer;
+    transition: color 300ms;
+    transition: transform 300ms;
+}
+
+.sidebar-close-btn:hover {
+    color: #6a6a6a;
+    transform: scale(1.1);
 }
 
 .sidebar .logo {
@@ -106,6 +113,14 @@ header {
 .sidebar ul li.active {
     border-left: 2px solid #386CB5;
     background-color: #F2F7FF;
+}
+
+.sidebar ul li.active div {
+    color: #386CB5;
+}
+
+.sidebar ul li.active i {
+    opacity: 1;
 }
 
 .sidebar ul li:hover div {
@@ -311,6 +326,21 @@ main .container {
 @media (max-width: 1000px) {
     .sidebar {
         display: none;
+        box-shadow: 0px 10px 16px #00000029;
+        animation: fadeIn ease 300ms;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+
     }
 
     main .container {
