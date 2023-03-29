@@ -191,8 +191,8 @@ label[for=remember-me] {
 }
 
 .error {
-    /* font: normal normal normal 12px/17px Open Sans; */
     font-size: 12px;
+    border: 1px solid white;
     letter-spacing: 0px;
     color: #FF0000;
 }
