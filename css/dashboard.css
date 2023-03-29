@@ -246,6 +246,7 @@ main .container {
 
 .cards .card {
     width: 20%;
+    max-width: 320px;
     /* height: 160px; */
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 6px #0000001A;
