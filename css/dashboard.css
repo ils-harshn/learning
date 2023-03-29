@@ -321,6 +321,86 @@ main .container {
     opacity: 1;
 }
 
+/* table */
+.table-container {
+    /* border: 1px solid red; */
+    overflow-x: auto;
+    padding: 5px 20px 10px 20px;
+    margin: 20px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #0000001A;
+    border-radius: 10px 10px 0px 0px
+}
+
+.table-container p.table-title {
+    /* font-size: 18px; */
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #444B48;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container table thead tr {
+    /* text-align: left; */
+    border-bottom: 1px solid #7e84a33e;
+    /* opacity: 0.5; */
+}
+
+.table-container table thead tr th[scope="col"] {
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #7E84A3;
+    text-transform: uppercase;
+    opacity: 1;
+    padding: 0px 0px 20px 10px;
+}
+
+.table-container table thead tr th[scope="col"] i {
+    color: black;
+    font-size: 10px;
+    text-transform: capitalize;
+}
+
+.table-container table tbody tr td {
+    /* margin: 10px; */
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+.table-container table tbody tr th {
+    width: 80px;
+    height: 80px;
+    text-align: left;
+}
+
+.table-container table tbody tr th img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #EEEEEE;
+}
+
+.table-container table tbody tr td:last-child a {
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 0px;
+    color: #487FCC;
+}
+
+.table-container table tbody tr td:last-child a i {
+    margin-right: -6px;
+}
+
+/* end table */
+
 
 /* @media (max-width: 940px) { */
 @media (max-width: 1000px) {
