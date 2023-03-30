@@ -70,13 +70,27 @@ function validateFormStep2(e) {
     e.preventDefault()
     let form = new FormData(e.target)
     let is_success = true;
+    let is_terms_and_conditions = false;
 
     form.forEach((value, key) => {
         is_success &&= check_length(value)
-        check(value, key, "*Required", key)
-
+        if (key == "terms-and-conditions") {
+            if (value == "on") {
+                is_terms_and_conditions = true;
+            } else {
+                is_terms_and_conditions = true;
+            }
+        } else {
+            check(value, key, "*Required", key)
+        }
     })
-    if (is_success) alert("Done!");
+
+    if (is_terms_and_conditions == false) {
+        document.getElementById(`invalid-terms-and-conditions`).innerHTML = "*Please accept Terms of service and Privacy Policy";
+    } else {
+        document.getElementById(`invalid-terms-and-conditions`).innerHTML = "";
+    }
+    if (is_success && is_terms_and_conditions) alert("Done!");
 }
 
 
