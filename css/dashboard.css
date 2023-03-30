@@ -403,6 +403,60 @@ main .container {
 
 /* end table */
 
+/* drop down */
+.profile {
+    position: relative;
+}
+
+.profile .drop-down {
+    display: none;
+    position: absolute;
+    width: 200px;
+    height: 160px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 4px;
+    /* display: block; */
+    padding: 6px;
+    list-style: none;
+    top: 25px;
+    cursor: pointer;
+}
+
+.profile .drop-down.active {
+    display: block;
+}
+
+.profile .drop-down li {
+    height: 33px;
+    border-bottom: 1px solid #EEEEEE;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+}
+
+.profile .drop-down li:hover {
+    background-color: #F5F8FF;
+}
+
+.profile .drop-down li a {
+    text-decoration: none;
+    font-family: 'Inter';
+    font-size: 14px;
+    /* font: normal normal normal 14px/24px Inter; */
+    letter-spacing: 0px;
+    color: #222222;
+}
+
+.profile .drop-down li i {
+    margin-right: 14px;
+    font-size: 20px;
+}
+
+/* end drop down */
+
 
 /* @media (max-width: 940px) { */
 @media (max-width: 1000px) {
@@ -484,6 +538,10 @@ main .container {
     .cards .card {
         min-width: 42%;
         margin-top: 10px;
+    }
+
+    .profile .drop-down {
+        right: 0;
     }
 }
 
