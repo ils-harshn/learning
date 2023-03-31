@@ -569,3 +569,124 @@ main .container {
         left: 160px
     }
 }
+
+
+/* charts css */
+.charts {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.charts .bar-plot-container {
+    padding: 10px;
+    width: 46.8%;
+    /* height: 350px; */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #0000001A;
+    border-radius: 10px;
+}
+
+.charts .bar-plot-container .options {
+    padding: 10px 20px 0 20px;
+}
+
+
+
+.charts .bar-plot-container .options div.active {
+    /* width: 56px;
+    height: 24px; */
+    /* 487FCC */
+    border-bottom: 2px solid #487FCC;
+    text-align: left;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0px;
+    color: #444B48;
+}
+
+
+.charts .bar-plot-container .options div.divider {
+    height: 20px;
+    border: 1px solid #444B48;
+    opacity: 0.4;
+    margin: 0 10px 0 10px;
+}
+
+.charts .bar-plot-container .options div.deactive {
+    font-size: 18px;
+    letter-spacing: 0px;
+    color: #444B48;
+    opacity: 0.4;
+}
+
+.charts .pie-chart-container {
+    padding: 10px;
+    width: 46.8%;
+    /* height: 350px; */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #0000001A;
+    border-radius: 10px;
+}
+
+.charts .pie-chart-container .options {
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.charts .pie-chart-container .options .data-usage {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #444B48;
+}
+
+.charts .pie-chart-container .options .drop-down {
+    width: 160px;
+    /* height: 32px; */
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.charts .pie-chart-container .options .drop-down span {
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #444B48;
+}
+
+@media (max-width: 1042px) and (min-width: 1000px) {
+    .charts {
+        flex-wrap: wrap;
+    }
+
+    .charts .bar-plot-container {
+        width: 96.8%;
+    }
+
+    .charts .pie-chart-container {
+        margin-top: 20px;
+        width: 96.8%;
+    }
+} 
+
+@media (max-width: 800px){
+    .charts {
+        flex-wrap: wrap;
+    }
+
+    .charts .bar-plot-container {
+        width: 96.8%;
+    }
+
+    .charts .pie-chart-container {
+        margin-top: 20px;
+        width: 96.8%;
+    }
+} 
