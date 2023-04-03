@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <h4 class="card-title">LOGIN</h4>
                         <p class="card-caption">Enter your email address and password to get access your account.</p>
-                        <form onsubmit="validateLogin(event)">
+                        <form onsubmit="validate_login_form(event)" onkeyup="validate_field(event, this)">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text d-flex justify-content-end align-items-center">
@@ -89,7 +89,7 @@
                                 </span>
                             </div>
                             <div class="login-button-container">
-                                <button type="submit" class="login-button">LOGIN</button>
+                                <button type="submit" class="login-button" disabled>LOGIN</button>
                             </div>
                         </form>
                         <div class="card-bottom d-flex justify-content-between align-items-center">

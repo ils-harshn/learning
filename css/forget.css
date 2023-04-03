@@ -137,12 +137,10 @@ label[for=remember-me] {
     background: transparent linear-gradient(270deg, #386CB5 0%, #669FED 100%) 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 5px #386CB566;
     border-radius: 6px;
-    opacity: 0.5;
-    transition: 300ms opacity;
 }
 
-.forget-button:hover {
-    opacity: 1;
+.forget-button:disabled {
+    opacity: 0.5;
 }
 
 .card-bottom {
@@ -223,6 +221,7 @@ label[for=remember-me] {
         margin-left: 20px;
         width: 100vw;
     }
+
     .form-container .card {
         width: 90%;
         margin: 4.5%;
@@ -238,6 +237,7 @@ label[for=remember-me] {
         width: 80%;
         margin-left: 15%;
     }
+
     .form-container .form-control {
         width: 160px;
     }

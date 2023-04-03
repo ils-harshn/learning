@@ -674,9 +674,9 @@ main .container {
         margin-top: 20px;
         width: 96.8%;
     }
-} 
+}
 
-@media (max-width: 800px){
+@media (max-width: 800px) {
     .charts {
         flex-wrap: wrap;
     }
@@ -689,4 +689,4 @@ main .container {
         margin-top: 20px;
         width: 96.8%;
     }
-} 
+}

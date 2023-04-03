@@ -1,16 +1,5 @@
-function validateForget(e) {
-    e.preventDefault()
-    let form = new FormData(e.target)
-    let email_error_ele = document.getElementById("invalid-email");
-    let email = form.get("email");
-    let is_valid_email = validateEmail(email);
-
-    if (is_valid_email == false) {
-        email_error_ele.innerHTML = "*Please enter valid email address";
-        document.getElementById("email").style.borderBottom = "2px solid #FF0000"
-    } else {
-        alert("Successfull")
-    }
+function validate_forget_form(e) {
+    e.preventDefault();
+    let is_ok = validate_form(e);
+    if (is_ok) alert("Successfull");
 }
-
-// alert(window.screen.width)

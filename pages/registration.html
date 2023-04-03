@@ -42,22 +42,32 @@
                                 <div class="text-center tab-step">STEP 02</div>
                             </div>
                             <div id="step-01">
-                                <form onsubmit="validateFormStep1(event)">
+                                <form onsubmit="check_step01_form(event)" onkeyup="validate_field(event, this)">
                                     <div class="d-flex justify-content-between mt-3">
-                                        <div class="input-group my-2">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" name="first-name"
-                                                    class="form-control my-2-form-control" id="first-name"
-                                                    placeholder="First Name">
-                                                <label for="first-name">First Name</label>
+                                        <div>
+                                            <div class="input-group my-2">
+                                                <div class="form-floating">
+                                                    <input type="text" name="first-name"
+                                                        class="form-control my-2-form-control" id="first-name"
+                                                        placeholder="First Name">
+                                                    <label for="first-name">First Name</label>
+                                                </div>
+                                            </div>
+                                            <div style="margin-top: -10px; height: 10px;">
+                                                <span id="invalid-first-name" class="error"></span>
                                             </div>
                                         </div>
-                                        <div class="input-group my-2">
-                                            <div class="form-floating mb-3">
-                                                <input name="last-name" type="text"
-                                                    class="form-control my-2-form-control" id="last-name"
-                                                    placeholder="Last Name">
-                                                <label for="last-name">Last Name</label>
+                                        <div>
+                                            <div class="input-group my-2">
+                                                <div class="form-floating">
+                                                    <input name="last-name" type="text"
+                                                        class="form-control my-2-form-control" id="last-name"
+                                                        placeholder="Last Name">
+                                                    <label for="last-name">Last Name</label>
+                                                </div>
+                                            </div>
+                                            <div style="margin-top: -10px; ">
+                                                <span id="invalid-last-name" class="error"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -84,10 +94,9 @@
                                     <!-- phone -->
                                     <div class="contact-number-input mt-3">
                                         <input type="number" class="form-control" placeholder="Mobile Number"
-                                            id="contact-number" onkeyup="validateContactNumber()" name="number"
-                                            autocomplete="off" contextmenu="false">
+                                            id="contact-number" name="number" autocomplete="off" contextmenu="false">
                                         <div class="col-12 mb-2">
-                                            <span class="error contact-number-error"></span>
+                                            <span class="error contact-number-error" id="invalid-number"></span>
                                         </div>
                                     </div>
                                     <!-- end-phone -->
@@ -157,7 +166,7 @@
                                 </div>
                             </div>
                             <div id="step-02">
-                                <form onsubmit="validateFormStep2(event)">
+                                <form onsubmit="check_step02_form(event)" onkeyup="validate_field(event, this)">
                                     <div class="input-group mt-4">
                                         <div class="form-floating mb-3 my-1-form-floating">
                                             <input name="institute" type="text" class="form-control" id="institute"
@@ -229,7 +238,8 @@
                                         <span onclick="getToPrevStep()" style="cursor: pointer;"><img
                                                 src="../assets/svg/arrow-left.svg" style="width: 26px;" />Step
                                             Back</span>
-                                        <button class="create-button" type="submit"><span>CREATE ACCOUNT</span></button>
+                                        <button class="create-button" type="submit" disabled><span>CREATE
+                                                ACCOUNT</span></button>
                                     </div>
                                 </form>
                             </div>
@@ -250,8 +260,8 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <script src="../js/contact-number.js"></script>
-    <script src="../js/registration.js"></script>
     <script src="../js/index.js"></script>
+    <script src="../js/registration.js"></script>
 </body>
 
 </html>
