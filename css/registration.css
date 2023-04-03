@@ -17,7 +17,6 @@ body {
 }
 
 .form-container {
-    /* height: 100vh; */
     display: flex;
     justify-content: center;
 }
@@ -32,13 +31,11 @@ body {
 
 .card .card-body {
     margin: 20px;
-    /* position: relative; */
 }
 
 .control-overflow {
     overflow-y: scroll;
     height: 510px;
-    /* border: 2px solid red; */
 }
 
 
@@ -46,12 +43,9 @@ body {
     display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .control-overflow {
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
 }
 
 
@@ -77,7 +71,6 @@ body {
 }
 
 .error {
-    /* font: normal normal normal 12px/17px Open Sans; */
     font-size: 12px;
     letter-spacing: 0px;
     color: #FF0000;
@@ -112,10 +105,8 @@ label[for=remember-me] {
 
 .register-button img {
     padding: 10px;
-    /* width: 45px; */
     width: fit-content;
     height: fit-content;
-    /* height: 5px; */
     object-fit: fill;
 }
 
@@ -193,7 +184,6 @@ label[for=remember-me] {
 .create-password-helper-text {
     margin-top: 10px;
     font-size: 12px;
-    /* font: normal normal normal 16px/22px Open Sans; */
     letter-spacing: 0px;
     color: #000000;
     opacity: 0.5;
@@ -203,74 +193,6 @@ label[for=remember-me] {
     display: flex;
     justify-content: flex-end;
 }
-
-/* @media (max-width: 280px) {
-    .logo {
-        padding: 0 0 0 3.5em;
-    }
-
-    .card .card-body .card-title {
-        font-size: 19px;
-    }
-
-    .form-container .card {
-        width: 75%;
-        margin-left: 4em;
-    }
-
-    .copyright-text {
-        padding: 0 0 0 8em;
-        width: 100%;
-    }
-
-    .form-container .form-control {
-        width: 7em;
-    }
-
-    #step-01 form label {
-        font-size: 12px;
-    }
-
-    #step-01 .my-2 {
-        width: 48%;
-    }
-
-    #step-01 .my-2 .form-control {
-        width: 100%;
-    }
-
-    #step-01 #password {
-        width: 5em;
-    }
-
-
-}
-
-@media (max-width: 700px) and (min-width: 281px) {
-    .form-container .form-control {
-        width: 12.87em;
-    }
-    .form-container {
-        margin-left: 20px;
-        width: 100vw;
-    }
-
-    #step-02 .form-floating .form-control {
-        width: 100%;
-    }
-
-    .register-button {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 828px) {
-    .logo {
-        width: 15em;
-        height: fit-content;
-        margin: 20px 0 20px 0;
-    }
-} */
 
 
 .input-group {
@@ -327,13 +249,9 @@ label[for=remember-me] {
 }
 
 .my-2-form-control {
-    /* border: 2px solid red; */
     width: 100%;
 }
 
-/* div {
-    border: 2px solid red;
-} */
 .my-1-form-floating {
     width: 100%;
 }
@@ -500,5 +418,17 @@ label[for=terms-and-conditions] {
     .register-button {
         font-size: 12px;
         width: 120px;
+    }
+
+    .my-2 {
+        width: 120px;
+    }
+
+    .my-2 .my-2-form-control {
+        width: 100% !important;
+    }
+
+    .my-2:nth-child(1) {
+        margin-right: 10px;
     }
 }
