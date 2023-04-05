@@ -156,7 +156,7 @@ label[for=remember-me] {
 
 .card-bottom button {
     font-size: 12px;
-    width: 120px;
+    width: 140px;
     height: 50px;
     background: #FEC006 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 10px #0000001A;
@@ -168,6 +168,7 @@ label[for=remember-me] {
 .card-bottom button a {
     /* border: 2px solid red; */
     display: flex;
+    font-size: 16px;
     justify-content: center;
     align-items: center;
     height: 100%;

@@ -90,8 +90,10 @@ label[for=remember-me] {
     margin-top: 25px;
     outline: none;
     border: none;
-    width: 50%;
-    height: 40px;
+    /* width: 50%;
+    height: 40px; */
+    width: 160px;
+    height: 50px;
     color: white;
     background: transparent linear-gradient(270deg, #386CB5 0%, #669FED 100%) 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 5px #386CB566;
@@ -138,6 +140,7 @@ label[for=remember-me] {
     align-items: center;
     height: 100%;
     width: 100%;
+    font-size: 16px;
     font-weight: 600;
     color: white;
     text-decoration: none;
@@ -431,4 +434,16 @@ label[for=terms-and-conditions] {
     .my-2:nth-child(1) {
         margin-right: 10px;
     }
+}
+
+/* removing arrows from zipcode */
+#zipcode::-webkit-outer-spin-button,
+#zipcode::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+#zipcode[type=number] {
+    -moz-appearance: textfield;
 }
