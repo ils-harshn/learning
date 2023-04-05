@@ -36,3 +36,7 @@ function hideAllElements() {
     hideDropdown()
     hideSidebar()
 }
+
+function directTo(link) {
+    window.location.href = link;
+}

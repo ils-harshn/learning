@@ -54,7 +54,7 @@ function check_step02_form(e) {
     let value = document.getElementById("terms-and-conditions").checked;
     is_ok &&= value;
     if (!value) document.getElementById("invalid-terms-and-conditions").innerHTML = "*Please accept terms and conditions";
-    if (is_ok) alert("success");
+    if (is_ok) window.location.href = "login.html";
     return is_ok;
 }
 
