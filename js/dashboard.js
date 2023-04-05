@@ -32,6 +32,32 @@ function toggleDropdown() {
     }
 }
 
+function showNotifications() {
+    let badge = document.querySelector(".notification .badge");
+    let drop_down = document.querySelector(".notification .drop-down-notification");
+
+    let types = ['red', 'yellow', 'green', 'blue'];
+    let examples = [
+        'Registration successfull!',
+        'Complete your verification',
+        'Verify your mobile number to activate account',
+        'New School added',
+    ]
+
+    badge.innerHTML = examples.length;
+    let innerHTML = "";
+    for (let i = 0; i < examples.length; i++) {
+        innerHTML += `
+        <li>
+            <i class="${types[Math.floor(Math.random() * 4)]}-icon">
+            </i>
+            <a>${examples[i]}</a>
+        </li>
+        `
+    }
+    drop_down.innerHTML = innerHTML;
+}
+
 function hideAllElements() {
     hideDropdown()
     hideSidebar()
@@ -40,3 +66,5 @@ function hideAllElements() {
 function directTo(link) {
     window.location.href = link;
 }
+
+showNotifications()
