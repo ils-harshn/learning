@@ -1,10 +1,10 @@
-function createPieChart(id, xValuesSchool, yValuesSchool, barColors) {
+function createPieChart(id, xValuesSchool, yValuesSchool, pieColors) {
   new Chart(id, {
     type: "pie",
     data: {
       labels: xValuesSchool,
       datasets: [{
-        backgroundColor: barColors,
+        backgroundColor: pieColors,
         data: yValuesSchool
       }]
     },
@@ -28,7 +28,7 @@ function createPieChart(id, xValuesSchool, yValuesSchool, barColors) {
             return ctx.value + " mb ";
           },
           position: "outside",
-          fontColor: barColors
+          fontColor: pieColors
         },
         legend: {
           display: true,
@@ -54,46 +54,24 @@ function createPieChart(id, xValuesSchool, yValuesSchool, barColors) {
 }
 
 
-var xValuesSchool1 = ["Multimedia", "Audio Notes", "Notes", "Free Space"];
-var yValuesSchool1 = [49, 23, 17, 11];
-var barColors1 = [
+const xValuesSchool = ["Multimedia", "Audio Notes", "Notes", "Free Space"];
+const pieColors = [
   "#386CB5",
   "#7DB0F7",
   "#286BCB",
   "#CCCCCC"
 ];
 
-var xValuesSchool2 = ["Multimedia", "Audio Notes", "Notes", "Free Space"];
-var yValuesSchool2 = [40, 20, 71, 21];
-var barColors2 = [
-  "#7DB0F7",
-  "#386CB5",
-  "#CCCCCC",
-  "#286BCB",
-];
 
-var xValuesSchool3 = ["Multimedia", "Audio Notes", "Notes", "Free Space"];
-var yValuesSchool3 = [200, 223, 117, 121];
-var barColors3 = [
-  "#286BCB",
-  "#CCCCCC",
-  "#7DB0F7",
-  "#386CB5",
-];
+const yValuesSchool1 = [49, 23, 17, 11];
+const yValuesSchool2 = [40, 20, 71, 21];
+const yValuesSchool3 = [200, 223, 117, 121];
+const yValuesSchool4 = [40, 20, 10, 10];
 
-var xValuesSchool4 = ["Multimedia", "Audio Notes", "Notes", "Free Space"];
-var yValuesSchool4 = [40, 20, 10, 10];
-var barColors4 = [
-  "#CCCCCC",
-  "#7DB0F7",
-  "#286BCB",
-  "#386CB5",
-];
-
-createPieChart("school-1", xValuesSchool1, yValuesSchool1, barColors1);
-createPieChart("school-2", xValuesSchool2, yValuesSchool2, barColors2);
-createPieChart("school-3", xValuesSchool3, yValuesSchool3, barColors3);
-createPieChart("school-4", xValuesSchool4, yValuesSchool4, barColors4);
+createPieChart("school-1", xValuesSchool, yValuesSchool1, pieColors);
+createPieChart("school-2", xValuesSchool, yValuesSchool2, pieColors);
+createPieChart("school-3", xValuesSchool, yValuesSchool3, pieColors);
+createPieChart("school-4", xValuesSchool, yValuesSchool4, pieColors);
 
 
 function showPieFromIndex(index) {

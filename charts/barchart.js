@@ -1,7 +1,6 @@
 var xValuesRoster = ["School_Name_01", "School_Name_02", "School_Name_03", "School_Name_04"];
 var xValuesTeacher = ["Teacher_Name_01", "Teacher_Name_02", "Teacher_Name_03", "Teacher_Name_04"];
-var barColorsRoster = "#F9AC32";
-var barColorsTeacher = "red";
+var barColors = "#F9AC32";
 
 var rosterData = [
   [150, 210, 350, 250],
@@ -19,7 +18,7 @@ new Chart("roster-plot", {
     labels: xValuesRoster,
     datasets: [{
       label: "Active",
-      backgroundColor: barColorsRoster,
+      backgroundColor: barColors,
       data: rosterData[0],
       barThickness: 18
     }, {
@@ -78,7 +77,7 @@ new Chart("teacher-plot", {
     labels: xValuesTeacher,
     datasets: [{
       label: "Active",
-      backgroundColor: barColorsTeacher,
+      backgroundColor: barColors,
       data: teacherData[0],
       barThickness: 18
     }, {
