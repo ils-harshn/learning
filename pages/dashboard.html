@@ -180,11 +180,12 @@
             <div class="charts">
                 <div class="bar-plot-container">
                     <div class="options">
-                        <div class="active">Roster</div>
+                        <div class="active bar-tab" onclick="showRosterPlot()">Roster</div>
                         <div class="divider"></div>
-                        <div class="deactive">Teacher</div>
+                        <div class="deactive bar-tab" onclick="showTeacherPlot()">Teacher</div>
                     </div>
-                    <canvas id="bar-plot"></canvas>
+                    <canvas id="roster-plot"></canvas>
+                    <canvas id="teacher-plot"></canvas>
                 </div>
                 <div class="pie-chart-container">
                     <div class="options">

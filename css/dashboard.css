@@ -594,6 +594,11 @@ main .container {
 
 .charts .bar-plot-container .options {
     padding: 10px 20px 20px 20px;
+    cursor: pointer;
+}
+
+.charts .bar-plot-container .options .bar-tab {
+    transition: 200ms font-weight;
 }
 
 
