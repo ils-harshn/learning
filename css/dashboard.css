@@ -138,7 +138,7 @@ header {
 }
 
 .add-new-school {
-    width: 190px;
+    width: 100px;
     height: 44px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000026;
@@ -150,6 +150,11 @@ header {
     letter-spacing: 0px;
     color: #386CB5;
     text-transform: uppercase;
+    transition: box-shadow 300ms ease;
+}
+
+.add-new-school:hover {
+    box-shadow: 0 0 6px 6px ;
 }
 
 .add-new-school span {
@@ -223,7 +228,7 @@ header {
 
 .profile div i {
     font-size: 18px;
-    margin-left: 20px;
+    /* margin-left: 10px; */
     color: white;
 }
 
@@ -503,7 +508,7 @@ main .container {
     }
 }
 
-@media (max-width: 695px) {
+@media (max-width: 610px) {
     .add-new-school {
         display: none;
     }
