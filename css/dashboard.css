@@ -798,3 +798,49 @@ main .container {
     background-color: #eed202;
     border-radius: 25px;
 }
+
+
+
+
+/* pie chart drop down */
+
+
+
+.pie-chart-container .options .drop-down {
+    position: relative;
+}
+
+.pie-chart-container .options .drop-down .drop-down-pie-chart {
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    width: 168px;
+    left: 0;
+    top: 22px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 4px;
+    padding: 6px;
+    cursor: pointer;
+    display: none;
+}
+
+
+.pie-chart-container .options .drop-down:hover .drop-down-pie-chart {
+    display: block;
+}
+
+.pie-chart-container .options .drop-down .drop-down-pie-chart li {
+    /* height: 33px; */
+    border-bottom: 1px solid #EEEEEE;
+    padding: 6px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+}
+
+.pie-chart-container .options .drop-down .drop-down-pie-chart li:hover {
+    background-color: #F5F8FF;
+}
