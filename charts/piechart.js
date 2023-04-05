@@ -97,7 +97,8 @@ createPieChart("school-4", xValuesSchool4, yValuesSchool4, barColors4);
 
 
 function showPieFromIndex(index) {
-  // document.querySelector(".pie-chart-container .options .drop-down .drop-down-pie-chart").style.display = "none";
+
+  document.querySelector(".pie-chart-container .options .drop-down span").innerHTML = `School_name_0${index}`;
   let pie_container = document.getElementsByClassName("pie-chart-container")[0];
   let canvasElements = pie_container.getElementsByTagName("canvas");
   for (let i = 0; i < canvasElements.length; i++) {
