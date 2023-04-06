@@ -4,6 +4,7 @@ function showSidebar() {
     let sidebar = document.getElementsByClassName("sidebar")[0];
     sidebar.classList.add("active");
     hideDropdown()
+    hideNotificationPanel()
 }
 
 function hideSidebar() {
@@ -29,38 +30,33 @@ function toggleDropdown() {
     } else {
         dropdown.classList.add("active");
         hideSidebar()
+        hideNotificationPanel()
     }
 }
 
-function showNotifications() {
-    let badge = document.querySelector(".notification .badge");
-    let drop_down = document.querySelector(".notification .drop-down-notification");
+function showNotificationPanel() {
+    document.querySelector(".drop-down-notification").classList.add("active");
+}
 
-    let types = ['red', 'yellow', 'green', 'blue'];
-    let examples = [
-        'Registration successfull!',
-        'Complete your verification',
-        'Verify your mobile number to activate account',
-        'New School added',
-    ]
+function hideNotificationPanel() {
+    document.querySelector(".drop-down-notification").classList.remove("active");
+}
 
-    badge.innerHTML = examples.length;
-    let innerHTML = "";
-    for (let i = 0; i < examples.length; i++) {
-        innerHTML += `
-        <li>
-            <i class="${types[Math.floor(Math.random() * 4)]}-icon">
-            </i>
-            <a>${examples[i]}</a>
-        </li>
-        `
+function toggleNotificationPanel() {
+    let notificationPanel = document.querySelector(".drop-down-notification");
+    if (notificationPanel.classList.contains("active")) {
+        notificationPanel.classList.remove("active");
+    } else {
+        notificationPanel.classList.add("active");
+        hideSidebar()
+        hideDropdown()
     }
-    drop_down.innerHTML = innerHTML;
 }
 
 function hideAllElements() {
     hideDropdown()
     hideSidebar()
+    hideNotificationPanel()
 }
 
 function directTo(link) {
