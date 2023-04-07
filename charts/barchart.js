@@ -135,6 +135,7 @@ new Chart("teacher-plot", {
     datasets: [{
       label: "Active",
       backgroundColor: barColors,
+      hoverBackgroundColor: "#5BCDA2",
       data: teacherData[0],
       barThickness: 18
     }, {
@@ -148,6 +149,62 @@ new Chart("teacher-plot", {
     plugins: {
       datalabels: {
         display: false,
+      },
+      tooltip: {
+        enabled: false,
+        yAlign: "top",
+        external: (context) => {
+          let tooltipEl = document.getElementById('chartjs-tooltip-2');
+          if (!tooltipEl) {
+            tooltipEl = document.createElement('div');
+            tooltipEl.id = 'chartjs-tooltip-2';
+            tooltipEl.innerHTML = `
+            <div class="tooltip-container">`;
+            document.body.appendChild(tooltipEl);
+          }
+
+          const tooltipModel = context.tooltip;
+          if (tooltipModel.opacity === 0) {
+            tooltipEl.style.opacity = 0;
+            return;
+          }
+          if (tooltipModel.body) {
+            const titleLines = tooltipModel.title || [];
+
+            let data = tooltipModel.dataPoints;
+            // design your tooltip
+            let innerHtml = `
+            <div class="tooltip-total">
+              <b>${data[0].raw + data[1].raw}</b>
+              <span>Total</span>
+            </div>
+            <div class="tooltip-data-point">
+              <div>Inactive <i id="inactive-icon"></i></div>
+              <div>${data[1].raw}</div>
+            </div>
+            <div class="tooltip-data-point">
+              <div>Active<i id="active-icon"></i></div>
+              <div>${data[0].raw}</div>
+            </div>
+            `;
+
+
+            innerHtml += '</div>';
+
+            let tableRoot = tooltipEl.querySelector('.tooltip-container');
+            tableRoot.innerHTML = innerHtml;
+          }
+
+          const position = context.chart.canvas.getBoundingClientRect();
+          const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
+          tooltipEl.style.opacity = 1;
+          tooltipEl.style.position = 'absolute';
+          tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+          tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+          // tooltipEl.style.font = bodyFont.string;
+          tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+          tooltipEl.style.pointerEvents = 'none';
+        }
       },
       legend: {
         display: true,

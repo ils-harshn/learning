@@ -924,31 +924,31 @@ main .container {
 
 
 /* tooltips */
-#chartjs-tooltip .tooltip-container {
+.tooltip-container {
     /* border: 1px solid red; */
     font-family: 'Open Sans';
 }
 
-#chartjs-tooltip .tooltip-container .tooltip-total b {
+.tooltip-container .tooltip-total b {
     font-size: 14px;
     letter-spacing: 0px;
     color: #2F3A3C;
 }
 
-#chartjs-tooltip .tooltip-container .tooltip-total span {
+.tooltip-container .tooltip-total span {
     font-size: 13px;
     letter-spacing: 0px;
     color: #2F3A3C;
 }
 
 
-#chartjs-tooltip .tooltip-container .tooltip-data-point div:first-child {
+.tooltip-container .tooltip-data-point div:first-child {
     font-size: 13px;
     letter-spacing: 0px;
     color: #2F3A3C;
 }
 
-#chartjs-tooltip .tooltip-container .tooltip-data-point div:last-child {
+.tooltip-container .tooltip-data-point div:last-child {
     /* font: normal normal bold 14px/19px Open Sans; */
     font-size: 14px;
     font-weight: bold;
