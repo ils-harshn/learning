@@ -921,3 +921,54 @@ main .container {
     }
 
 }
+
+
+/* tooltips */
+#chartjs-tooltip .tooltip-container {
+    /* border: 1px solid red; */
+    font-family: 'Open Sans';
+}
+
+#chartjs-tooltip .tooltip-container .tooltip-total b {
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #2F3A3C;
+}
+
+#chartjs-tooltip .tooltip-container .tooltip-total span {
+    font-size: 13px;
+    letter-spacing: 0px;
+    color: #2F3A3C;
+}
+
+
+#chartjs-tooltip .tooltip-container .tooltip-data-point div:first-child {
+    font-size: 13px;
+    letter-spacing: 0px;
+    color: #2F3A3C;
+}
+
+#chartjs-tooltip .tooltip-container .tooltip-data-point div:last-child {
+    /* font: normal normal bold 14px/19px Open Sans; */
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #2F3A3C;
+}
+
+#inactive-icon {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #EEEEEE;
+}
+
+#active-icon {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
+    border-radius: 50%;
+    background-color: #5BCDA2;
+}
