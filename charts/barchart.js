@@ -8,8 +8,8 @@ var rosterData = [
 ]
 
 var teacherData = [
-  [190, 310, 50, 25],
-  [10, 20, 20, 60],
+  [190, 270, 250, 225],
+  [10, 79, 120, 160],
 ]
 
 new Chart("roster-plot", {
@@ -96,8 +96,8 @@ new Chart("roster-plot", {
           const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
           tooltipEl.style.opacity = 1;
           tooltipEl.style.position = 'absolute';
-          tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
-          tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+          tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 18 + 'px';
+          tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 20 + 'px';
           // tooltipEl.style.font = bodyFont.string;
           tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
           tooltipEl.style.pointerEvents = 'none';
@@ -199,8 +199,8 @@ new Chart("teacher-plot", {
           const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
           tooltipEl.style.opacity = 1;
           tooltipEl.style.position = 'absolute';
-          tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
-          tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+          tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 18 + 'px';
+          tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 20 + 'px';
           // tooltipEl.style.font = bodyFont.string;
           tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
           tooltipEl.style.pointerEvents = 'none';
