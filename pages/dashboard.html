@@ -78,7 +78,8 @@
             </div>
             <div class="drop-down-notification">
                 <div class="drop-down-notification-title">
-                    <img class="drop-down-notification-bell" src="../assets/svg/ic-bell-dark.svg" style="color: black;"></img>
+                    <img class="drop-down-notification-bell" src="../assets/svg/ic-bell-dark.svg"
+                        style="color: black;"></img>
                     <span>Notifications</span>
                     <hr />
                 </div>
@@ -221,10 +222,22 @@
             </div>
             <div class="charts">
                 <div class="bar-plot-container">
-                    <div class="options">
-                        <div class="active bar-tab" onclick="showRosterPlot()">Roster</div>
-                        <div class="divider"></div>
-                        <div class="deactive bar-tab" onclick="showTeacherPlot()">Teacher</div>
+                    <div class="bar-plot-container-title">
+                        <div class="options">
+                            <div class="active bar-tab" onclick="showRosterPlot()">Roster</div>
+                            <div class="divider"></div>
+                            <div class="deactive bar-tab" onclick="showTeacherPlot()">Teacher</div>
+                        </div>
+                        <div class="legends">
+                            <div class="legends-tick">
+                                <i style="background-color: #F9AC32;"></i>
+                                <span>Active</span>
+                            </div>
+                            <div class="legends-tick">
+                                <i style="background-color: #EEEEEE;"></i>
+                                <span>Inactive</span>
+                            </div>
+                        </div>
                     </div>
                     <canvas id="roster-plot"></canvas>
                     <canvas id="teacher-plot"></canvas>

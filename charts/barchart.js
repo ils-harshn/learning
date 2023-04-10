@@ -35,17 +35,17 @@ new Chart("roster-plot", {
         display: false,
       },
       legend: {
-        display: true,
-        position: 'right',
-        align: "start",
-        labels: {
-          usePointStyle: true,
-          pointStyle: "circle",
-          fontColor: '#444B48',
-          boxWidth: 6,
-          boxHeight: 6,
-          borderRadius: "50",
-        }
+        display: false,
+        // position: 'right',
+        // align: "start",
+        // labels: {
+        //   usePointStyle: true,
+        //   pointStyle: "circle",
+        //   fontColor: '#444B48',
+        //   boxWidth: 6,
+        //   boxHeight: 6,
+        //   borderRadius: "50",
+        // }
       },
       tooltip: {
         enabled: false,
@@ -207,17 +207,17 @@ new Chart("teacher-plot", {
         }
       },
       legend: {
-        display: true,
-        position: 'right',
-        align: "start",
-        labels: {
-          usePointStyle: true,
-          pointStyle: "circle",
-          fontColor: '#444B48',
-          boxWidth: 6,
-          boxHeight: 6,
-          borderRadius: "50",
-        }
+        display: false,
+        // position: 'right',
+        // align: "start",
+        // labels: {
+        //   usePointStyle: true,
+        //   pointStyle: "circle",
+        //   fontColor: '#444B48',
+        //   boxWidth: 6,
+        //   boxHeight: 6,
+        //   borderRadius: "50",
+        // }
       },
     },
 
