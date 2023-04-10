@@ -30,7 +30,7 @@ body {
     /* width: 400px;
     height: 500px; */
     width: 25em;
-    height: 20em;
+    height: fit-content;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 6px #00000029;
     border-radius: 20px;
@@ -45,14 +45,14 @@ body {
     text-align: left;
     letter-spacing: 0px;
     color: #000000;
-    font-weight: bolder;
+    /* font-weight: bolder; */
 }
 
 .card .card-body .card-caption {
     font-size: 16px;
     line-height: 1.2;
     text-align: left;
-    font-weight: 600;
+    /* font-weight: 600; */
     letter-spacing: 0px;
     color: #000000;
     opacity: 0.5;
@@ -67,9 +67,8 @@ body {
 }
 
 .form-floating label {
-
     font-size: 16px;
-    font-weight: 600;
+    /* font-weight: 600; */
     letter-spacing: 0px;
     color: #222222;
 }
@@ -128,7 +127,7 @@ label[for=remember-me] {
 }
 
 .forget-button {
-    margin-top: 25px;
+    /* margin-top: 25px; */
     outline: none;
     border: none;
     width: 100%;
