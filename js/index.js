@@ -20,7 +20,7 @@ const validator = {
         };
     },
     "password": (password) => {
-        let validatorReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]{6,}$/g;
+        let validatorReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/g;
         return {
             "is_valid": password.length && (validatorReg.test(password)),
             "msg": "*Minimum 6 characters, at least one uppercase letter, one lowercase letter, one number and one special character:"
