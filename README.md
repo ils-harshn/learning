@@ -4,6 +4,12 @@
 ```
 http POST http://127.0.0.1:8000/api/api-token-auth/  username="admin@gmail.com" password="testing321"
 ```
+
+### To refresh token
+```
+http POST http://127.0.0.1:8000/api/api-token-auth/  username="admin@gmail.com" password="testing321" refresh=True
+```
+
 #### Output
 ```
 {
