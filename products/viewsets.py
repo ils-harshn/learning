@@ -3,7 +3,8 @@ from . import serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class ProductView(APIView):
@@ -32,3 +33,46 @@ class ProductView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST,
         )
+
+
+class CartView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        if hasattr(request.user, "cart") == False:
+            request.user.cart = models.Cart()
+        return Response(
+            serializers.Productserializer(
+                request.user.cart.product_set.all(), many=True).data,
+            status=status.HTTP_200_OK,
+        )
+
+    def post(self, request, format=None):
+        id = request.data.get("id", None)
+        if hasattr(request.user, "cart") == False:
+            request.user.cart = models.Cart()
+
+        if (id != None):
+            try:
+                product = models.Product.objects.get(id=id)
+            except ObjectDoesNotExist:
+                return Response({
+                    "error": "Product Not Found",
+                }, status=status.HTTP_404_NOT_FOUND)
+
+            try:
+                request.user.cart.product_set.get(id=id)
+                return Response({
+                    "error": "already added this product",
+                }, status=status.HTTP_208_ALREADY_REPORTED)
+            except ObjectDoesNotExist:
+                request.user.cart.product_set.add(product)
+                return Response(
+                    serializers.Productserializer(
+                        request.user.cart.product_set.all(), many=True).data,
+                    status=status.HTTP_200_OK,
+                )
+
+        return Response({
+            "error": "Id not provided",
+        }, status=status.HTTP_404_NOT_FOUND)

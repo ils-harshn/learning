@@ -4,4 +4,8 @@ from . import models
 class Productserializer(ModelSerializer):
     class Meta:
         model = models.Product
-        fields = ['title']
+        fields = ['id', 'title']
+
+class CartSerializer(ModelSerializer):
+    class Meta:
+        model = models.Cart
