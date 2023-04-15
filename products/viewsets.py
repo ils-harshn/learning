@@ -5,15 +5,18 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django.core.exceptions import ObjectDoesNotExist
+from rest_framework.pagination import LimitOffsetPagination
+from collections import OrderedDict
 
 
-class ProductView(APIView):
+class ProductView(APIView, LimitOffsetPagination):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, format=None):
         products = models.Product.objects.all()
-        serializer = serializers.Productserializer(products, many=True)
-        return Response(serializer.data)
+        results = self.paginate_queryset(products, request, view=self)
+        serializer = serializers.Productserializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
 
     def post(self, request, format=None):
         serializer = serializers.Productserializer(data=request.data)
@@ -35,7 +38,7 @@ class ProductView(APIView):
         )
 
 
-class CartView(APIView):
+class CartView(APIView, LimitOffsetPagination):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
@@ -43,11 +46,10 @@ class CartView(APIView):
             request.user.cart = models.Cart()
             # check for error
             request.user.cart.save()
-        return Response(
-            serializers.ItemSerializer(
-                request.user.cart.item_set.all(), many=True).data,
-            status=status.HTTP_200_OK,
-        )
+        
+        results = self.paginate_queryset(request.user.cart.item_set.all(), request, view=self)
+        serializer = serializers.ItemSerializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
 
     def post(self, request, format=None):
         try:
@@ -75,14 +77,13 @@ class CartView(APIView):
                 "error": "already added this product",
             }, status=status.HTTP_208_ALREADY_REPORTED)
         except ObjectDoesNotExist:
-            item = models.Item(
-                product=product, quantity=quantity, cart_id=request.user.cart.id)
+            item = models.Item(product=product, quantity=quantity, cart_id=request.user.cart.id)
             item.save()
-            return Response(
-                serializers.ItemSerializer(
-                    request.user.cart.item_set.all(), many=True).data,
-                status=status.HTTP_200_OK,
-            )
+
+
+            results = self.paginate_queryset(request.user.cart.item_set.all(), request, view=self)
+            serializer = serializers.ItemSerializer(results, many=True)
+            return self.get_paginated_response(serializer.data)
 
     def delete(self, request, format=None):
         try:
