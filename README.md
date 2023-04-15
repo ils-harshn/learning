@@ -13,7 +13,7 @@ http POST http://127.0.0.1:8000/api/api-token-auth/  username="admin@gmail.com" 
 #### Output
 ```
 {
-    "token": "your_access_token"
+    "token": "95dcdd16b53ddb0aca89f6e9675515f24233033f"
 }
 ```
 
@@ -25,15 +25,15 @@ http http://127.0.0.1:8000/api/product/get/
 
 ### Post Product - Auth Required
 ```
-http POST http://127.0.0.1:8000/api/product/get/ "Authorization: Token 6a2e818cfef60dc9ab5ad8055905765f47607c1b" title="Product 5"
+http POST http://127.0.0.1:8000/api/product/get/ "Authorization: Token 95dcdd16b53ddb0aca89f6e9675515f24233033f" title="Product 5"
 ```
 
 ### Get Cart Products
 ```
-http http://127.0.0.1:8000/api/product/cart/ "Authorization: Token c8fba13894d0ac0f1b2ac1ed153e668b4fb45327"
+http http://127.0.0.1:8000/api/product/cart/ "Authorization: Token 95dcdd16b53ddb0aca89f6e9675515f24233033f"
 ```
 
 ### Add Products to Cart
 ```
-http POST http://127.0.0.1:8000/api/product/cart/ "Authorization: Token c8fba13894d0ac0f1b2ac1ed153e668b4fb45327" id=2
+http POST http://127.0.0.1:8000/api/product/cart/ "Authorization: Token 95dcdd16b53ddb0aca89f6e9675515f24233033f" id=2
 ```

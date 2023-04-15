@@ -7,4 +7,9 @@ class Cart(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
-    cart = models.ManyToManyField(Cart, blank=True)
+    quantity = models.IntegerField(default=1)
+
+class Item(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.DO_NOTHING)
+    quantity = models.IntegerField(default=1)
