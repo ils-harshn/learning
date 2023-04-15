@@ -1,4 +1,4 @@
-## Auth Using Token
+# Auth Using Token
 
 ### Get Access Token
 ```
@@ -22,6 +22,8 @@ http POST http://127.0.0.1:8000/api/api-token-auth/  username="email" password="
 http POST http://127.0.0.1:8000/api/create_user/  email="email_here" password="password_here" password2="password_here" first_name="first_name_here" last_name="last_name_here"
 ```
 
+# Products API
+
 ### Get Products
 ``` 
 http http://127.0.0.1:8000/api/product/get/
@@ -32,6 +34,9 @@ http http://127.0.0.1:8000/api/product/get/
 ```
 http POST http://127.0.0.1:8000/api/product/get/ "Authorization: Token token_here" title="product_title"
 ```
+
+
+# Cart API
 
 ### Get Cart Products
 ```

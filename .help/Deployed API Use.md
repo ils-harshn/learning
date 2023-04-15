@@ -1,4 +1,4 @@
-## Auth Using Token
+# Auth Using Token
 
 ### Get Access Token
 ```
@@ -22,6 +22,8 @@ http POST https://cartjsharshils.pythonanywhere.com/api/api-token-auth/  usernam
 http POST https://cartjsharshils.pythonanywhere.com/api/create_user/  email="email_here" password="password_here" password2="password_here" first_name="first_name_here" last_name="last_name_here"
 ```
 
+# Products API
+
 ### Get Products
 ``` 
 http https://cartjsharshils.pythonanywhere.com/api/product/get/
@@ -32,6 +34,9 @@ http https://cartjsharshils.pythonanywhere.com/api/product/get/
 ```
 http POST https://cartjsharshils.pythonanywhere.com/api/product/get/ "Authorization: Token token_here" title="product_title"
 ```
+
+
+# Cart API
 
 ### Get Cart Products
 ```
