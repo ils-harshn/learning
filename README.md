@@ -42,3 +42,8 @@ http POST http://127.0.0.1:8000/api/product/cart/ "Authorization: Token token_he
 ```
 http DELETE http://127.0.0.1:8000/api/product/cart/ "Authorization: Token token_here" id=id_here
 ```
+
+### Update product quantity in Cart
+```
+http PUT http://127.0.0.1:8000/api/product/cart/ "Authorization: Token 74ae84a916094295872b56328233729c09952001" id=product_id quantity=quantity_here_to_update
+```

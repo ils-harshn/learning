@@ -34,6 +34,7 @@ class ProductView(APIView):
             status=status.HTTP_400_BAD_REQUEST,
         )
 
+
 class CartView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -43,7 +44,8 @@ class CartView(APIView):
             # check for error
             request.user.cart.save()
         return Response(
-            serializers.ItemSerializer(request.user.cart.item_set.all(), many=True).data,
+            serializers.ItemSerializer(
+                request.user.cart.item_set.all(), many=True).data,
             status=status.HTTP_200_OK,
         )
 
@@ -73,14 +75,15 @@ class CartView(APIView):
                 "error": "already added this product",
             }, status=status.HTTP_208_ALREADY_REPORTED)
         except ObjectDoesNotExist:
-            item = models.Item(product=product, quantity=quantity, cart_id=request.user.cart.id)
+            item = models.Item(
+                product=product, quantity=quantity, cart_id=request.user.cart.id)
             item.save()
             return Response(
                 serializers.ItemSerializer(
                     request.user.cart.item_set.all(), many=True).data,
                 status=status.HTTP_200_OK,
             )
-        
+
     def delete(self, request, format=None):
         try:
             id = int(request.data.get("id"))
@@ -88,12 +91,12 @@ class CartView(APIView):
             return Response({
                 "error": "Invalid data provided",
             }, status=status.HTTP_404_NOT_FOUND)
-        
+
         if (request.user.cart == None):
             return Response({
                 "error": "Cart not created yet",
             }, status=status.HTTP_404_NOT_FOUND)
-        
+
         try:
             item = request.user.cart.item_set.get(product_id=id)
             item.delete()
@@ -102,4 +105,37 @@ class CartView(APIView):
             return Response({
                 "error": "Product Not Found To Delete",
             }, status=status.HTTP_404_NOT_FOUND)
-        
+
+    def put(self, request, format=None):
+        try:
+            id = int(request.data.get("id"))
+            quantity = int(request.data.get("quantity"))
+        except:
+            return Response({
+                "error": "Invalid data provided",
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            item = request.user.cart.item_set.get(product_id=id)
+            product = item.product
+        except ObjectDoesNotExist:
+            return Response({
+                "error": "Product Not Found",
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        if (quantity > product.quantity):
+            return Response({
+                "error": "Product out of stock",
+            }, status=status.HTTP_208_ALREADY_REPORTED)
+
+        if (quantity < 1):
+            return Response({
+                "error": "quantity should be greater then 0",
+            }, status=status.HTTP_208_ALREADY_REPORTED)
+
+        item.quantity = quantity
+        item.save()
+
+        return Response(
+            status=status.HTTP_200_OK,
+        )
