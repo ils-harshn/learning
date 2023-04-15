@@ -11,6 +11,8 @@ class Cart(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=255)
     quantity = models.IntegerField(default=1)
+    price = models.FloatField(blank=False)
+    img_url = models.URLField(blank=True)
 
     def __str__(self):
         return self.title
