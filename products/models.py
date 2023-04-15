@@ -5,9 +5,15 @@ from accounts.models import User
 class Cart(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.author.email
+
 class Product(models.Model):
     title = models.CharField(max_length=255)
     quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.title
 
 class Item(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)

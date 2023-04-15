@@ -80,3 +80,26 @@ class CartView(APIView):
                     request.user.cart.item_set.all(), many=True).data,
                 status=status.HTTP_200_OK,
             )
+        
+    def delete(self, request, format=None):
+        try:
+            id = int(request.data.get("id"))
+        except:
+            return Response({
+                "error": "Invalid data provided",
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        if (request.user.cart == None):
+            return Response({
+                "error": "Cart not created yet",
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            item = request.user.cart.item_set.get(product_id=id)
+            item.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except ObjectDoesNotExist:
+            return Response({
+                "error": "Product Not Found To Delete",
+            }, status=status.HTTP_404_NOT_FOUND)
+        
