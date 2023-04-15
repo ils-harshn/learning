@@ -17,6 +17,11 @@ http POST http://127.0.0.1:8000/api/api-token-auth/  username="email" password="
 }
 ```
 
+### Register User
+```
+http POST http://127.0.0.1:8000/api/create_user/  email="email_here" password="password_here" password2="password_here" first_name="first_name_here" last_name="last_name_here"
+```
+
 ### Get Products
 ``` 
 http http://127.0.0.1:8000/api/product/get/
