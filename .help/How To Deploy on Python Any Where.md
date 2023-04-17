@@ -9,4 +9,5 @@
     * ALLOWED_HOSTS = ['domain']
     * CORS_ALLOW_ALL_ORIGINS = True
     * STATIC_ROOT = '/home/cartJSHarshIls/cartJS_API/static'
++ In project dir run `python manage.py collectstatic`
 + Click on reload button in Web Tab.
