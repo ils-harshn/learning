@@ -10,11 +10,17 @@ http POST http://127.0.0.1:8000/api/api-token-auth/  username="email" password="
 http POST http://127.0.0.1:8000/api/api-token-auth/  username="email" password="password" refresh=True
 ```
 
+
 #### Output
 ```
 {
     "token": "token_here"
 }
+```
+
+### Verify Token
+```
+http POST http://127.0.0.1:8000/api/verify/ "Authorization: Token token_here"
 ```
 
 ### Register User

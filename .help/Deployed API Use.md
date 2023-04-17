@@ -17,6 +17,11 @@ http POST https://cartjsharshils.pythonanywhere.com/api/api-token-auth/  usernam
 }
 ```
 
+### Verify Token
+```
+http POST https://cartjsharshils.pythonanywhere.com/api/verify/ "Authorization: Token token_here"
+```
+
 ### Register User
 ```
 http POST https://cartjsharshils.pythonanywhere.com/api/create_user/  email="email_here" password="password_here" password2="password_here" first_name="first_name_here" last_name="last_name_here"
