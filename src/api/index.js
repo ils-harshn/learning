@@ -11,6 +11,18 @@ export const getAccessToken = (email, password, refresh = false) => {
         .catch(res => false)
 }
 
+export const createUser = (email, password, password2, first_name, last_name) => {
+    return axios.post("https://cartjsharshils.pythonanywhere.com/api/create_user/", {
+        email,
+        password,
+        password2,
+        first_name,
+        last_name,
+    })
+        .then(res => res.data)
+        .catch(res => false)
+}
+
 export const is_token_available = async () => {
     let token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (token == null || !token || token == undefined) {

@@ -40,7 +40,7 @@ const Login = () => {
             <div className="row">
                 <div className="mx-auto col-10 col-md-8 col-lg-6">
                     <form className="form-example m-5 p-5 border border-info" onSubmit={handleSubmit}>
-                        <h1>Cart Js: Shopping Web</h1>
+                        <h1>Cart Js: Login</h1>
                         <p className="description">
                             Simple web to depict a cart system
                         </p>
@@ -61,7 +61,7 @@ const Login = () => {
                             <label htmlFor="Password">Password:</label>
                             <input
                                 value={password}
-                                onChange={(e) => check_field(e, setPassword, setPasswordError, "password")}
+                                onChange={(e) => check_field(e, setPassword, setPasswordError, "*")}
                                 type="text"
                                 className="form-control Password"
                                 id="Password"
