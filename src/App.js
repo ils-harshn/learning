@@ -3,6 +3,7 @@ import { Login, Register } from "./pages/auth";
 import { Home } from "./pages/screens";
 import { useEffect } from "react";
 import { Protected } from "./utils";
+import Layout from "./pages/screens/Layout";
 
 
 function App() {
@@ -16,10 +17,8 @@ function App() {
           <Route path='register' element={<Register />} />
         </Route>
 
-        <Route path='/'>
-          <Route index element={<Protected>
-            <Home />
-          </Protected>} />
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Home/>} />
         </Route>
       </Routes>
     </BrowserRouter>

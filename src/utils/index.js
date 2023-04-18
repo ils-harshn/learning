@@ -1,7 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { is_token_available } from "../api";
-import { useEffect, useState } from "react";
-
 const validator = {
     "email": (email) => {
         let validatorReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;  //Javascript reGex for Email Validation.
@@ -41,7 +37,7 @@ export const setToken = (token, rememberMe) => {
 }
 
 // Loader
-const Loader = () => {
+export const Loader = () => {
     return (
         <div className="row">
             <div
@@ -52,26 +48,4 @@ const Loader = () => {
             </div>
         </div>
     )
-}
-
-
-// Protected Component
-export const Protected = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate();
-
-    const redirect_if_token_not_available = async () => {
-        let token = await is_token_available();
-        if (token == false) {
-            navigate("/auth/login")
-            return;
-        }
-        else setIsLoggedIn(true);
-    }
-
-    useEffect(() => {
-        redirect_if_token_not_available();
-    })
-
-    return (isLoggedIn) ? children : <Loader />
 }
