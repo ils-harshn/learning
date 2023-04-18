@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login, Register } from "./pages/auth";
 import { Home } from "./pages/screens";
 import { useEffect } from "react";
+import { Protected } from "./utils";
 
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
         </Route>
 
         <Route path='/'>
-          <Route index element={<Home />} />
-          <Route path='cart' element={<h2>Cart</h2>} />
+          <Route index element={<Protected>
+            <Home />
+          </Protected>} />
         </Route>
       </Routes>
     </BrowserRouter>
