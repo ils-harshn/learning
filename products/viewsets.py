@@ -57,16 +57,19 @@ class GetProductFromId(APIView):
             }, status=status.HTTP_404_NOT_FOUND)
         
         is_in_cart = True
+        quantity_added = False
         try:
-            request.user.cart.item_set.get(product_id=id)
+            item = request.user.cart.item_set.get(product_id=id)
+            quantity_added = item.quantity
         except ObjectDoesNotExist:
             is_in_cart = False
-        
-        return Response(
-            data={
+        data = {
                 "product": serializers.Productserializer(product).data,
                 "is_in_cart": is_in_cart,
             }
+        if (quantity_added) data["quantity_added"] = quantity_added
+        return Response(
+            data=data
         )
 
 
