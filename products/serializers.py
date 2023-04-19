@@ -4,7 +4,7 @@ from . import models
 class Productserializer(ModelSerializer):
     class Meta:
         model = models.Product
-        fields = ['id', 'title', 'quantity', 'price', 'img_url']
+        fields = ['id', 'title', 'quantity', 'price', 'img_url', 'discounted_price', 'discount_percentage', 'rating', 'about_product']
 
 class CartSerializer(ModelSerializer):
     class Meta:

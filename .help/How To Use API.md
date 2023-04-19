@@ -38,7 +38,7 @@ http http://127.0.0.1:8000/api/product/get/
 
 ### Post Product - Auth Required & Permission Required To Add Products
 ```
-http POST http://127.0.0.1:8000/api/product/get/ "Authorization: Token token_here" title="product_title"
+http POST http://127.0.0.1:8000/api/product/get/ "Authorization: Token token_here" title="product_title" price="price_here" discounted_price="discounted_price_here" discount_percentage="discount_percentage_here" rating="rating_here" about_product="about_product_here"
 ```
 
 
