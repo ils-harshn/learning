@@ -3,6 +3,7 @@ import { is_token_available } from "../../api";
 import { useEffect, useState } from "react";
 import { Loader, clearToken } from "../../utils";
 import Navbar from "../../Components/Navbar"
+import Footer from "../../Components/Footer";
 
 const Layout = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,7 +24,14 @@ const Layout = () => {
     }, [])
 
     return (isLoggedIn) ? <>
-       <Navbar/>
+        <Navbar />
+        <div className="container" style={{
+            height: "calc(100vh - 162px)",
+            marginTop: 80,
+        }}>
+            <Outlet />
+        </div>
+        {/* <Footer /> */}
     </> : <Loader />
 };
 
