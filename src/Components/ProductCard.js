@@ -1,5 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const ProductCard = ({ item }) => {
-    return <div className="col-lg-3 col-md-6 mb-4">
+    const navigate = useNavigate();
+    return <div className="col-lg-3 col-md-6 mb-4" onClick={() => {
+        navigate(`/product/${item.id}`);
+    }}>
         <div className="card">
             <div
                 className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -14,7 +19,7 @@ const ProductCard = ({ item }) => {
                         objectFit: "cover"
                     }}
                 />
-                <a href="#">
+                <a>
                     <div className="mask">
                         <div className="d-flex justify-content-start align-items-end h-100">
                             <h5>
