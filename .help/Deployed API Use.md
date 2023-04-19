@@ -40,6 +40,11 @@ http https://cartjsharshils.pythonanywhere.com/api/product/get/
 http POST https://cartjsharshils.pythonanywhere.com/api/product/get/ "Authorization: Token token_here" title="product_title" price="price_here" discounted_price="discounted_price_here" discount_percentage="discount_percentage_here" rating="rating_here" about_product="about_product_here"
 ```
 
+### Get Product Details from id and check if it exists in cart
+```
+http POST https://cartjsharshils.pythonanywhere.com/api/product/id/ "Authorization: Token token_here" id=id_here
+```
+
 
 # Cart API
 

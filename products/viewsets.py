@@ -38,6 +38,38 @@ class ProductView(APIView, LimitOffsetPagination):
         )
 
 
+class GetProductFromId(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, format=None):
+        try:
+            id = int(request.data.get("id"))
+        except:
+            return Response({
+                "error": "Id is not provided",
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            product = models.Product.objects.get(id=id)
+        except ObjectDoesNotExist:
+            return Response({
+                "error": "Product Not Found",
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        is_in_cart = True
+        try:
+            request.user.cart.item_set.get(product_id=id)
+        except ObjectDoesNotExist:
+            is_in_cart = False
+        
+        return Response(
+            data={
+                "product": serializers.Productserializer(product).data,
+                "is_in_cart": is_in_cart,
+            }
+        )
+
+
 class CartView(APIView, LimitOffsetPagination):
     permission_classes = [IsAuthenticated]
 
@@ -46,8 +78,9 @@ class CartView(APIView, LimitOffsetPagination):
             request.user.cart = models.Cart()
             # check for error
             request.user.cart.save()
-        
-        results = self.paginate_queryset(request.user.cart.item_set.all(), request, view=self)
+
+        results = self.paginate_queryset(
+            request.user.cart.item_set.all(), request, view=self)
         serializer = serializers.ItemSerializer(results, many=True)
         return self.get_paginated_response(serializer.data)
 
@@ -77,11 +110,12 @@ class CartView(APIView, LimitOffsetPagination):
                 "error": "already added this product",
             }, status=status.HTTP_208_ALREADY_REPORTED)
         except ObjectDoesNotExist:
-            item = models.Item(product=product, quantity=quantity, cart_id=request.user.cart.id)
+            item = models.Item(
+                product=product, quantity=quantity, cart_id=request.user.cart.id)
             item.save()
 
-
-            results = self.paginate_queryset(request.user.cart.item_set.all(), request, view=self)
+            results = self.paginate_queryset(
+                request.user.cart.item_set.all(), request, view=self)
             serializer = serializers.ItemSerializer(results, many=True)
             return self.get_paginated_response(serializer.data)
 
