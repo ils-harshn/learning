@@ -135,7 +135,7 @@ class CartView(APIView, LimitOffsetPagination):
         try:
             item = request.user.cart.item_set.get(product_id=id)
             item.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_200_OK)
         except ObjectDoesNotExist:
             return Response({
                 "error": "Product Not Found To Delete",
