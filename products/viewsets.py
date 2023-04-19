@@ -64,10 +64,10 @@ class GetProductFromId(APIView):
         except ObjectDoesNotExist:
             is_in_cart = False
         data = {
-                "product": serializers.Productserializer(product).data,
-                "is_in_cart": is_in_cart,
-            }
-        if (quantity_added) data["quantity_added"] = quantity_added
+            "product": serializers.Productserializer(product).data,
+            "is_in_cart": is_in_cart,
+        }
+        if (quantity_added): data["quantity_added"] = quantity_added
         return Response(
             data=data
         )
