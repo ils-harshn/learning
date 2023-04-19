@@ -39,7 +39,7 @@ const Login = () => {
         <>
             <div className="row">
                 <div className="mx-auto col-10 col-md-8 col-lg-6">
-                    <form className="form-example m-5 p-5 border border-info" onSubmit={handleSubmit}>
+                    <form className="form-example m-5 p-5 border border-info rounded" onSubmit={handleSubmit}>
                         <h1>Cart Js: Login</h1>
                         <p className="description">
                             Simple web to depict a cart system

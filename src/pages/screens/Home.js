@@ -1,7 +1,10 @@
-
+import { useEffect, useState } from "react";
+import { Loader } from "../../utils";
+import { getProducts } from "../../api";
+import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
-    return <h2>React</h2>
+    return <>Hello</>
 }
 
 export default Home;

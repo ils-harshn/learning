@@ -36,3 +36,11 @@ export const is_token_available = async () => {
         .then(res => (res.status == 200))
         .catch(res => false);
 }
+
+export const getProducts = (limit=24, offset=0) => {
+    const url = `https://cartjsharshils.pythonanywhere.com/api/product/get/?limit=${limit}&offset=${offset}`
+    return axios.get(url, {
+        method: "GET",
+    }).then(res => res.data)
+    .catch(res => false);
+}
