@@ -47,10 +47,10 @@ export const get_token = () => {
     }
 }
 
-export const getProducts = (limit=24, offset=0) => {
+export const getProducts = (limit = 24, offset = 0) => {
     const url = `https://cartjsharshils.pythonanywhere.com/api/product/get/?limit=${limit}&offset=${offset}`
     return axios.get(url).then(res => res.data)
-    .catch(res => false);
+        .catch(res => false);
 }
 
 export const getProductDetailFromID = (id, token) => {
@@ -62,7 +62,7 @@ export const getProductDetailFromID = (id, token) => {
             Authorization: `Token ${token}`,
         }
     }).then(res => res.data)
-    .catch(res => false);
+        .catch(res => false);
 }
 
 export const addProductToCartFromID = (id, quantity, token) => {
@@ -75,7 +75,7 @@ export const addProductToCartFromID = (id, quantity, token) => {
             Authorization: `Token ${token}`,
         }
     }).then(res => res.data)
-    .catch(res => false);
+        .catch(res => false);
 }
 
 export const removeProductFromCartFromId = (id, token) => {
@@ -87,9 +87,17 @@ export const removeProductFromCartFromId = (id, token) => {
         data: {
             id,
         }
-    }).then(res => res)
-    .catch(res => {
-        console.log(res)
-        return false
-    });
+    })
+    .then(res => res)
+    .catch(res => false);
+}
+
+export const getCartProducts = (token) => {
+    return axios.get("https://cartjsharshils.pythonanywhere.com/api/product/cart/", {
+        headers: {
+            Authorization: `Token ${token}`,
+        }
+    })
+    .then(res => res.data)
+    .catch(res => false);
 }

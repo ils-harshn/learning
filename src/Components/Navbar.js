@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearToken } from "../utils";
 
 const Navbar = () => {
@@ -51,9 +51,9 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="d-flex align-items-center">
-                    <a className="nav-link me-3" href="#">
+                    <Link className="nav-link me-3" to="/cart">
                         <i className="fas fa-shopping-cart" />
-                    </a>
+                    </Link>
                     <a className="nav-link me-3" href="#">
                         <i className="fab fa-facebook-f" />
                     </a>

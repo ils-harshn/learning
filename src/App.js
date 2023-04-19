@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Protected } from "./utils";
 import Layout from "./pages/screens/Layout";
 import ProductDetails from "./pages/screens/ProductDetails";
+import CartDetails from "./pages/screens/CartDetails";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/' element={<Layout/>}>
           <Route index element={<Home/>} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart/" element={<CartDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>
