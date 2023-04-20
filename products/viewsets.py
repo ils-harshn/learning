@@ -55,13 +55,13 @@ class GetProductFromId(APIView):
             return Response({
                 "error": "Product Not Found",
             }, status=status.HTTP_404_NOT_FOUND)
-        
+
         is_in_cart = True
         try:
             request.user.cart.item_set.get(product_id=id)
         except ObjectDoesNotExist:
             is_in_cart = False
-        
+
         return Response(
             data={
                 "product": serializers.Productserializer(product).data,
@@ -127,7 +127,9 @@ class CartView(APIView, LimitOffsetPagination):
                 "error": "Invalid data provided",
             }, status=status.HTTP_404_NOT_FOUND)
 
-        if (request.user.cart == None):
+        try:
+            request.user.cart
+        except:
             return Response({
                 "error": "Cart not created yet",
             }, status=status.HTTP_404_NOT_FOUND)
@@ -174,3 +176,33 @@ class CartView(APIView, LimitOffsetPagination):
         return Response(
             status=status.HTTP_200_OK,
         )
+
+
+class PlaceOrderFromCart(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, format=None):
+        try:
+            cart = request.user.cart
+            if (cart.item_set.count() == 0):
+                raise ObjectDoesNotExist
+        except ObjectDoesNotExist:
+            return Response({
+                "error": "Cart is empty",
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.OrderSerializer(data=request.data)
+        if (serializer.is_valid() == False):
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        order = models.Order(
+            author=request.user,
+            address=serializer.data["address"],
+            pin_code=serializer.data["pin_code"],
+            phone=serializer.data["phone"]
+        )
+        order.save()
+        for item in cart.item_set.all():
+            models.OrderedItem(order=order, product=item.product,
+                               quantity=item.quantity).save()
+        return Response(status=status.HTTP_200_OK)

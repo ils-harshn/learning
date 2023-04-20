@@ -15,3 +15,8 @@ class ItemSerializer(ModelSerializer):
     class Meta:
         model = models.Item
         fields = ['id', 'product', 'quantity']
+
+class OrderSerializer(ModelSerializer):
+    class Meta:
+        model = models.Order
+        fields = ['id', 'address', 'pin_code', 'phone', 'ordered_date']

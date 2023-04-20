@@ -1,5 +1,7 @@
 from django.db import models
 from accounts.models import User
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 
 class Cart(models.Model):
@@ -23,5 +25,19 @@ class Product(models.Model):
 
 class Item(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.DO_NOTHING)
+    quantity = models.IntegerField(default=1)
+
+class Order(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=500, blank=False)
+    pin_code = models.CharField(max_length=6)
+    phone = models.CharField(max_length=10)
+    ordered_date = models.DateTimeField(_("Ordered Date"), default=timezone.now)
+
+
+
+class OrderedItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.OneToOneField(Product, on_delete=models.DO_NOTHING)
     quantity = models.IntegerField(default=1)
