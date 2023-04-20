@@ -82,10 +82,9 @@ class CartView(APIView, LimitOffsetPagination):
             # check for error
             request.user.cart.save()
 
-        results = self.paginate_queryset(
-            request.user.cart.item_set.all(), request, view=self)
-        serializer = serializers.ItemSerializer(results, many=True)
-        return self.get_paginated_response(serializer.data)
+        serializer = serializers.ItemSerializer(request.user.cart.item_set.all(), many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 
     def post(self, request, format=None):
         try:
