@@ -207,4 +207,5 @@ class PlaceOrderFromCart(APIView):
         for item in cart.item_set.all():
             models.OrderedItem(order=order, product=item.product,
                                quantity=item.quantity).save()
+        request.user.cart.delete()
         return Response(status=status.HTTP_200_OK)
