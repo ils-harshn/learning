@@ -46,7 +46,7 @@ const ProductCard = ({ item }) => {
                 <a href="" className="text-reset ">
                     <p>Rating: {item.rating}</p>
                 </a>
-                <h6 className="mb-3 price">₹{item.price}</h6>
+                <h6 className="mb-3 price"><del>₹{item.price}</del>{" "} ₹{item.discounted_price}</h6>
             </div>
         </div>
     </div>

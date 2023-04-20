@@ -58,27 +58,27 @@ const Register = () => {
                             <small className="text-danger">{emailError}</small>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="FirstName">FirstName:</label>
+                            <label htmlFor="FirstName">First Name:</label>
                             <input
                                 value={firstName}
                                 onChange={(e) => check_field(e, setFirstName, setFirstNameError, "*")}
                                 type="text"
                                 className="form-control FirstName"
                                 id="FirstName"
-                                placeholder="Enter FirstName"
+                                placeholder="Enter First Name"
                                 name="FirstName"
                             />
                             <small className="text-danger">{firstNameError}</small>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="LastName">LastName:</label>
+                            <label htmlFor="LastName">Last Name:</label>
                             <input
                                 value={lastName}
                                 onChange={(e) => check_field(e, setLastName, setLastNameError, "*")}
                                 type="text"
                                 className="form-control LastName"
                                 id="LastName"
-                                placeholder="Enter LastName"
+                                placeholder="Enter Last Name"
                                 name="LastName"
                             />
                             <small className="text-danger">{lastNameError}</small>
@@ -103,7 +103,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="ConfirmPassword">ConfirmPassword:</label>
+                            <label htmlFor="ConfirmPassword">Confirm Password:</label>
                             <input
                                 value={confirmPassword}
                                 onChange={(e) => {
@@ -114,7 +114,7 @@ const Register = () => {
                                 type="text"
                                 className="form-control ConfirmPassword"
                                 id="ConfirmPassword"
-                                placeholder="Enter ConfirmPassword"
+                                placeholder="Confirm Password"
                                 name="ConfirmPassword"
                                 autoComplete="off"
                             />
@@ -124,7 +124,6 @@ const Register = () => {
                         <button type="submit" className="btn btn-primary btn-customized mt-4" disabled={emailError || passwordError || firstNameError || lastNameError || confirmPasswordError || loading}>
                             {loading ? <>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                Loading...
                             </> : "Register"}
                         </button>
                         <p>Already registered? <a href="/auth/login">login here</a></p>

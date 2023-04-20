@@ -101,3 +101,14 @@ export const getCartProducts = (token) => {
     .then(res => res.data)
     .catch(res => false);
 }
+
+
+export const updateProductToCartFromID = (id, quantity, token) => {
+    const url = "https://cartjsharshils.pythonanywhere.com/api/product/cart/"
+    return axios.put(url, {id, quantity}, {
+        headers: {
+            Authorization: `Token ${token}`,
+        }
+    }).then(res => res)
+        .catch(res => false);
+}
