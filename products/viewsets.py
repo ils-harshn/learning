@@ -57,16 +57,19 @@ class GetProductFromId(APIView):
             }, status=status.HTTP_404_NOT_FOUND)
 
         is_in_cart = True
+        quantity_added = False
         try:
-            request.user.cart.item_set.get(product_id=id)
+            item = request.user.cart.item_set.get(product_id=id)
+            quantity_added = item.quantity
         except ObjectDoesNotExist:
             is_in_cart = False
-
+        data = {
+            "product": serializers.Productserializer(product).data,
+            "is_in_cart": is_in_cart,
+        }
+        if (quantity_added): data["quantity_added"] = quantity_added
         return Response(
-            data={
-                "product": serializers.Productserializer(product).data,
-                "is_in_cart": is_in_cart,
-            }
+            data=data
         )
 
 
@@ -79,10 +82,9 @@ class CartView(APIView, LimitOffsetPagination):
             # check for error
             request.user.cart.save()
 
-        results = self.paginate_queryset(
-            request.user.cart.item_set.all(), request, view=self)
-        serializer = serializers.ItemSerializer(results, many=True)
-        return self.get_paginated_response(serializer.data)
+        serializer = serializers.ItemSerializer(request.user.cart.item_set.all(), many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 
     def post(self, request, format=None):
         try:
@@ -137,7 +139,7 @@ class CartView(APIView, LimitOffsetPagination):
         try:
             item = request.user.cart.item_set.get(product_id=id)
             item.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_200_OK)
         except ObjectDoesNotExist:
             return Response({
                 "error": "Product Not Found To Delete",
