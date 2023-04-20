@@ -65,5 +65,12 @@ http DELETE https://cartjsharshils.pythonanywhere.com/api/product/cart/ "Authori
 
 ### Update product quantity in Cart
 ```
-http PUT https://cartjsharshils.pythonanywhere.com/api/product/cart/ "Authorization: Token 74ae84a916094295872b56328233729c09952001" id=product_id quantity=quantity_here_to_update
+http PUT http://127.0.0.1:8000/api/product/cart/ "Authorization: Token token_here" id=product_id quantity=quantity_here_to_update
+```
+
+# Order API
+
+### Place Order From Cart
+```
+http POST http://127.0.0.1:8000/api/product/order/cart/ "Authorization: Token token_here" address="address-here" pin_code="pin_code_here" phone="phone_number_here"
 ```
