@@ -210,7 +210,7 @@ class PlaceOrderFromCart(APIView):
         request.user.cart.delete()
         return Response(status=status.HTTP_200_OK)
     
-class OrderView(APIView):
+class OrderView(APIView, LimitOffsetPagination):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
