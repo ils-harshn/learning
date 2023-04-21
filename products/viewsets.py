@@ -209,3 +209,12 @@ class PlaceOrderFromCart(APIView):
                                quantity=item.quantity).save()
         request.user.cart.delete()
         return Response(status=status.HTTP_200_OK)
+    
+class OrderView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        orders = request.user.order_set.all()
+        results = self.paginate_queryset(orders, request, view=self)
+        serializer = serializers.OrderSerializer(results, many=True)
+        return self.get_paginated_response(serializer.data)
