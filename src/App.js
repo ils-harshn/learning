@@ -6,6 +6,7 @@ import { Protected } from "./utils";
 import Layout from "./pages/screens/Layout";
 import ProductDetails from "./pages/screens/ProductDetails";
 import CartDetails from "./pages/screens/CartDetails";
+import CartOrder from "./pages/screens/CartOrder";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route index element={<Home/>} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart/" element={<CartDetails />} />
+          <Route path="/cart/order/" element={<CartOrder />} />
         </Route>
       </Routes>
     </BrowserRouter>

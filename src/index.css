@@ -16,3 +16,16 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #ee6969;
 }
+
+#pincode::-webkit-outer-spin-button,
+#pincode::-webkit-inner-spin-button,
+#phone::-webkit-outer-spin-button,
+#phone::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+#pincode[type=number], #phone[type=number] {
+  -moz-appearance: textfield;
+}

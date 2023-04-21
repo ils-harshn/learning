@@ -70,7 +70,7 @@ const CartDetails = () => {
                                         {
                                             (items.length != 0) &&
                                             <>
-                                            <button type="button" className="btn btn-warning btn-block btn-lg">
+                                            <button type="button" className="btn btn-warning btn-block btn-lg" onClick={() => navigate("/cart/order/")}>
                                                 Proceed to Pay
                                             </button>
                                             <p style={{textAlign: "center", marginTop: 12}}>OR</p>

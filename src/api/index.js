@@ -1,7 +1,9 @@
 import axios from "axios"
 
+
+const baseURL = "https://cartjsharshils.pythonanywhere.com"
 export const getAccessToken = (email, password, refresh = false) => {
-    return axios.post("https://cartjsharshils.pythonanywhere.com/api/api-token-auth/", {
+    return axios.post(`${baseURL}/api/api-token-auth/`, {
         username: email,
         password: password,
         refresh: refresh,
@@ -12,7 +14,7 @@ export const getAccessToken = (email, password, refresh = false) => {
 }
 
 export const createUser = (email, password, password2, first_name, last_name) => {
-    return axios.post("https://cartjsharshils.pythonanywhere.com/api/create_user/", {
+    return axios.post(`${baseURL}/api/create_user/`, {
         email,
         password,
         password2,
@@ -28,7 +30,7 @@ export const is_token_available = async () => {
     if (token == null || !token || token == undefined) {
         return false;
     }
-    return axios.post("https://cartjsharshils.pythonanywhere.com/api/verify/", {}, {
+    return axios.post(`${baseURL}/api/verify/`, {}, {
         headers: {
             Authorization: `Token ${token}`,
         }
@@ -48,13 +50,13 @@ export const get_token = () => {
 }
 
 export const getProducts = (limit = 24, offset = 0) => {
-    const url = `https://cartjsharshils.pythonanywhere.com/api/product/get/?limit=${limit}&offset=${offset}`
+    const url = `${baseURL}/api/product/get/?limit=${limit}&offset=${offset}`
     return axios.get(url).then(res => res.data)
         .catch(res => false);
 }
 
 export const getProductDetailFromID = (id, token) => {
-    const url = "https://cartjsharshils.pythonanywhere.com/api/product/id/"
+    const url = `${baseURL}/api/product/id/`
     return axios.post(url, {
         id,
     }, {
@@ -66,7 +68,7 @@ export const getProductDetailFromID = (id, token) => {
 }
 
 export const addProductToCartFromID = (id, quantity, token) => {
-    const url = "https://cartjsharshils.pythonanywhere.com/api/product/cart/"
+    const url = `${baseURL}/api/product/cart/`
     return axios.post(url, {
         id,
         quantity,
@@ -79,7 +81,7 @@ export const addProductToCartFromID = (id, quantity, token) => {
 }
 
 export const removeProductFromCartFromId = (id, token) => {
-    const url = "https://cartjsharshils.pythonanywhere.com/api/product/cart/"
+    const url = `${baseURL}/api/product/cart/`
     return axios.delete(url, {
         headers: {
             Authorization: `Token ${token}`,
@@ -88,27 +90,41 @@ export const removeProductFromCartFromId = (id, token) => {
             id,
         }
     })
-    .then(res => res)
-    .catch(res => false);
+        .then(res => res)
+        .catch(res => false);
 }
 
 export const getCartProducts = (token) => {
-    return axios.get("https://cartjsharshils.pythonanywhere.com/api/product/cart/", {
+    return axios.get(`${baseURL}/api/product/cart/`, {
         headers: {
             Authorization: `Token ${token}`,
         }
     })
-    .then(res => res.data)
-    .catch(res => false);
+        .then(res => res.data)
+        .catch(res => false);
 }
 
 
 export const updateProductToCartFromID = (id, quantity, token) => {
-    const url = "https://cartjsharshils.pythonanywhere.com/api/product/cart/"
-    return axios.put(url, {id, quantity}, {
+    const url = `${baseURL}/api/product/cart/`
+    return axios.put(url, { id, quantity }, {
         headers: {
             Authorization: `Token ${token}`,
         }
     }).then(res => res)
+        .catch(res => false);
+}
+
+export const placeOrderFromCart = (address, pin_code, phone, token) => {
+    const url = `${baseURL}/api/product/order/cart/`
+    return axios.post(url, {
+        address,
+        pin_code,
+        phone,
+    }, {
+        headers: {
+            Authorization: `Token ${token}`,
+        }
+    }).then(res => res.data)
         .catch(res => false);
 }
