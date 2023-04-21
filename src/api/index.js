@@ -128,3 +128,13 @@ export const placeOrderFromCart = (address, pin_code, phone, token) => {
     }).then(res => res.data)
         .catch(res => false);
 }
+
+export const getOrders = (token) => {
+    return axios.get(`${baseURL}/api/product/orders/`, {
+        headers: {
+            Authorization: `Token ${token}`,
+        }
+    })
+        .then(res => res.data)
+        .catch(res => false);
+}

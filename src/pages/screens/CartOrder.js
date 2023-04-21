@@ -17,7 +17,7 @@ const CheckoutForm = () => {
     const handleOrderPlaceByCart = async () => {
         setLoading(true);
         let data = await placeOrderFromCart(address, pincode, phone, token);
-        navigate("/");
+        navigate("/orders");
     }
 
     return <div className="card p-4 border" style={{ marginTop: "46px" }}>

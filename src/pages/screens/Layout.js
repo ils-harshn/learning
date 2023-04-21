@@ -3,7 +3,6 @@ import { is_token_available } from "../../api";
 import { useEffect, useState } from "react";
 import { Loader, clearToken } from "../../utils";
 import Navbar from "../../Components/Navbar"
-import Footer from "../../Components/Footer";
 
 const Layout = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

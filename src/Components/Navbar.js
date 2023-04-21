@@ -24,10 +24,9 @@ const Navbar = () => {
                                 Home
                             </a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" onClick={() => navigate("/orders")} style={{cursor: "pointer"}}>
                             <a
                                 className="nav-link"
-                                href="#"
                             >
                                 Orders
                             </a>
