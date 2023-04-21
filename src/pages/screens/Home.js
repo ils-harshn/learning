@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
-import { Loader } from "../../utils";
+// import { Loader } from "../../utils";
 import { getProducts } from "../../api";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProductCard from "../../Components/ProductCard";
 import MainLoader from "../../Components/MainLoader";
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState({});
+    const navigate = useNavigate();
+    const [location, setLocation] = useState(useLocation().search);
 
     const fetchData = async () => {
-        let data = await getProducts();
+        setLoading(true);
+        let query = new URLSearchParams(location);
+        let limit = query.get("limit") ? query.get("limit") : 24;
+        let offset = query.get("offset") ? query.get("offset") : 0;
+        let data = await getProducts(limit, offset);
         if (data) {
             setProducts(data);
             setLoading(false);
@@ -21,7 +27,11 @@ const Home = () => {
 
     useEffect(() => {
         fetchData();
-    })
+    }, [])
+
+    useEffect(() => {
+        fetchData();
+    }, [location])
 
     return (
         <>
@@ -46,7 +56,7 @@ const Home = () => {
                             <div className="row">
                                 {
                                     products.results.map((item) => (
-                                        <ProductCard item={item} key={item.id}/>
+                                        <ProductCard item={item} key={item.id} />
                                     ))
                                 }
                             </div>
@@ -57,14 +67,26 @@ const Home = () => {
                         aria-label="Page navigation example"
                         className="d-flex justify-content-center mt-3"
                     >
-                        <ul className="pagination">
-                            <li className="page-item disabled">
-                                <a className="page-link" href="#" aria-label="Previous">
+                        <ul className="pagination" style={{ cursor: "pointer" }}>
+                            <li className={products.previous ? "page-item" : "page-item disabled"} onClick={() => {
+                                if (products.previous) {
+                                    navigate(products.previous.slice(57))
+                                    // fetchData();
+                                    setLocation(products.previous.slice(57))
+                                }
+                            }}>
+                                <a className="page-link" aria-label="Previous">
                                     <span aria-hidden="true">«</span>
                                 </a>
                             </li>
-                            <li className="page-item">
-                                <a className="page-link" href="#" aria-label="Next">
+                            <li className={products.next ? "page-item" : "page-item disabled"} onClick={() => {
+                                if (products.next) {
+                                    navigate(products.next.slice(57))
+                                    // fetchData();
+                                    setLocation(products.next.slice(57))
+                                }
+                            }}>
+                                <a className="page-link" aria-label="Next">
                                     <span aria-hidden="true">»</span>
                                 </a>
                             </li>
