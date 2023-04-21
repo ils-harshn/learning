@@ -214,7 +214,7 @@ class OrderView(APIView, LimitOffsetPagination):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        orders = request.user.order_set.all()
+        orders = request.user.order_set.order_by("-ordered_date")
         results = self.paginate_queryset(orders, request, view=self)
         serializer = serializers.OrderSerializer(results, many=True)
         return self.get_paginated_response(serializer.data)
