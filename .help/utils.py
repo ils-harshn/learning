@@ -37,4 +37,6 @@ def setup():
     print("Entering dummy data...")
     from_csv_to_model("./data/amazon.csv")
     
+    print("Please Wait")
+    subprocess.run(["python", "../manage.py", "collectstatic"])
     print("Setup Done!")
