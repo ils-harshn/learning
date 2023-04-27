@@ -23,6 +23,14 @@ def setup():
     subprocess.run(["python", "../manage.py", "makemigrations"])
     subprocess.run(["python", "../manage.py", "migrate"])
     
+    print("Creating Settings")
+    settings_data = None
+    with open("./data/deployment_settings.py", "r") as file:
+        settings_data = file.read()
+        
+   with open("../cartJS/settings.py", "w") as file:
+        file.write(settings_data)
+    
     print("\nPlease enter the details below for superuser")
     subprocess.run(["python", "../manage.py", "createsuperuser"])
     
