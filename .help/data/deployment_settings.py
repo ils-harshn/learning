@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-eh43ltjb26(f3$m6-w)kpwez9=zc5vbd7%ms@rttg7k3=aphf2
 DEBUG = True
 
 ALLOWED_HOSTS = ['cartjsharshils.pythonanywhere.com']
-
+STATIC_ROOT = '/home/cartJSHarshIls/cartJS_API/static'
 
 # Application definition
 
@@ -154,5 +154,3 @@ CORS_ALLOWED_ORIGINS = [
   'https://ils-harshn.github.io',
   'http://ils-harshn.github.io',
 ]
-
-STATIC_ROOT = '/home/cartJSHarshIls/cartJS_API/static'
