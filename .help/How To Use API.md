@@ -75,3 +75,15 @@ http PUT http://127.0.0.1:8000/api/product/cart/ "Authorization: Token token_her
 ```
 http POST http://127.0.0.1:8000/api/product/order/cart/ "Authorization: Token token_here" address="address-here" pin_code="pin_code_here" phone="phone_number_here"
 ```
+
+### Get User Orders
+```
+http GET http://127.0.0.1:8000/api/product/orders/ "Authorization: Token token_here"
+```
+
+# Filter API's
+
+### Product
+```
+"http://127.0.0.1:8000/api/product/search/?title='title_here'&price='price_here'&discounted_price='discount_here'&discount_percentage='discount_percentage_here'&rating='rating_here'"
+```
