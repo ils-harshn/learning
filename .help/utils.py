@@ -2,7 +2,7 @@ import pandas as pd
 from products.models import Product
 from random import randint
 from tqdm import tqdm
-
+import subprocess
 
 def from_csv_to_model(path):
     convertInt = lambda x: float(x.replace("₹", "").replace(
@@ -17,3 +17,16 @@ def from_csv_to_model(path):
         except:
             rating = randint(1, 5)
         Product(title=item[0][:250], quantity=randint(1, 200), price=convertInt(item[1]), discounted_price=convertInt(item[2]), discount_percentage=convertInt(item[3]), rating=rating, about_product=item[5], img_url=item[6]).save()
+        
+def setup():
+    print("Making Migrations: ")
+    subprocess.run(["python", "../manage.py", "makemigrations"])
+    subprocess.run(["python", "../manage.py", "migrate"])
+    
+    print("\nPlease enter the details below for superuser")
+    subprocess.run(["python", "../manage.py", "createsuperuser"])
+    
+    print("Entering dummy data...")
+    from_csv_to_model("./data/amazon.csv")
+    
+    print("Setup Done!")
