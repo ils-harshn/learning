@@ -28,7 +28,7 @@ def setup():
     with open("./data/deployment_settings.py", "r") as file:
         settings_data = file.read()
         
-   with open("../cartJS/settings.py", "w") as file:
+    with open("../cartJS/settings.py", "w") as file:
         file.write(settings_data)
     
     print("\nPlease enter the details below for superuser")
