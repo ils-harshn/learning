@@ -74,3 +74,15 @@ http PUT https://cartjsharshils.pythonanywhere.com/api/product/cart/ "Authorizat
 ```
 http POST https://cartjsharshils.pythonanywhere.com/api/product/order/cart/ "Authorization: Token token_here" address="address-here" pin_code="pin_code_here" phone="phone_number_here"
 ```
+
+### Get User Orders
+```
+http GET https://cartjsharshils.pythonanywhere.com/api/product/orders/ "Authorization: Token token_here"
+```
+
+# Filter API's
+
+### Product
+```
+"https://cartjsharshils.pythonanywhere.com/api/product/search/?title='title_here'&price='price_here'&discounted_price='discount_here'&discount_percentage='discount_percentage_here'&rating='rating_here'"
+```
