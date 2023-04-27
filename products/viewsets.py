@@ -218,3 +218,12 @@ class OrderView(APIView, LimitOffsetPagination):
         results = self.paginate_queryset(orders, request, view=self)
         serializer = serializers.OrderSerializer(results, many=True)
         return self.get_paginated_response(serializer.data)
+
+from rest_framework.viewsets import generics
+from django_filters.rest_framework import DjangoFilterBackend
+
+class ProductFilter(generics.ListAPIView):
+    queryset = models.Product.objects.all()
+    serializer = serializers.Productserializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title', 'price', 'discount_percentage', 'rating']
