@@ -221,7 +221,7 @@ class OrderView(APIView, LimitOffsetPagination):
 
 from rest_framework.viewsets import generics
 from django_filters.rest_framework import DjangoFilterBackend
-from .filters import ProductFilter
+from .filters import ProductFilterSet
 
 class ProductFilter(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -229,4 +229,4 @@ class ProductFilter(generics.ListAPIView):
     serializer_class = serializers.Productserializer
     # filter_backends = [DjangoFilterBackend]
     # filterset_fields = ['title', 'price', 'discount_percentage', 'rating']
-    filterset_class = ProductFilter
+    filterset_class = ProductFilterSet
