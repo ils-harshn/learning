@@ -18,13 +18,13 @@ const Navbar = () => {
                     <i className="fas fa-bars" />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent1">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item active">
-                            <a className="nav-link " href="/">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{cursor: "pointer"}}>
+                        <li className="nav-item active" onClick={() => navigate("/")}>
+                            <a className="nav-link ">
                                 Home
                             </a>
                         </li>
-                        <li className="nav-item" onClick={() => navigate("/orders")} style={{cursor: "pointer"}}>
+                        <li className="nav-item" onClick={() => navigate("/orders")}>
                             <a
                                 className="nav-link"
                             >

@@ -11,7 +11,7 @@ import Orders from "./pages/screens/Orders";
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
 
         <Route path='auth'>
