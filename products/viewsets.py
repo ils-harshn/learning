@@ -225,6 +225,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 class ProductFilter(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = models.Product.objects.all()
-    serializer = serializers.Productserializer
+    serializer_class = serializers.Productserializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['title', 'price', 'discount_percentage', 'rating']
