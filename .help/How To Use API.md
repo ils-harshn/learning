@@ -85,5 +85,5 @@ http GET http://127.0.0.1:8000/api/product/orders/ "Authorization: Token token_h
 
 ### Product
 ```
-"http://127.0.0.1:8000/api/product/search/?title='title_here'&price='price_here'&discounted_price='discount_here'&discount_percentage='discount_percentage_here'&rating='rating_here'"
+http "http://127.0.0.1:8000/api/product/search/?title='title_here'&price='price_here'&discounted_price='discount_here'&discount_percentage='discount_percentage_here'&rating='rating_here'"
 ```

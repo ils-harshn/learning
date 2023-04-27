@@ -84,5 +84,5 @@ http GET https://cartjsharshils.pythonanywhere.com/api/product/orders/ "Authoriz
 
 ### Product
 ```
-"https://cartjsharshils.pythonanywhere.com/api/product/search/?title='title_here'&price='price_here'&discounted_price='discount_here'&discount_percentage='discount_percentage_here'&rating='rating_here'"
+http "https://cartjsharshils.pythonanywhere.com/api/product/search/?title='title_here'&price='price_here'&discounted_price='discount_here'&discount_percentage='discount_percentage_here'&rating='rating_here'"
 ```
