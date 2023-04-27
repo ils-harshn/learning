@@ -223,6 +223,7 @@ from rest_framework.viewsets import generics
 from django_filters.rest_framework import DjangoFilterBackend
 
 class ProductFilter(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = models.Product.objects.all()
     serializer = serializers.Productserializer
     filter_backends = [DjangoFilterBackend]
