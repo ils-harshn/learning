@@ -16,3 +16,9 @@ npm install gh-pages --save-dev
 + Add `scripts` as `"deploy": "gh-pages -d build"`
 
 In `package.json`
+
+After commiting changes run
+```
+npm run deploy
+```
+In cmd
