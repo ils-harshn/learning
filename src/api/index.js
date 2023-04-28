@@ -138,3 +138,12 @@ export const getOrders = (token) => {
         .then(res => res.data)
         .catch(res => false);
 }
+
+
+export const getFiliteredProducts = (title="", price="", discounted_price="", discount_percentage="", rating="", page=1) => {
+    let limit = 24;
+    let offset = limit * (page - 1);
+    return axios.get(`${baseURL}/api/product/search/?title=${title}&price=${price}&discounted_price=${discounted_price}&discount_percentage=${discount_percentage}&rating=${rating}&limit=${limit}&offset=${offset}`)
+        .then(res => res.data)
+        .catch(res => false);
+}

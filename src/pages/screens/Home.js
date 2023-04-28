@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { Loader } from "../../utils";
 import { getProducts } from "../../api";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProductCard from "../../Components/ProductCard";
@@ -10,6 +9,12 @@ const Home = () => {
     const [products, setProducts] = useState({});
     const navigate = useNavigate();
     const [location, setLocation] = useState(useLocation().search);
+
+    const [title, setTitle] = useState("");
+    const [price, setPrice] = useState("");
+    const [discountedPrice, setDiscountedPrice] = useState("");
+    const [discountPercentage, setDiscountPercentage] = useState("");
+    const [rating, setRating] = useState("");
 
     const fetchData = async () => {
         setLoading(true);
@@ -35,23 +40,17 @@ const Home = () => {
 
     return (
         <>
-            <div className="filters mb-4" style={{ cursor: "pointer" }}>
-                <div className="input-group">
-                    <div className="form-outline border">
-                        <input type="search" id="form1" style={{
-                            border: "none",
-                            outline: "none",
-                            paddingLeft: 8,
-                        }} placeholder="Search" />
-                    </div>
-                    <button type="button" className="btn btn-primary">
-                        <i className="fas fa-search" />
-                    </button>
-                </div>
-            </div>
             {
                 loading ? <MainLoader /> : <>
                     <section>
+                        <section className="d-flex mb-4">
+                            <input placeholder="Title" type="text" className="form-control" style={{ marginRight: 10 }} value={title} onChange={(e) => setTitle(e.target.value)}></input>
+                            <input placeholder="Price" type="number" className="form-control" style={{ marginRight: 10 }} value={price} onChange={(e) => setPrice(e.target.value)}></input>
+                            <input placeholder="Discounted Price" type="number" className="form-control" style={{ marginRight: 10 }} value={discountedPrice} onChange={(e) => setDiscountedPrice(e.target.value)}></input>
+                            <input placeholder="Discount Percentage" type="number" className="form-control" style={{ marginRight: 10 }} value={discountPercentage} onChange={(e) => setDiscountPercentage(e.target.value)}></input>
+                            <input placeholder="Rating" className="form-control" style={{ marginRight: 10 }} value={rating} onChange={(e) => setRating(e.target.value)}></input>
+                            <button onClick={() => navigate(`/product/search?title=${title}&price=${price}&discounted_price=${discountedPrice}&discount_percentage=${discountPercentage}&rating=${rating}&page=1`)} className="btn btn-primary">Filter</button>
+                        </section>
                         <div className="text-center">
                             <div className="row">
                                 {

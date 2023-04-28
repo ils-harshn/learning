@@ -64,24 +64,28 @@ const Orders = () => {
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col">
                             <div className="table-responsive">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" className="h5">
-                                                Order ID
-                                            </th>
-                                            <th scope="col">Address</th>
-                                            <th scope="col">Pin Code</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Date Ordered</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {data.results.map((order) => (
-                                            <OrderItem order={order} key={order.id}/>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                {data.results.length ? <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" className="h5">
+                                                    Order ID
+                                                </th>
+                                                <th scope="col">Address</th>
+                                                <th scope="col">Pin Code</th>
+                                                <th scope="col">Phone</th>
+                                                <th scope="col">Date Ordered</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {data.results.map((order) => (
+                                                <OrderItem order={order} key={order.id}/>
+                                            ))}
+                                        </tbody>
+                                    </table>:
+                                    <h2>
+                                        Not Orders Yet
+                                    </h2>}
+                                    
                             </div>
                         </div>
                     </div>

@@ -62,7 +62,7 @@ const Login = () => {
                             <input
                                 value={password}
                                 onChange={(e) => check_field(e, setPassword, setPasswordError, "*")}
-                                type="text"
+                                type="password"
                                 className="form-control Password"
                                 id="Password"
                                 placeholder="Enter Password"
@@ -83,7 +83,7 @@ const Login = () => {
                                 <span className="sr-only">Loading...</span>
                             </> : "Login"}
                         </button>
-                        <p>Not registered? <a href="/auth/register">register here</a></p>
+                        <p>Not registered? <a onClick={() => navigate("/auth/register")} className="link-opacity-100" style={{cursor: "pointer"}}>register here</a></p>
                     </form>
                 </div>
             </div>

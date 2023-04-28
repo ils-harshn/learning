@@ -35,14 +35,17 @@ const CartDetails = () => {
                     <div className="container h-100 py-5">
                         <div className="row d-flex justify-content-center align-items-center h-100">
                             <div className="col-10">
-                                <div className="d-flex justify-content-between align-items-center mb-4">
-                                    <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
-                                    <div>
-                                        <p className="mb-0">
-                                            <span className="text-muted">Total Items: {items.count}</span>
-                                        </p>
+                                {
+                                    (items.length != 0) &&
+                                    <div className="d-flex justify-content-between align-items-center mb-4">
+                                        <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
+                                        <div>
+                                            <p className="mb-0">
+                                                <span className="text-muted">Total Items: {items.count}</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
                                 {
                                     items.length ? items.map(ele => {
                                         varTotal += (ele.quantity * ele.product.discounted_price);
@@ -52,28 +55,31 @@ const CartDetails = () => {
                                         )
                                     }) : <h3>Nothing added in cart</h3>
                                 }
-                                <div className="d-flex justify-content-between px-x">
-                                    <p className="fw-bold">Discount:</p>
-                                    <p className="fw-bold">₹{varActualPrice - varTotal}</p>
-                                </div>
-                                <div
-                                    className="d-flex justify-content-between p-2 mb-2"
-                                    style={{ backgroundColor: "#e1f5fe" }}
-                                >
-                                    <h5 className="fw-bold mb-0">Total:</h5>
-                                    <h5 className="fw-bold mb-0">₹{varTotal}</h5>
-                                </div>
-
-
+                                {
+                                    (items.length != 0) &&
+                                    <>
+                                        <div className="d-flex justify-content-between px-x">
+                                            <p className="fw-bold">Discount:</p>
+                                            <p className="fw-bold">₹{varActualPrice - varTotal}</p>
+                                        </div>
+                                        <div
+                                            className="d-flex justify-content-between p-2 mb-2"
+                                            style={{ backgroundColor: "#e1f5fe" }}
+                                        >
+                                            <h5 className="fw-bold mb-0">Total:</h5>
+                                            <h5 className="fw-bold mb-0">₹{varTotal}</h5>
+                                        </div>
+                                    </>
+                                }
                                 <div className="card mb-4">
                                     <div className="card-body">
                                         {
                                             (items.length != 0) &&
                                             <>
-                                            <button type="button" className="btn btn-warning btn-block btn-lg" onClick={() => navigate("/cart/order/")}>
-                                                Proceed to Pay
-                                            </button>
-                                            <p style={{textAlign: "center", marginTop: 12}}>OR</p>
+                                                <button type="button" className="btn btn-warning btn-block btn-lg" onClick={() => navigate("/cart/order/")}>
+                                                    Proceed to Pay
+                                                </button>
+                                                <p style={{ textAlign: "center", marginTop: 12 }}>OR</p>
                                             </>
                                         }
                                         <button type="button" className="btn btn-primary btn-block btn-lg" onClick={() => navigate("/")}>

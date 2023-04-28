@@ -28,6 +28,7 @@ const Register = () => {
         setLoading(true)
         let data = await createUser(email, password, confirmPassword, firstName, lastName);
         if (data) {
+            alert("Registration Successfull")
             navigate('/auth/login');
             return;
         }
@@ -89,10 +90,10 @@ const Register = () => {
                                 value={password}
                                 onChange={(e) => {
                                     check_field(e, setPassword, setPasswordError, "password");
-                                    if (setConfirmPasswordError != true && e.target.value != confirmPassword) setConfirmPasswordError("Password doesn't match")
+                                    if (confirmPassword && e.target.value != confirmPassword) setConfirmPasswordError("Password doesn't match")
                                     else setConfirmPasswordError("")
                                 }}
-                                type="text"
+                                type="password"
                                 className="form-control Password"
                                 id="Password"
                                 placeholder="Enter Password"
@@ -111,7 +112,7 @@ const Register = () => {
                                     if (e.target.value && password == e.target.value) setConfirmPasswordError("")
                                     else setConfirmPasswordError("*Password doesn't match")
                                 }}
-                                type="text"
+                                type="password"
                                 className="form-control ConfirmPassword"
                                 id="ConfirmPassword"
                                 placeholder="Confirm Password"
@@ -123,10 +124,10 @@ const Register = () => {
 
                         <button type="submit" className="btn btn-primary btn-customized mt-4" disabled={emailError || passwordError || firstNameError || lastNameError || confirmPasswordError || loading}>
                             {loading ? <>
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             </> : "Register"}
                         </button>
-                        <p>Already registered? <a href="/auth/login">login here</a></p>
+                        <p>Already registered? <a  onClick={() => navigate("/auth/login")} className="link-opacity-100" style={{cursor: "pointer"}}>login here</a></p>
                     </form>
                 </div>
             </div>
