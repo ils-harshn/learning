@@ -31,62 +31,70 @@ const SearchProducts = () => {
     }, [page, loading])
 
     return <>
-        {
-            loading ? <MainLoader /> : <>
-            <div style={{marginTop: 80}}><Navbar /></div>
-            <div className="container">
-                <section className="d-flex mb-4">
-                    <input placeholder="Title" type="text" className="form-control" style={{ marginRight: 10 }} value={title} onChange={(e) => setTitle(e.target.value)}></input>
-                    <input placeholder="Price" min={1} type="number" className="form-control" style={{ marginRight: 10 }} value={price} onChange={(e) => setPrice(e.target.value)}></input>
-                    <input placeholder="Discounted Price" type="number" min={1} className="form-control" style={{ marginRight: 10 }} value={discountedPrice} onChange={(e) => setDiscountedPrice(e.target.value)}></input>
-                    <input placeholder="Discount Percentage" type="number" min={1} max={100} className="form-control" style={{ marginRight: 10 }} value={discountPercentage} onChange={(e) => setDiscountPercentage(e.target.value)}></input>
-                    <input placeholder="Rating" className="form-control" min={1} max={5} style={{ marginRight: 10 }} value={rating} onChange={(e) => setRating(e.target.value)}></input>
+        <>
+            <div style={{ marginTop: 80 }}><Navbar /></div>
+            <div className="container" style={{
+                display: "flex",
+                minHeight: "100vh"
+            }}>
+                <div className="mb-4" style={{ width: "30%", padding: "10px 80px 10px 10px"}}>
+                    <h2 style={{ marginBottom: 10}}>Filter Products</h2>
+                    <input placeholder="Title" type="text" className="form-control" style={{ marginRight: 10, marginBottom: 10 }} value={title} onChange={(e) => { setTitle(e.target.value); setLoading(true)}}></input>
+                    <input placeholder="Price" min={1} type="number" className="form-control" style={{ marginRight: 10, marginBottom: 10 }} value={price} onChange={(e) => { setPrice(e.target.value); setLoading(true)}}></input>
+                    <input placeholder="Discounted Price" type="number" min={1} className="form-control" style={{ marginRight: 10, marginBottom: 10 }} value={discountedPrice} onChange={(e) => { setDiscountedPrice(e.target.value); setLoading(true)}}></input>
+                    <input placeholder="Discount Percentage" type="number" min={1} max={100} className="form-control" style={{ marginRight: 10, marginBottom: 10 }} value={discountPercentage} onChange={(e) => { setDiscountPercentage(e.target.value); setLoading(true)}}></input>
+                    <input placeholder="Rating" className="form-control" min={1} max={5} style={{ marginRight: 10, marginBottom: 10 }} value={rating} onChange={(e) => { setRating(e.target.value); setLoading(true)}}></input>
                     <button onClick={() => setLoading(true)} className="btn btn-primary">Filter</button>
-                </section>
-                <section>
-                    <div className="text-center">
-                        {products.results.length ? <div className="row">
-                            {
-                                products.results.map((item) => (
-                                    <ProductCard item={item} key={item.id} />
-                                ))
-                            }
-                        </div> : <h2 className="mt-4">No Results Found</h2>}
-
-                    </div>
-                </section>
-
-                <nav
-                    aria-label="Page navigation example"
-                    className="d-flex justify-content-center mt-3"
-                >
-                    <ul className="pagination" style={{ cursor: "pointer" }}>
-                        <li className={products.previous ? "page-item" : "page-item disabled"} onClick={() => {
-                            if (products.previous) {
-                                setPage(prev => parseInt(prev) - 1)
-                                setLoading(true)
-                            }
-                        }}>
-                            <a className="page-link" aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                            </a>
-                        </li>
-                        <li className={products.next ? "page-item" : "page-item disabled"} onClick={() => {
-                            if (products.next) {
-                                setPage(prev => parseInt(prev) + 1)
-                                setLoading(true)
-                            }
-                        }}>
-                            <a className="page-link" aria-label="Next">
-                                <span aria-hidden="true">»</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
                 </div>
-                <Footer/>
-            </>
-        }
+                <div className="searched-items" style={{ width: "70%"}}>
+                    {
+                        loading ? <MainLoader /> : <>
+                            <section>
+                                <div className="text-center">
+                                    {products.results.length ? <div className="row">
+                                        {
+                                            products.results.map((item) => (
+                                                <ProductCard item={item} key={item.id} />
+                                            ))
+                                        }
+                                    </div> : <h2 className="mt-4">No Results Found</h2>}
+
+                                </div>
+                            </section>
+{/* 
+                            <nav
+                                aria-label="Page navigation example"
+                                className="d-flex justify-content-center mt-3"
+                            >
+                                <ul className="pagination" style={{ cursor: "pointer" }}>
+                                    <li className={products.previous ? "page-item" : "page-item disabled"} onClick={() => {
+                                        if (products.previous) {
+                                            setPage(prev => parseInt(prev) - 1)
+                                            setLoading(true)
+                                        }
+                                    }}>
+                                        <a className="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </li>
+                                    <li className={products.next ? "page-item" : "page-item disabled"} onClick={() => {
+                                        if (products.next) {
+                                            setPage(prev => parseInt(prev) + 1)
+                                            setLoading(true)
+                                        }
+                                    }}>
+                                        <a className="page-link" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav> */}
+                        </>
+                    }
+                </div>
+            </div>
+            <Footer />
+        </>
     </>
 }
 
