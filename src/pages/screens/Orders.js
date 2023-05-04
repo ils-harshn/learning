@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getOrders, get_token } from "../../api";
 import MainLoader from "../../Components/MainLoader";
+import Navbar from "../../Components/Navbar";
 
 const OrderItem = ({ order }) => {
     return (
@@ -59,6 +60,8 @@ const Orders = () => {
 
     return <>
         {loading ? <MainLoader /> : <>
+        <div style={{marginTop: 40}}><Navbar /></div>
+
             <section className="h-custom">
                 <div className="container h-100 py-5">
                     <div className="row d-flex justify-content-center align-items-center h-100">

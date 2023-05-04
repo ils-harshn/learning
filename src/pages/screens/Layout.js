@@ -23,14 +23,12 @@ const Layout = () => {
     }, [])
 
     return (isLoggedIn) ? <>
-        <Navbar />
-        <div className="container" style={{
+        <div className="" style={{
             height: "calc(100vh - 162px)",
-            marginTop: 80,
+            // marginTop: 80,
         }}>
             <Outlet />
         </div>
-        {/* <Footer /> */}
     </> : <Loader />
 };
 

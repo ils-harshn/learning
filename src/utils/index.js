@@ -39,7 +39,7 @@ export const setToken = (token, rememberMe) => {
 // Loader
 export const Loader = () => {
     return (
-        <div className="row">
+        <div className="row" style={{ marginTop: 20}}>
             <div
                 className="spinner-grow mx-auto col-10 col-md-8 col-lg-6 mt-5"
                 style={{ width: "3rem", height: "3rem" }}

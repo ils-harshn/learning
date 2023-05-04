@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import MainLoader from "../../Components/MainLoader"
 import { getCartProducts, get_token, placeOrderFromCart } from "../../api"
 import { useNavigate } from "react-router-dom"
+import Navbar from "../../Components/Navbar"
 
 const CheckoutForm = () => {
     const [address, setAddress] = useState("");
@@ -20,7 +21,8 @@ const CheckoutForm = () => {
         navigate("/orders");
     }
 
-    return <div className="card p-4 border" style={{ marginTop: "46px" }}>
+    return <>
+    <div className="card p-4 border" style={{ marginTop: "46px" }}>
         <p className="mb-0">Address</p>
         <div className="form-outline border">
             <input
@@ -87,6 +89,7 @@ const CheckoutForm = () => {
             {loading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> :  "Continue to checkout"}
         </button>
     </div>
+    </>
 }
 
 
@@ -143,17 +146,20 @@ const CartOrder = () => {
     }, [])
 
     return <>
-        {loading ? <MainLoader /> : <main className="mt-5 pt-4">
+        {loading ? <MainLoader /> : <>
+        <Navbar/>
+        <main style={{marginTop: 80}}>
             <div className="container">
-                <h2 className="my-5 text-center">Checkout form</h2>
+                <h2 className="text-left" >Checkout form</h2>
                 <div className="row">
-                    <div className="col-md-8 mb-4">
+                    <div className="col-md-8">
                         <CheckoutForm />
                     </div>
                     <Sidecart items={data} />
                 </div>
             </div>
         </main>
+        </>
         }
     </>
 }

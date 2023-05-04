@@ -1,8 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
 import { clearToken } from "../utils";
+import { useEffect, useState } from "react";
+import { getCartProducts, get_token } from "../api";
 
-const Navbar = () => {
+const Navbar = ({ cartcount }) => {
     const navigate = useNavigate();
+    const [cartCount, setCartCount] = useState(cartcount || 0);
+    const token = get_token();
+
+    const fetchData = async () => {
+        let data = await getCartProducts(token);
+        if (data) {
+            setCartCount(data.length);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
     return <>
         <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-white">
             <div className="container">
@@ -24,6 +40,13 @@ const Navbar = () => {
                                 Home
                             </a>
                         </li>
+                        <li className="nav-item" onClick={() => navigate("/product/search")}>
+                            <a
+                                className="nav-link"
+                            >
+                                Products
+                            </a>
+                        </li>
                         <li className="nav-item" onClick={() => navigate("/orders")}>
                             <a
                                 className="nav-link"
@@ -31,19 +54,12 @@ const Navbar = () => {
                                 Orders
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <a
-                                className="nav-link"
-                                href="#"
-                            >
-                                About
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <div className="d-flex align-items-center">
                     <Link className="nav-link me-3" to="/cart">
                         <i className="fas fa-shopping-cart" />
+                        <span className="badge rounded-pill badge-notification bg-danger">{cartCount}</span>
                     </Link>
                     <a className="nav-link me-3" href="#">
                         <i className="fab fa-facebook-f" />
