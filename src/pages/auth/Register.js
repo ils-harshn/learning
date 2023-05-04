@@ -40,10 +40,20 @@ const Register = () => {
         <>
             <div className="row">
                 <div className="mx-auto col-10 col-md-8 col-lg-6">
-                    <form className="form-example m-5 p-5 border border-info" onSubmit={handleSubmit}>
-                        <h1>Cart Js: Registration</h1>
-                        <p className="description">
-                            Simple web to depict a cart system
+                    <form className="form-example m-5 p-5" onSubmit={handleSubmit} style={{
+                        backgroundColor: "whitesmoke",
+                        borderRadius: 25,
+                        boxShadow: "0px 1px 60px #00000078"
+                    }}>
+                        <img src="https://raw.githubusercontent.com/codewithsadee/anon-ecommerce-website/master/assets/images/logo/logo.svg"
+                            style={{
+                                width: "100%",
+                                height: 40,
+                                textAlign: "center"
+                            }}
+                        />
+                        <p className="description" style={{ width: "100%", textAlign: "center"}}>
+                            Registration Page
                         </p>
                         <div className="form-group">
                             <label htmlFor="Email">Email:</label>
@@ -127,7 +137,7 @@ const Register = () => {
                                 <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             </> : "Register"}
                         </button>
-                        <p>Already registered? <a  onClick={() => navigate("/auth/login")} className="link-opacity-100" style={{cursor: "pointer"}}>login here</a></p>
+                        <p>Already registered? <a onClick={() => navigate("/auth/login")} className="link-opacity-100" style={{ cursor: "pointer" }}>login here</a></p>
                     </form>
                 </div>
             </div>

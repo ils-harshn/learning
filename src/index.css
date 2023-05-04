@@ -29,3 +29,7 @@
 #pincode[type=number], #phone[type=number] {
   -moz-appearance: textfield;
 }
+
+body {
+  overflow-x: hidden;
+}
