@@ -34,7 +34,14 @@ const Navbar = ({ cartcount }) => {
                     <i className="fas fa-bars" />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent1">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0" style={{cursor: "pointer"}}>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center" style={{ cursor: "pointer" }}>
+                        <li className="nav-item" onClick={() => navigate("/")}>
+                            <a className="nav-link">
+                                <img style={{
+                                    height: 40
+                                }} src="https://raw.githubusercontent.com/codewithsadee/anon-ecommerce-website/master/assets/images/logo/logo.svg" />
+                            </a>
+                        </li>
                         <li className="nav-item active" onClick={() => navigate("/")}>
                             <a className="nav-link ">
                                 Home
