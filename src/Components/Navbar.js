@@ -20,7 +20,7 @@ const Navbar = ({ cartcount }) => {
     }, [])
 
     return <>
-        <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-white">
+        <nav className="navbar fixed-top navbar-expand-lg navbar-light" style={{ backgroundColor: "#dcd0ff" }}>
             <div className="container">
                 <button
                     className="navbar-toggler"
