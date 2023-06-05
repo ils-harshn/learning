@@ -1,0 +1,96 @@
+{
+    "name": "File Explorer",
+    "type": "folder",
+    "items": [
+        {
+            "name": "src",
+            "type": "folder",
+            "items": [
+                {
+                    "name": "components",
+                    "type": "folder",
+                    "items": [
+                        {
+                            "name": "Button.js",
+                            "type": "file"
+                        },
+                        {
+                            "name": "Input.js",
+                            "type": "file"
+                        },
+                        {
+                            "name": "Card.js",
+                            "type": "file"
+                        },
+                        {
+                            "name": "Styles",
+                            "type": "folder",
+                            "items": [
+                                {
+                                    "name": "Button.scss",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "Input.scss",
+                                    "type": "file"
+                                },
+                                {
+                                    "name": "Card.scss",
+                                    "type": "file"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "pages",
+                    "type": "folder",
+                    "items": [
+                        {
+                            "name": "Home.js",
+                            "type": "file"
+                        },
+                        {
+                            "name": "About.js",
+                            "type": "file"
+                        },
+                        {
+                            "name": "Contact.js",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "App.js",
+                    "type": "file"
+                },
+                {
+                    "name": "index.js",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "public",
+            "type": "folder",
+            "items": [
+                {
+                    "name": "index.html",
+                    "type": "file"
+                },
+                {
+                    "name": "favicon.ico",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "package.json",
+            "type": "file"
+        },
+        {
+            "name": ".gitignore",
+            "type": "file"
+        }
+    ]
+}
