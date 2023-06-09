@@ -1,6 +1,6 @@
-const initialValues = {
-    title: "",
-    completed: false,
-}
+const initialValues = (title="", completed=false) => ({
+    title,
+    completed,
+})
 
 export default initialValues

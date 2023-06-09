@@ -7,7 +7,7 @@ const InputForm = () => {
     const dispatch = useDispatch()
 
     const addTaskFormik = useFormik({
-        initialValues: taskFormInitialValues,
+        initialValues: taskFormInitialValues(),
         validationSchema: taskFromSchema,
         onSubmit: (values) => {
             dispatch(addTask(values.title, values.completed))

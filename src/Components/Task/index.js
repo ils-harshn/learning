@@ -10,7 +10,7 @@ const Task = ({ data }) => {
     const dispatch = useDispatch()
 
     const updateTaskFormik = useFormik({
-        initialValues: taskFormInitialValues,
+        initialValues: taskFormInitialValues(data.title, data.completed),
         validationSchema: taskFromSchema,
         onSubmit: (values) => {
             dispatch(updateTask(data.id, values.title, values.completed))
