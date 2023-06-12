@@ -1,96 +1,272 @@
 {
-    "name": "File Explorer",
+    "name": "MyDjangoProject",
     "type": "folder",
     "items": [
         {
-            "name": "src",
+            "name": "myapp",
             "type": "folder",
             "items": [
                 {
-                    "name": "components",
+                    "name": "__init__.py",
+                    "type": "file"
+                },
+                {
+                    "name": "admin.py",
+                    "type": "file"
+                },
+                {
+                    "name": "apps.py",
+                    "type": "file"
+                },
+                {
+                    "name": "models.py",
+                    "type": "file"
+                },
+                {
+                    "name": "serializers.py",
+                    "type": "file"
+                },
+                {
+                    "name": "urls.py",
+                    "type": "file"
+                },
+                {
+                    "name": "views.py",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "myproject",
+            "type": "folder",
+            "items": [
+                {
+                    "name": "__init__.py",
+                    "type": "file"
+                },
+                {
+                    "name": "settings.py",
+                    "type": "file"
+                },
+                {
+                    "name": "urls.py",
+                    "type": "file"
+                },
+                {
+                    "name": "wsgi.py",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "venv",
+            "type": "folder",
+            "items": [
+                {
+                    "name": "bin",
                     "type": "folder",
                     "items": [
                         {
-                            "name": "Button.js",
+                            "name": "activate",
                             "type": "file"
                         },
                         {
-                            "name": "Input.js",
+                            "name": "deactivate",
                             "type": "file"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "name": "include",
+                    "type": "folder",
+                    "items": [
                         {
-                            "name": "Card.js",
+                            "name": "Python.h",
                             "type": "file"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "name": "lib",
+                    "type": "folder",
+                    "items": [
                         {
-                            "name": "Styles",
+                            "name": "python3.9",
                             "type": "folder",
                             "items": [
                                 {
-                                    "name": "Button.scss",
-                                    "type": "file"
-                                },
-                                {
-                                    "name": "Input.scss",
-                                    "type": "file"
-                                },
-                                {
-                                    "name": "Card.scss",
-                                    "type": "file"
+                                    "name": "site-packages",
+                                    "type": "folder",
+                                    "items": [
+                                        {
+                                            "name": "django",
+                                            "type": "folder",
+                                            "items": [
+                                                {
+                                                    "name": "__init__.py",
+                                                    "type": "file"
+                                                },
+                                                {
+                                                    "name": "conf",
+                                                    "type": "folder",
+                                                    "items": [
+                                                        {
+                                                            "name": "__init__.py",
+                                                            "type": "file"
+                                                        },
+                                                        {
+                                                            "name": "urls.py",
+                                                            "type": "file"
+                                                        },
+                                                        {
+                                                            "name": "settings.py",
+                                                            "type": "file"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "contrib",
+                                                    "type": "folder",
+                                                    "items": [
+                                                        {
+                                                            "name": "__init__.py",
+                                                            "type": "file"
+                                                        },
+                                                        {
+                                                            "name": "admin",
+                                                            "type": "folder",
+                                                            "items": [
+                                                                {
+                                                                    "name": "__init__.py",
+                                                                    "type": "file"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "auth",
+                                                            "type": "folder",
+                                                            "items": [
+                                                                {
+                                                                    "name": "__init__.py",
+                                                                    "type": "file"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "venv",
+                                                            "type": "folder",
+                                                            "items": [
+                                                                {
+                                                                    "name": "lib",
+                                                                    "type": "folder",
+                                                                    "items": [
+                                                                        {
+                                                                            "name": "python3.9",
+                                                                            "type": "folder",
+                                                                            "items": [
+                                                                                {
+                                                                                    "name": "site-packages",
+                                                                                    "type": "folder",
+                                                                                    "items": [
+                                                                                        {
+                                                                                            "name": "django",
+                                                                                            "type": "folder",
+                                                                                            "items": [
+                                                                                                {
+                                                                                                    "name": "__init__.py",
+                                                                                                    "type": "file"
+                                                                                                },
+                                                                                                {
+                                                                                                    "name": "conf",
+                                                                                                    "type": "folder",
+                                                                                                    "items": [
+                                                                                                        {
+                                                                                                            "name": "__init__.py",
+                                                                                                            "type": "file"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "urls.py",
+                                                                                                            "type": "file"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "settings.py",
+                                                                                                            "type": "file"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                {
+                                                                                                    "name": "contrib",
+                                                                                                    "type": "folder",
+                                                                                                    "items": [
+                                                                                                        {
+                                                                                                            "name": "__init__.py",
+                                                                                                            "type": "file"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "admin",
+                                                                                                            "type": "folder",
+                                                                                                            "items": [
+                                                                                                                {
+                                                                                                                    "name": "__init__.py",
+                                                                                                                    "type": "file"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "auth",
+                                                                                                            "type": "folder",
+                                                                                                            "items": [
+                                                                                                                {
+                                                                                                                    "name": "__init__.py",
+                                                                                                                    "type": "file"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "rest_framework",
+                                                                                                            "type": "folder",
+                                                                                                            "items": [
+                                                                                                                {
+                                                                                                                    "name": "__init__.py",
+                                                                                                                    "type": "file"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "name": "views.py",
+                                                                                                                    "type": "file"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "name": "serializers.py",
+                                                                                                                    "type": "file"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "name": "manage.py",
+                                                                    "type": "file"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         }
                     ]
-                },
-                {
-                    "name": "pages",
-                    "type": "folder",
-                    "items": [
-                        {
-                            "name": "Home.js",
-                            "type": "file"
-                        },
-                        {
-                            "name": "About.js",
-                            "type": "file"
-                        },
-                        {
-                            "name": "Contact.js",
-                            "type": "file"
-                        }
-                    ]
-                },
-                {
-                    "name": "App.js",
-                    "type": "file"
-                },
-                {
-                    "name": "index.js",
-                    "type": "file"
                 }
             ]
-        },
-        {
-            "name": "public",
-            "type": "folder",
-            "items": [
-                {
-                    "name": "index.html",
-                    "type": "file"
-                },
-                {
-                    "name": "favicon.ico",
-                    "type": "file"
-                }
-            ]
-        },
-        {
-            "name": "package.json",
-            "type": "file"
-        },
-        {
-            "name": ".gitignore",
-            "type": "file"
         }
     ]
 }
