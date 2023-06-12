@@ -15,7 +15,7 @@ const Directory = ({ files, depth }) => {
             <h2 className='folder-title' onClick={() => toggleExpanded(!isExpanded)}>{files.name}</h2>
             <ul>
                 {
-                    isExpanded && files.items.map((item, index) => <Directory files={item} key={index} depth={depth + 1}/>)
+                    isExpanded && files.items.map((item, index) => <Directory files={item} key={index} depth={depth + 1} />)
                 }
             </ul>
         </div>
@@ -38,7 +38,14 @@ Directory.propTypes = {
             }),
         ])),
     }).isRequired,
-    depth: PropTypes.number.isRequired
+    depth: (PropTypes.number.isRequired),
+    depth: (props, propName, componentName) => {
+        if (props[propName] < 1) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. It must be greater than 0.`
+            );
+        }
+    }
 }
 
 Directory.defaultProps = {
