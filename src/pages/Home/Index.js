@@ -7,7 +7,7 @@ const Home = () => {
             <h3>Home</h3>
             <button onClick={() => {
                 signOut(auth)
-            }}>Sign Our</button>
+            }}>Sign Out</button>
         </>
     )
 }
