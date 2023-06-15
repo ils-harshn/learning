@@ -1,21 +1,36 @@
 import { useFormik } from "formik"
 import validationSchema, { initialValues } from "../../formSchemas/registerationFormSchema"
+import requestRegisterUser from "../../firebase/requests/registerUser"
+import SuccessfullRegistration from "./successfullRegistration"
+import { useState } from "react"
 
 const RegistrationForm = () => {
+    const [user, setUser] = useState(null)
+
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
         validateOnChange: true,
         onSubmit: (values) => {
-            
+            registerUser(values.email, values.password)
         }
     })
+
+    const registerUser = async (email, password) => {
+        formik.setSubmitting(true)
+        let data = await requestRegisterUser(email, password)
+        if (data.code) formik.setFieldError("email", "*Email already in use.")
+        else setUser(data)
+        formik.setSubmitting(false)
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         formik.setFieldTouched(name, true); // Remember to mark the toched field first
         formik.setFieldValue(name, value);
     }
+
+    if (user) return <SuccessfullRegistration user={user} />
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -37,7 +52,7 @@ const RegistrationForm = () => {
                     {formik.touched.confirmPassword ? formik.errors.confirmPassword : ""}
                 </div>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>{formik.isSubmitting ? "Loading" : "Register"}</button>
         </form>
     )
 }
