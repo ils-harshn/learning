@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthLayout } from "./pages/Layouts";
+import Layout, { AuthLayout } from "./pages/Layouts";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import EmailVerify from "./pages/EmailVerify";
+import Home from "./pages/Home/Index";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Registration />} />
           <Route path="verify" element={<EmailVerify />} />
+        </Route>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>);
