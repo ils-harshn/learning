@@ -1,7 +1,7 @@
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth"
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../firebase"
 
-const requestRegisterUser = (email, password) => {
+export const requestRegisterUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
         .then((res) => {
             const user = res.user;
@@ -11,4 +11,11 @@ const requestRegisterUser = (email, password) => {
         .catch((error) => error);
 }
 
-export default requestRegisterUser
+export const requestLoginUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+            const user = res.user;
+            return user
+        })
+        .catch((error) => error);
+}

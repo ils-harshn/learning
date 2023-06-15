@@ -1,26 +1,25 @@
 import { useFormik } from "formik"
-import validationSchema, { initialValues } from "../../formSchemas/registerationFormSchema"
-import { requestRegisterUser } from "../../firebase/requests/registerUser"
-import SuccessfullRegistration from "./SuccessfullRegistration"
-import { useState } from "react"
+import validationSchema, { initialValues } from "../../formSchemas/loginFormSchema"
+import { requestLoginUser } from "../../firebase/requests/registerUser"
+import { useNavigate } from "react-router-dom"
 
-const RegistrationForm = () => {
-    const [user, setUser] = useState(null)
+const LoginForm = () => {
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
         validateOnChange: true,
         onSubmit: (values) => {
-            registerUser(values.email, values.password)
+            loginUser(values.email, values.password)
         }
     })
 
-    const registerUser = async (email, password) => {
+    const loginUser = async (email, password) => {
         formik.setSubmitting(true)
-        let data = await requestRegisterUser(email, password)
-        if (data.code) formik.setFieldError("email", "*Email already in use.")
-        else setUser(data)
+        let data = await requestLoginUser(email, password)
+        if (data.code) formik.setFieldError("email", "Email or password is invalid")
+        else navigate("/")
         formik.setSubmitting(false)
     }
 
@@ -29,8 +28,6 @@ const RegistrationForm = () => {
         formik.setFieldTouched(name, true); // Remember to mark the toched field first
         formik.setFieldValue(name, value);
     }
-
-    if (user) return <SuccessfullRegistration user={user} />
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -46,15 +43,9 @@ const RegistrationForm = () => {
                     {formik.touched.password ? formik.errors.password : ""}
                 </div>
             </div>
-            <div className="form-group">
-                <input className="form-input" name="confirmPassword" placeholder="Enter Confirm Password" onChange={handleChange} value={formik.values.confirmPassword} />
-                <div className="form-error">
-                    {formik.touched.confirmPassword ? formik.errors.confirmPassword : ""}
-                </div>
-            </div>
             <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>{formik.isSubmitting ? "Loading" : "Register"}</button>
         </form>
     )
 }
 
-export default RegistrationForm
+export default LoginForm
