@@ -52,7 +52,7 @@ const RegistrationForm = () => {
                     {formik.touched.confirmPassword ? formik.errors.confirmPassword : ""}
                 </div>
             </div>
-            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>{formik.isSubmitting ? "Loading" : "Register"}</button>
+            <button type="submit" disabled={!formik.dirty || !formik.isValid || formik.isSubmitting}>{formik.isSubmitting ? "Loading" : "Register"}</button>
         </form>
     )
 }

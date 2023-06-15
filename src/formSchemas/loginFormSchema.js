@@ -8,11 +8,13 @@ const validationSchema = Yup.object({
     password: Yup.string()
         .matches(PASSWORD_REGEX, "Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and atleast one special character from (@$!%*?&#)")
         .required('Password is required'),
+    rememberMe: Yup.boolean(),
 });
 
 export const initialValues = {
     email: '',
     password: '',
+    rememberMe: false,
 }
 
 export default validationSchema
