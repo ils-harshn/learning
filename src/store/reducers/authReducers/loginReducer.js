@@ -1,4 +1,4 @@
-import { INITIATE_LOGIN, LOGIN_ERROR, LOGIN_SUCCESS } from "../../actions/types"
+import { INITIATE_LOGIN, INITIATE_LOGOUT, LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT_ERROR, LOGOUT_SUCCESS } from "../../actions/types"
 
 const initailState = {
     loading: false,
@@ -22,6 +22,18 @@ const loginReducer = (state=initailState, action) => {
             return {
                 ...initailState,
                 error: action.payload.error,
+            }
+        case INITIATE_LOGOUT:
+            return {
+                ...initailState,
+                loading: true,
+            }
+        case LOGOUT_SUCCESS: 
+            return initailState
+        case LOGOUT_ERROR:
+            return {
+                ...initailState,
+                error: action.payload.error
             }
         default:
             return state
