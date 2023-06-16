@@ -1,28 +1,22 @@
 import { useFormik } from "formik"
 import validationSchema, { initialValues } from "../../formSchemas/registerationFormSchema"
-import { requestRegisterUser } from "../../firebase/requests/registerUser"
 import SuccessfullRegistration from "./SuccessfullRegistration"
-import { useState } from "react"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { initiateRegisterAction } from "../../store/actions/authActions/registerActions"
 
 const RegistrationForm = () => {
-    const [user, setUser] = useState(null)
+    const registerReducerData = useSelector(reducers => reducers.registerReducer)
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
         validateOnChange: true,
         onSubmit: (values) => {
-            registerUser(values.email, values.password)
+            dispatch(initiateRegisterAction(values.email, values.password))
         }
     })
-
-    const registerUser = async (email, password) => {
-        formik.setSubmitting(true)
-        let data = await requestRegisterUser(email, password)
-        if (data.code) formik.setFieldError("email", "*Email already in use.")
-        else setUser(data)
-        formik.setSubmitting(false)
-    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -30,7 +24,13 @@ const RegistrationForm = () => {
         formik.setFieldValue(name, value);
     }
 
-    if (user) return <SuccessfullRegistration user={user} />
+    useEffect(() => {
+        formik.setSubmitting(registerReducerData.loading)
+        formik.setFieldError("email", registerReducerData.error)
+    }, [registerReducerData])
+
+
+    if (registerReducerData.success) return <SuccessfullRegistration user={registerReducerData.success} />
 
     return (
         <form onSubmit={formik.handleSubmit}>
