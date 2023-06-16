@@ -1,18 +1,20 @@
-// import { useDispatch, useSelector } from "react-redux"
-// import { initiateVerifyEmail } from "../../store/actions/authActions/verifyEmailActions"
-
 import { useFormik } from "formik"
 import { initialPasswordsValues, validationOnPasswordsSchema } from "../../formSchemas/resetPasswordFormSchema"
+import { useDispatch, useSelector } from "react-redux"
+import { initiateVerifyResetPassword } from "../../store/actions/authActions/verifyResetPasswordActions"
+import { useEffect } from "react"
+import { Link } from "react-router-dom"
 
 const VerifyResetPassword = ({ oobcode }) => {
+    const dispatch = useDispatch()
+    const verifyResetPasswordReducerData = useSelector(reducers => reducers.verifyResetPasswordReducer)
 
     const formik = useFormik({
         initialValues: initialPasswordsValues,
         validationSchema: validationOnPasswordsSchema,
         validateOnChange: true,
         onSubmit: (values) => {
-            // dispatch(initiateRegisterAction(values.email, values.password))
-            console.log(values)
+            dispatch(initiateVerifyResetPassword(oobcode, values.password))
         }
     })
 
@@ -22,10 +24,12 @@ const VerifyResetPassword = ({ oobcode }) => {
         formik.setFieldValue(name, value);
     }
 
-    // useEffect(() => {
-    //     formik.setSubmitting(registerReducerData.loading)
-    //     formik.setFieldError("email", registerReducerData.error)
-    // }, [registerReducerData])
+    useEffect(() => {
+        formik.setSubmitting(verifyResetPasswordReducerData.loading)
+        formik.setFieldError("confirmPassword", verifyResetPasswordReducerData.error)
+    }, [verifyResetPasswordReducerData])
+
+    if (verifyResetPasswordReducerData.success) return <p>Password Reset Successfull, <Link to={"/accounts/login"}>Login with your new password.</Link></p>
 
     return (
         <form onSubmit={formik.handleSubmit}>
