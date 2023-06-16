@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import Home from "./pages/Home/Index";
 import Verify from "./pages/Verify";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Registration />} />
           <Route path="verify" element={<Verify />} />
+          <Route path="forgetpassword" element={<ResetPassword />} />
         </Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
