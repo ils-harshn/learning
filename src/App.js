@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout, { AuthLayout } from "./pages/Layouts";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
-import EmailVerify from "./pages/EmailVerify";
 import Home from "./pages/Home/Index";
+import Verify from "./pages/Verify";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Route index element={<Login />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Registration />} />
-          <Route path="verify" element={<EmailVerify />} />
+          <Route path="verify" element={<Verify />} />
         </Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
