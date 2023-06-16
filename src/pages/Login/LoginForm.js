@@ -1,33 +1,36 @@
 import { useFormik } from "formik"
 import validationSchema, { initialValues } from "../../formSchemas/loginFormSchema"
-import { requestLoginUser } from "../../firebase/requests/loginUser"
 import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { initiateLoginAction } from "../../store/actions/authActions/loginActions"
 
 const LoginForm = () => {
     const navigate = useNavigate()
-
+    const dispatch = useDispatch();
+    const loginReducerState = useSelector(reducers => reducers.loginReducer)
+    
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema: validationSchema,
         validateOnChange: true,
         onSubmit: (values) => {
-            loginUser(values.email, values.password, values.rememberMe)
+            dispatch(initiateLoginAction(values.email, values.password, values.rememberMe))
         }
     })
-
-    const loginUser = async (email, password, rememberMe) => {
-        formik.setSubmitting(true)
-        let data = await requestLoginUser(email, password, rememberMe)
-        if (data.code) formik.setFieldError("email", "Email or password is invalid")
-        else navigate("/")
-        formik.setSubmitting(false)
-    }
-
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         formik.setFieldTouched(name, true); // Remember to mark the toched field first
         formik.setFieldValue(name, value);
     }
+    
+    useEffect(() => {
+        if (loginReducerState.success) navigate("/")
+        formik.setSubmitting(loginReducerState.loading)
+        formik.setFieldError("email", loginReducerState.error)
+    }, [loginReducerState])
+
 
     return (
         <form onSubmit={formik.handleSubmit}>
