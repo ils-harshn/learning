@@ -5,23 +5,30 @@ import Registration from "./pages/Registration";
 import Home from "./pages/Home/Index";
 import Verify from "./pages/Verify";
 import ResetPassword from "./pages/ResetPassword";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
+import GlobalStyles from "./styles/GlobalStyles";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="accounts" element={<AuthLayout />}>
-          <Route index element={<Login />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Registration />} />
-          <Route path="verify" element={<Verify />} />
-          <Route path="forgetpassword" element={<ResetPassword />} />
-        </Route>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>);
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <BrowserRouter>
+        <Routes>
+          <Route path="accounts" element={<AuthLayout />}>
+            <Route index element={<Login />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Registration />} />
+            <Route path="verify" element={<Verify />} />
+            <Route path="forgetpassword" element={<ResetPassword />} />
+          </Route>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+  )
 }
 
 export default App;
