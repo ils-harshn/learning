@@ -1,6 +1,7 @@
 import { sendEmailVerification } from "firebase/auth"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import AuthNavbar from "../../components/AuthNavbar"
 
 const NotVerifiedEmail = ({ user }) => {
     const [sending, setSending] = useState(false)
@@ -16,7 +17,8 @@ const NotVerifiedEmail = ({ user }) => {
         setSending(false)
     }
 
-    return (
+    return (<>
+        <AuthNavbar />
         <div>
             <h3>You email is not verified yet</h3>
             <p>{user.email}, check your <Link to="https://mail.google.com/" target="_blank" rel="noreferrer">indox</Link> and click the link for verification.</p>
@@ -26,6 +28,7 @@ const NotVerifiedEmail = ({ user }) => {
             {emailSent && <p>Email has been sent</p>}
             {error && <p>{error}</p>}
         </div>
+    </>
     )
 }
 

@@ -24,6 +24,16 @@ const theme = {
         primary: "#0A95FF",
         primaryBackgroundDarkHoverColor: "#0074CC",
         navbuttonColor: "white",
+        inputBorder: "#babfc4",
+        link: "#0A95FF",
+        linkDark: "#0062ff",
+        formSubmitButtonColor: "white",
+
+        buttonPrimary: "hsl(206, 100%, 52%)",
+        buttonHover: '#0074CC',
+    },
+    dimensions: {
+        navbarHeight: "56px",
     }
 }
 

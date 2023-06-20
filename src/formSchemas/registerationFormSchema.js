@@ -3,6 +3,7 @@ import { EMAIL_REGEX, PASSWORD_REGEX } from "../helpers/regex";
 
 const validationSchema = Yup.object({
     email: Yup.string()
+        .required('Email is required')
         .matches(EMAIL_REGEX, 'Invalid email address')
         .required('Email is required'),
     password: Yup.string()

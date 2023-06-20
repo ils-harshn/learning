@@ -6,7 +6,7 @@ export const NavbarContainer = styled.nav`
         background-color: ${theme.colors.navbarBackground};
         border-top: 3px solid ${theme.colors.navbarBorderTop};
         border-bottom: 1px solid ${theme.colors.navbarBorderBottom};
-        height: 56px;
+        height: ${theme.dimensions.navbarHeight};
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         display: flex;
         justify-content: center;
@@ -32,7 +32,7 @@ export const NavbarWrapper = styled.div`
                 background-color: ${theme.colors.tabHover};
             }
         }
-        `}
+    `}
 `
 
 export const NabLogo = styled.div`
@@ -47,7 +47,7 @@ export const NabLogo = styled.div`
         &:hover {
             background-color: ${theme.colors.tabHover};
         }
-        
+
         @media screen and (max-width: 370px) {
             display: none;
         }
@@ -123,7 +123,7 @@ export const NavLoginButton = styled.button`
         cursor: pointer;
         margin-right: 4px;
         font-size: 13px;
-        line-height: 11px;
+        line-height: 6px;
         width: fit-content;
         height: 34px;
         padding: 8px 10px 8px 10px;
