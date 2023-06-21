@@ -3,7 +3,7 @@ import { FullPageLoaderContainer } from "./FullPageLoader.styles"
 const FullPageLoader = () => {
     return (
         <FullPageLoaderContainer>
-            <span class="material-symbols-outlined">
+            <span className="material-symbols-outlined">
                 nutrition
             </span>
         </FullPageLoaderContainer>

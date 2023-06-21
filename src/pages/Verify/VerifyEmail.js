@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import { initiateVerifyEmail } from "../../store/actions/authActions/verifyEmailActions"
-import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroup, FormGroupLabel, FormSubmitButton, FormTitle } from "../Login/styles/loginForm.styles"
+import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroup, FormGroupError, FormGroupLabel, FormLink, FormSubmitButton, FormTitle } from "../Login/styles/loginForm.styles"
 import { Link } from "react-router-dom"
+import { FullScreenInfo, InfoContainer, SuccessMessage } from "../../styles/notifiers/info.styles"
 
 const VerifyEmail = ({ oobcode }) => {
     const dispatch = useDispatch()
@@ -14,14 +15,23 @@ const VerifyEmail = ({ oobcode }) => {
     }
 
     if (verifyEmailReducerData.error)
-        return <p>{verifyEmailReducerData.error}</p>
+        return <FullScreenInfo>
+        <InfoContainer>
+            <ul>
+                <li><FormGroupError>{verifyEmailReducerData.error}</FormGroupError></li>
+                <li><SuccessMessage>Please resend the url again. <Link to={"/accounts/login"}>Try to send email again</Link></SuccessMessage></li>
+            </ul>
+        </InfoContainer>
+    </FullScreenInfo>
 
     if (verifyEmailReducerData.success) {
         handleCloseTab()
-        return <div>
-            <p>{verifyEmailReducerData.success}</p>
-            <p>Closing the tab in 3 seconds</p>
-        </div>
+        return <FullScreenInfo>
+            <InfoContainer>
+                <h3>{verifyEmailReducerData.success}</h3>
+                <p>Closing the tab in 3 seconds</p>
+            </InfoContainer>
+        </FullScreenInfo>
     }
 
     return (

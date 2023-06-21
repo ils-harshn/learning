@@ -18,16 +18,18 @@ export const FormTitle = styled.div`
 `
 
 export const Form = styled.form`
-    width: 234px;
-    height: fit-content;
-    padding: 24px;
-    border-radius: 7px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 24px 0px, rgba(0, 0, 0, 0.05) 0px 20px 48px 0px, rgba(0, 0, 0, 0.1) 0px 1px 4px 0px;
+    ${({ theme }) => css`
+        width: 234px;
+        height: fit-content;
+        padding: 24px;
+        border-radius: 7px;
+        background-color: ${ theme.colors.formBackground };
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 24px 0px, rgba(0, 0, 0, 0.05) 0px 20px 48px 0px, rgba(0, 0, 0, 0.1) 0px 1px 4px 0px;
 
-    @media screen and (max-width: 311px) {
-        width: 60%;
-    }
+        @media screen and (max-width: 311px) {
+            width: 60%;
+        }
+    `}
 `
 
 export const FormGroup = styled.div`

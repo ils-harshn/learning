@@ -5,6 +5,7 @@ import { initiateVerifyResetPassword } from "../../store/actions/authActions/ver
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroup, FormGroupError, FormGroupInput, FormGroupLabel, FormSubmitButton } from "../Login/styles/loginForm.styles"
+import { FullScreenInfo, InfoContainer, SuccessMessage } from "../../styles/notifiers/info.styles"
 
 const VerifyResetPassword = ({ oobcode }) => {
     const dispatch = useDispatch()
@@ -30,7 +31,15 @@ const VerifyResetPassword = ({ oobcode }) => {
         formik.setFieldError("confirmPassword", verifyResetPasswordReducerData.error)
     }, [verifyResetPasswordReducerData])
 
-    if (verifyResetPasswordReducerData.success) return <p>Password Reset Successfull, <Link to={"/accounts/login"}>Login with your new password.</Link></p>
+    if (verifyResetPasswordReducerData.success) return (
+        <FullScreenInfo>
+            <InfoContainer>
+                <h3>Reset Password SuccessFull</h3>
+                <SuccessMessage>Password Reset Successfull, <Link to={"/accounts/login"}>Login with your new password.</Link></SuccessMessage>
+            </InfoContainer>
+        </FullScreenInfo>
+    )
+
 
     return (
         <FormContainer>

@@ -28,9 +28,10 @@ const theme = {
         link: "#0A95FF",
         linkDark: "#0062ff",
         formSubmitButtonColor: "white",
-
+        formBackground: "white",
         buttonPrimary: "hsl(206, 100%, 52%)",
         buttonHover: '#0074CC',
+        infoContainerBackground: "white",
     },
     dimensions: {
         navbarHeight: "56px",

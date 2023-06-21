@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { initiateSendResetPasswordEmail } from "../../store/actions/authActions/sendResetPasswordEmailActions";
 import { Link } from "react-router-dom";
 import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroup, FormGroupError, FormGroupInput, FormGroupLabel, FormSubmitButton, FormTitle } from "../Login/styles/loginForm.styles";
+import { FullScreenInfo, InfoContainer, SuccessMessage } from "../../styles/notifiers/info.styles";
 
 const ResetPasswordForm = () => {
 
@@ -33,7 +34,12 @@ const ResetPasswordForm = () => {
 
     if (sendResetPasswordReducerData.success)
         return (
-            <p>Check your <Link to="https://mail.google.com/" target="_blank" rel="noreferrer">indox</Link> a has been sent with verification link to reset password.</p>
+            <FullScreenInfo>
+                <InfoContainer>
+                    <h3>Reset Password Email Sent</h3>
+                    <SuccessMessage>Check your <Link to="https://mail.google.com/" target="_blank" rel="noreferrer">indox</Link> a has been sent with verification link to reset password.</SuccessMessage>
+                </InfoContainer>
+            </FullScreenInfo>
         )
 
 
