@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import AuthNavbar from "../../components/AuthNavbar"
-import { FullScreenInfo, InfoContainer } from "../../styles/notifiers/info.styles"
+import { FullScreenInfo, InfoContainer, SuccessMessage } from "../../styles/notifiers/info.styles"
 
 const NotSignedIn = () => {
     return (
@@ -8,10 +8,11 @@ const NotSignedIn = () => {
             <AuthNavbar />
             <FullScreenInfo>
                 <InfoContainer>
-                    <p>You are signed out</p>
-                    <Link to="/accounts/login">Login</Link>
-                    <p>Do not have accounts or need a another account</p>
-                    <Link to="/accounts/register">Register</Link>
+                    <h3>Authentication is required</h3>
+                    <ul>
+                        <li><SuccessMessage>Already have an account? <Link to="/accounts/login">Log in here</Link></SuccessMessage></li>
+                        <li><SuccessMessage>Do not have an account? <Link to="/accounts/register">Sign up here</Link></SuccessMessage></li>
+                    </ul>
                 </InfoContainer>
             </FullScreenInfo>
         </>
