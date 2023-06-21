@@ -6,8 +6,15 @@ export const FormContainer = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         height: calc(100vh - ${theme.dimensions.navbarHeight} - 3px);
     `}
+`
+
+export const FormTitle = styled.div`
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
 `
 
 export const Form = styled.form`
@@ -101,6 +108,10 @@ export const FormSubmitButton = styled.button`
         &:hover {
             background-color: ${theme.colors.buttonHover}
         }
+
+        &:disabled {
+            background-color: ${ theme.colors.primaryLightColor };
+        }
     `}
 `
 
@@ -139,4 +150,23 @@ export const ButtonLoaderIcon = styled.div`
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+`
+
+export const FormFooter = styled.div`
+    ${({ theme }) => css`
+        width: 234px;
+        height: 78px;
+        margin-top: 10px;
+
+        p {
+            font-size: 13px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+
+            a {
+                text-decoration: none;
+                color: ${theme.colors.primary};
+            }
+        }
+    `}
 `

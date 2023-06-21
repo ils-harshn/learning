@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         background-color: ${theme.colors.bodyBackground};
         color: ${theme.colors.bodyFontColor};
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
       
     `}

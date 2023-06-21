@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { initiateSendResetPasswordEmail } from "../../store/actions/authActions/sendResetPasswordEmailActions";
 import { Link } from "react-router-dom";
+import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroup, FormGroupError, FormGroupInput, FormGroupLabel, FormSubmitButton, FormTitle } from "../Login/styles/loginForm.styles";
 
 const ResetPasswordForm = () => {
 
@@ -18,7 +19,7 @@ const ResetPasswordForm = () => {
             dispatch(initiateSendResetPasswordEmail(values.email))
         }
     })
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         formik.setFieldTouched(name, true); // Remember to mark the toched field first
@@ -30,22 +31,31 @@ const ResetPasswordForm = () => {
     }, [sendResetPasswordReducerData])
 
 
-    if (sendResetPasswordReducerData.success) 
+    if (sendResetPasswordReducerData.success)
         return (
             <p>Check your <Link to="https://mail.google.com/" target="_blank" rel="noreferrer">indox</Link> a has been sent with verification link to reset password.</p>
         )
 
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div className="form-group">
-                <input className="form-input" name="email" placeholder="Enter Email" onChange={handleChange} value={formik.values.email} />
-                <div className="form-error">
-                    {formik.touched.email ? formik.errors.email : ""}
-                </div>
-            </div>
-            <button type="submit" disabled={!formik.dirty || !formik.isValid || formik.isSubmitting}>{formik.isSubmitting ? "Loading" : "Reset Password"}</button>
-        </form>
+        <>
+            <FormContainer>
+                <Form onSubmit={formik.handleSubmit}>
+                    <FormTitle>Reset Password Form</FormTitle>
+                    <FormGroup>
+                        <FormGroupLabel>Email</FormGroupLabel>
+                        <FormGroupInput type="text" name="email" onChange={handleChange} value={formik.values.email} />
+                        <FormGroupError className="form-error">
+                            {formik.touched.email ? formik.errors.email : ""}
+                        </FormGroupError>
+                    </FormGroup>
+                    <FormSubmitButton type="submit" disabled={!formik.dirty || !formik.isValid || formik.isSubmitting}>{formik.isSubmitting ? <ButtonLoaderIcon /> : "Reset Password"}</FormSubmitButton>
+                </Form>
+                <FormFooter>
+                    <p>Got your password? <Link to={"/accounts/login"}>Try log in</Link></p>
+                </FormFooter>
+            </FormContainer>
+        </>
     )
 }
 

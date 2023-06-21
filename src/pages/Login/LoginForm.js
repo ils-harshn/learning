@@ -1,10 +1,10 @@
 import { useFormik } from "formik"
 import validationSchema, { initialValues } from "../../formSchemas/loginFormSchema"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { initiateLoginAction } from "../../store/actions/authActions/loginActions"
-import { ButtonLoaderIcon, Form, FormContainer, FormGroup, FormGroupError, FormGroupInput, FormGroupLabel, FormLabelGroup, FormLink, FormSubmitButton, RememberMeCheckbox, RememberMeGroup, RememberMeLabel } from "./styles/loginForm.styles"
+import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroup, FormGroupError, FormGroupInput, FormGroupLabel, FormLabelGroup, FormLink, FormSubmitButton, RememberMeCheckbox, RememberMeGroup, RememberMeLabel } from "./styles/loginForm.styles"
 
 const LoginForm = () => {
     const navigate = useNavigate()
@@ -36,10 +36,9 @@ const LoginForm = () => {
     return (
         <FormContainer>
             <Form onSubmit={formik.handleSubmit}>
-
                 <FormGroup>
                     <FormGroupLabel>Email</FormGroupLabel>
-                    <FormGroupInput name="email" onChange={handleChange} value={formik.values.email} />
+                    <FormGroupInput type="text" name="email" onChange={handleChange} value={formik.values.email} />
                     <FormGroupError className="form-error">
                         {formik.touched.email ? formik.errors.email : ""}
                     </FormGroupError>
@@ -47,7 +46,7 @@ const LoginForm = () => {
                 <FormGroup>
                     <FormLabelGroup>
                         <FormGroupLabel>Password</FormGroupLabel>
-                        <FormLink to={"https://google.com"}>Forget Password?</FormLink>
+                        <FormLink to={"/accounts/forgetpassword"}>Forget Password?</FormLink>
                     </FormLabelGroup>
                     <FormGroupInput name="password" type="password" onChange={handleChange} value={formik.values.password} />
                     <FormGroupError className="form-error">
@@ -60,6 +59,9 @@ const LoginForm = () => {
                 </RememberMeGroup>
                 <FormSubmitButton type="submit" disabled={!formik.dirty || !formik.isValid || formik.isSubmitting}>{formik.isSubmitting ? <ButtonLoaderIcon /> : "Log in"}</FormSubmitButton>
             </Form>
+            <FormFooter>
+                <p>Don't have an account? <Link to={"/accounts/register"}>Sign up</Link></p>
+            </FormFooter>
         </FormContainer>
     )
 }

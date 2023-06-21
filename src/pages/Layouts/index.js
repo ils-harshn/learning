@@ -4,11 +4,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import NotSignedIn from "./NotSignedIn";
 import NotVerifiedEmail from "./NotVerifiedEmail";
+import FullPageLoader from "../../components/Loaders/FullPageLoader";
 
 const Layout = () => {
     const [user, loading, error] = useAuthState(auth)
 
-    if (loading) return <p>Loading</p>
+    if (loading) return <FullPageLoader />
 
     if (error) return <p>Error Please Reload</p>
 
