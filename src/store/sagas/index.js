@@ -5,6 +5,7 @@ import { initiateRegisterWatcher } from "./watchers/auth/initiateRegisterWatcher
 import { initiateVerifyEmailWatcher } from "./watchers/auth/initiateVerifyEmailWatcher"
 import { initiateSendResetPasswordEmailWatcher } from "./watchers/auth/initiateSendResetPasswordEmailWatcher"
 import { initiateVerifyResetPasswordWatcher } from "./watchers/auth/initiateVerifyResetPasswordWatcher"
+import { initiateAddQuestionWatcher } from "./watchers/questions/initiateAddQuestionWatcher"
 
 
 export default function* rootSaga() {
@@ -15,6 +16,6 @@ export default function* rootSaga() {
         initiateVerifyEmailWatcher(),
         initiateSendResetPasswordEmailWatcher(),
         initiateVerifyResetPasswordWatcher(),
+        initiateAddQuestionWatcher(),
     ])
 }
-

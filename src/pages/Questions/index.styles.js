@@ -1,11 +1,11 @@
 import { css, styled } from "styled-components";
 
 export const Header = styled.div`
-    ${({ marginBottom }) => css`
+    ${({ marginbottom }) => css`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: ${marginBottom || 0};
+        margin-bottom: ${marginbottom || 0};
     `}
 `
 
