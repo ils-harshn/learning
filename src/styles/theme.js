@@ -32,6 +32,9 @@ const theme = {
         buttonPrimary: "hsl(206, 100%, 52%)",
         buttonHover: '#0074CC',
         infoContainerBackground: "white",
+        borderSeperator: "#d6d9dc",
+
+        mainContainer: "white",
     },
     dimensions: {
         navbarHeight: "56px",

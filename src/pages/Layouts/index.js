@@ -6,6 +6,8 @@ import NotSignedIn from "./NotSignedIn";
 import NotVerifiedEmail from "./NotVerifiedEmail";
 import FullPageLoader from "../../components/Loaders/FullPageLoader";
 import Navbar from "../../components/Navbar";
+import { MainContainer, MainLayout, SideBarContainer } from "../../styles/containers/containers.styles";
+import Sidebar from "../../components/Sidebar";
 
 const Layout = () => {
     const [user, loading, error] = useAuthState(auth)
@@ -21,7 +23,14 @@ const Layout = () => {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <MainContainer>
+                <MainLayout>
+                    <SideBarContainer>
+                        <Sidebar />
+                    </SideBarContainer>
+                    <Outlet />
+                </MainLayout>
+            </MainContainer>
         </>
     )
 }

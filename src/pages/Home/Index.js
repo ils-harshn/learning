@@ -1,14 +1,123 @@
-import { useDispatch, useSelector } from "react-redux"
-import { initiateLogoutAction } from "../../store/actions/authActions/loginActions"
+// import { useDispatch, useSelector } from "react-redux"
+import { MiddleBlock, RightBlock, RightSection } from "../../styles/containers/containers.styles"
 
 const Home = () => {
-    const logoutReducerData = useSelector(reducers => reducers.loginReducer)
-    const dispatch = useDispatch()
+    // const logoutReducerData = useSelector(reducers => reducers.loginReducer)
+    // const dispatch = useDispatch()
 
     return (
         <>
-            <h3>Home</h3>
-            <button onClick={() => dispatch(initiateLogoutAction())}>{logoutReducerData.error ? logoutReducerData.error: "Sign Out"}</button>
+            <RightSection>
+                <MiddleBlock>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                    <h3>Middle</h3>
+                </MiddleBlock>
+                <RightBlock>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                    <h3>Right</h3>
+                </RightBlock>
+            </RightSection>
         </>
     )
 }

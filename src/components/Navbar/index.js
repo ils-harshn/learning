@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom"
 import { NabLogo, NavTabContainer, NavbarContainer, NavbarWrapper, SearchBarContainer, SearchInput, Tab } from "../AuthNavbar/index.styles"
 
 const Navbar = () => {
-    const navigate = useNavigate()
-
     return (
         <NavbarContainer>
             <NavbarWrapper>

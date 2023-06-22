@@ -27,9 +27,14 @@ export const NavbarWrapper = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
+            display: none;
 
             &:hover {
                 background-color: ${theme.colors.tabHover};
+            }
+
+            @media screen and (max-width: 640px) {
+                display: flex;
             }
         }
     `}
@@ -46,10 +51,6 @@ export const NabLogo = styled.div`
 
         &:hover {
             background-color: ${theme.colors.tabHover};
-        }
-
-        @media screen and (max-width: 370px) {
-            display: none;
         }
     `}
 `
@@ -68,10 +69,6 @@ export const Tab = styled.div`
 
         &:hover {
                 background-color: ${theme.colors.tabHover};
-        }
-
-        @media screen and (max-width: 750px) {
-            display: none;
         }
     `}
 `
@@ -137,6 +134,10 @@ export const NavLoginButton = styled.button`
 
         &:hover {
             background-color: ${theme.colors.primaryBackgroundLightHoverColor};
+        }
+
+        @media screen and (max-width: 370px) {
+            display: none;
         }
     `}
 `
