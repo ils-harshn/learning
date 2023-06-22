@@ -8,6 +8,8 @@ import ResetPassword from "./pages/ResetPassword";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyles";
+import Questions from "./pages/Questions";
+import AskQuestion from "./pages/AskQuestion";
 
 function App() {
   return (
@@ -25,6 +27,10 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="rooms" element={<h3>Rooms</h3>} />
+            <Route path="questions">
+              <Route index element={<Questions />}/>
+              <Route path="ask" element={<AskQuestion />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

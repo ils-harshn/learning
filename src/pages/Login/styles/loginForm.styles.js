@@ -18,8 +18,8 @@ export const FormTitle = styled.div`
 `
 
 export const Form = styled.form`
-    ${({ theme }) => css`
-        width: 234px;
+    ${({ width, theme }) => css`
+        width: ${width || "234px"};
         height: fit-content;
         padding: 24px;
         border-radius: 7px;
@@ -47,6 +47,25 @@ export const FormGroupLabel = styled.label`
         font-size: 12px;
     }
 `
+
+export const FormGroupTextArea = styled.textarea`
+    ${({ theme }) => css`
+        outline: none;
+        border: 1px solid ${theme.colors.inputBorder};
+        height: 200px;
+        min-height: 200px;
+        border-radius: 3px;
+        padding: 8px 9px 8px 9px;
+        width: calc(100% - 18px);
+        resize: vertical;
+    `}
+`
+
+export const FormGroupLabelDescription = styled.div`
+    font-size: 12px;
+    margin-bottom: 4px;
+`
+
 export const FormGroupInput = styled.input`
     ${({ theme }) => css`
         outline: none;

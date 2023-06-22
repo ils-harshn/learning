@@ -36,11 +36,11 @@ export const RightSection = styled.div`
 `
 
 export const MiddleBlock = styled.div`
-    /* border: 1px solid red; */
+    padding: 24px 24px 24px 24px;
     
 `
 
 export const RightBlock = styled.div`
-    /* border: 1px solid red; */
+    padding: 24px 24px 24px 24px;
     
 `
