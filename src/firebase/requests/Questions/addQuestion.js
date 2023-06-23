@@ -1,14 +1,21 @@
 import { db } from "../../index"
-import { addDoc, collection, serverTimestamp } from "firebase/firestore"
+import { collection, doc, serverTimestamp, writeBatch } from "firebase/firestore"
 
 const requestAddQuestion = (title, description, authorUID) => {
-    let post = {
+    const batch = writeBatch(db)
+    const questionDocRef = doc(collection(db, "questions"))
+    let question = {
         title,
         description,
         author: authorUID,
         created_at: serverTimestamp(),
     }
-    return addDoc(collection(db, 'question'), post)
+
+    const userQuestionDocRef = doc(collection(db, "users", authorUID, "questions"), questionDocRef.id)
+
+    batch.set(questionDocRef, question)
+    batch.set(userQuestionDocRef, {})
+    return batch.commit()
 }
 
 export default requestAddQuestion

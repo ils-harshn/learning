@@ -24,7 +24,7 @@ const addQuestionReducer = (state=initailState, action) => {
                 error: action.payload.error,
             }
         default:
-            return state
+            return initailState
     }
 }
 

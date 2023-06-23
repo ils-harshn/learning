@@ -26,7 +26,7 @@ export const SideBarContainer = styled.div`
 
 export const RightSection = styled.div`
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 380px;
     overflow-y: auto;
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */

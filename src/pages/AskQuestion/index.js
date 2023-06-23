@@ -3,11 +3,12 @@ import { MiddleBlock, RightBlock, RightSection } from "../../styles/containers/c
 import { ButtonLoaderIcon, Form, FormGroup, FormGroupError, FormGroupInput, FormGroupLabel, FormGroupLabelDescription, FormGroupTextArea, FormSubmitButton } from "../Login/styles/loginForm.styles"
 import { Header, Title } from "../Questions/index.styles"
 import validationSchema, { initialValues } from "../../formSchemas/addQuestionFormSchema"
-import { initiateAddQuestionAction } from "../../store/actions/questionActions/addQuestionActions"
+import { addQuestionReset, initiateAddQuestionAction } from "../../store/actions/questionActions/addQuestionActions"
 import { auth } from "../../firebase"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { ModelContainer, ModelInfo } from "../../styles/models/models.styles"
 
 const QuestionForm = () => {
     const dispatch = useDispatch()
@@ -30,8 +31,10 @@ const QuestionForm = () => {
     }
 
     useEffect(() => {
-        console.log(addQuestionReducerData)
-        if (addQuestionReducerData.success) navigate("/questions")
+        if (addQuestionReducerData.success) {
+            dispatch(addQuestionReset())
+            navigate("/questions")
+        }
         formik.setSubmitting(addQuestionReducerData.loading)
         formik.setFieldError("title", addQuestionReducerData.error)
     }, [addQuestionReducerData])
@@ -68,7 +71,16 @@ const AskQuestion = () => {
                 <QuestionForm />
             </MiddleBlock>
             <RightBlock>
-                <h3>Write suitable Question</h3>
+                <ModelContainer>
+                    <ModelInfo>
+                        <h4>Step 1: Draft your question</h4>
+                        <p>The community is here to help you with specific coding, algorithm, or language problems.</p>
+                        <p>Avoid asking opinion-based questions.</p>
+                        <h4>Step 2: Summarize the problem</h4>
+                        <h4>Step 3: Describe what you've tried</h4>
+                        <h4>Step 4: Show some code</h4>
+                    </ModelInfo>
+                </ModelContainer>
             </RightBlock>
         </RightSection>
     )

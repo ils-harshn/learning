@@ -1,4 +1,4 @@
-import { ADD_QUESTION_ERROR, ADD_QUESTION_SUCCESS, INITIATE_ADD_QUESTION } from "../types"
+import { ADD_QUESTION_ERROR, ADD_QUESTION_RESET, ADD_QUESTION_SUCCESS, INITIATE_ADD_QUESTION } from "../types"
 
 export const initiateAddQuestionAction = (title, description, authorUID) => {
     return {
@@ -26,5 +26,11 @@ export const addQuestionErrorAction = (error) => {
         payload: {
             error,
         }
+    }
+}
+
+export const addQuestionReset = () => {
+    return {
+        type: ADD_QUESTION_RESET,
     }
 }
