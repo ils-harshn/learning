@@ -33,7 +33,7 @@ const theme = {
         buttonHover: '#0074CC',
         infoContainerBackground: "white",
         borderSeperator: "#d6d9dc",
-
+        questionBorderSeperator: "#E3e6e8",
         mainContainer: "white",
     },
     dimensions: {

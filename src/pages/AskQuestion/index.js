@@ -1,7 +1,7 @@
 import { useFormik } from "formik"
 import { MiddleBlock, RightBlock, RightSection } from "../../styles/containers/containers.styles"
 import { ButtonLoaderIcon, Form, FormGroup, FormGroupError, FormGroupInput, FormGroupLabel, FormGroupLabelDescription, FormGroupTextArea, FormSubmitButton } from "../Login/styles/loginForm.styles"
-import { Header, Title } from "../Questions/index.styles"
+import { Header, Title } from "../Questions/styles/index.styles"
 import validationSchema, { initialValues } from "../../formSchemas/addQuestionFormSchema"
 import { addQuestionReset, initiateAddQuestionAction } from "../../store/actions/questionActions/addQuestionActions"
 import { auth } from "../../firebase"
@@ -10,6 +10,7 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ModelContainer, ModelInfo } from "../../styles/models/models.styles"
 import { PrimaryButton } from "../../styles/notifiers/info.styles"
+import { initiateGetPublicQuestionsAction } from "../../store/actions/questionActions/getPublicQuestionsActions"
 
 const QuestionForm = () => {
     const dispatch = useDispatch()
@@ -34,6 +35,7 @@ const QuestionForm = () => {
     useEffect(() => {
         if (addQuestionReducerData.success) {
             dispatch(addQuestionReset())
+            dispatch(initiateGetPublicQuestionsAction())
             navigate("/questions")
         }
         formik.setSubmitting(addQuestionReducerData.loading)

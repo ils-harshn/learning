@@ -57,8 +57,7 @@ export const RightSection = styled.div`
 `
 
 export const MiddleBlock = styled.div`
-    padding: 24px 0 24px 24px;
-    
+    padding: 24px 0 24px 24px;    
 
     @media screen and (max-width: 980px) {
         padding: 24px;

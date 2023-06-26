@@ -1,4 +1,4 @@
-import { GET_PUBLIC_QUESTIONS_ERROR, GET_PUBLIC_QUESTIONS_SUCCESS, INITIATE_GET_PUBLIC_QUESTIONS } from "../../actions/types"
+import { GET_PUBLIC_QUESTIONS_ERROR, GET_PUBLIC_QUESTIONS_SUCCESS, INITIATE_GET_NEXT_PUBLIC_QUESTIONS, INITIATE_GET_PUBLIC_QUESTIONS } from "../../actions/types"
 
 const initailState = {
     loading: true,
@@ -11,6 +11,12 @@ const initailState = {
 const getPublicQuestionsReducer = (state=initailState, action) => {
     switch (action.type) {
         case INITIATE_GET_PUBLIC_QUESTIONS:
+            return {
+                ...initailState,
+                loading: true,
+            }
+
+        case INITIATE_GET_NEXT_PUBLIC_QUESTIONS:
             return {
                 ...state,
                 loading: true,

@@ -6,9 +6,9 @@ const requestGetPublicQuestions = async (lastDocRef, pageLimit=5) => {
     const questionsRef = collection(db, "questions")
     let dataRef;
     if (lastDocRef) {
-        dataRef = query(questionsRef, orderBy("created_at"), limit(PAGE_LIMIT), startAfter(lastDocRef));
+        dataRef = query(questionsRef, orderBy("created_at", "desc"), limit(PAGE_LIMIT), startAfter(lastDocRef));
     } else {
-        dataRef = query(questionsRef, orderBy("created_at"), limit(PAGE_LIMIT));
+        dataRef = query(questionsRef, orderBy("created_at", "desc"), limit(PAGE_LIMIT));
     }
     const data = await getDocs(dataRef)
     let temp = {};
