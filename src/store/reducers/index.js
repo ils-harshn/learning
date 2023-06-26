@@ -5,6 +5,7 @@ import verifyEmailReducer from "./authReducers/verifyEmailReducer";
 import sendResetPasswordEmailReducer from "./authReducers/sendResetPasswordEmailReducer";
 import verifyResetPasswordReducer from "./authReducers/verifyResetPasswordReducer";
 import addQuestionReducer from "./questionsReducers/addQuestionReducer";
+import getPublicQuestionsReducer from "./questionsReducers/getPublicQuestionsReducer";
 
 
 const combinedReducers = combineReducers({
@@ -14,6 +15,7 @@ const combinedReducers = combineReducers({
     sendResetPasswordEmailReducer,
     verifyResetPasswordReducer,
     addQuestionReducer,
+    getPublicQuestionsReducer,
 })
 
 

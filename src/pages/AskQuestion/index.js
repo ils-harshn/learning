@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ModelContainer, ModelInfo } from "../../styles/models/models.styles"
+import { PrimaryButton } from "../../styles/notifiers/info.styles"
 
 const QuestionForm = () => {
     const dispatch = useDispatch()
@@ -39,7 +40,7 @@ const QuestionForm = () => {
         formik.setFieldError("title", addQuestionReducerData.error)
     }, [addQuestionReducerData])
 
-    return <Form width="100%" onSubmit={formik.handleSubmit}>
+    return <Form width="inherit" onSubmit={formik.handleSubmit}>
         <FormGroup>
             <FormGroupLabel>Title</FormGroupLabel>
             <FormGroupLabelDescription>Be specific and imagine you’re asking a question to another person</FormGroupLabelDescription>
@@ -62,11 +63,18 @@ const QuestionForm = () => {
 
 
 const AskQuestion = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     return (
         <RightSection>
             <MiddleBlock>
                 <Header marginbottom={"20px"}>
                     <Title weight={600}>Ask a public question</Title>
+                    <PrimaryButton onClick={() => {
+                        dispatch(addQuestionReset())
+                        navigate("/questions")
+                    }}>Back</PrimaryButton>
                 </Header>
                 <QuestionForm />
             </MiddleBlock>

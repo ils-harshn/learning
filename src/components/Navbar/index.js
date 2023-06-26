@@ -1,10 +1,14 @@
 import { NabLogo, NavTabContainer, NavbarContainer, NavbarWrapper, SearchBarContainer, SearchInput, Tab } from "../AuthNavbar/index.styles"
 
-const Navbar = () => {
+const Navbar = ({ sidebarContainerRef }) => {
+    const toggleSidebar = () => {
+        sidebarContainerRef.current.style.display = sidebarContainerRef.current.style.display == "block" ? "none": "block"
+    }
+    
     return (
         <NavbarContainer>
             <NavbarWrapper>
-                <span className="material-symbols-outlined">
+                <span className="material-symbols-outlined" onClick={toggleSidebar}>
                     menu
                 </span>
                 <NabLogo>

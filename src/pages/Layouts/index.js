@@ -8,9 +8,11 @@ import FullPageLoader from "../../components/Loaders/FullPageLoader";
 import Navbar from "../../components/Navbar";
 import { MainContainer, MainLayout, SideBarContainer } from "../../styles/containers/containers.styles";
 import Sidebar from "../../components/Sidebar";
+import { useRef } from "react";
 
 const Layout = () => {
     const [user, loading, error] = useAuthState(auth)
+    const sidebarContainerRef = useRef()
 
     if (loading) return <FullPageLoader />
 
@@ -20,12 +22,13 @@ const Layout = () => {
 
     if (!user.emailVerified) return <NotVerifiedEmail user={user} />
 
+
     return (
         <>
-            <Navbar />
+            <Navbar sidebarContainerRef={sidebarContainerRef}/>
             <MainContainer>
                 <MainLayout>
-                    <SideBarContainer>
+                    <SideBarContainer ref={sidebarContainerRef}>
                         <Sidebar />
                     </SideBarContainer>
                     <Outlet />
