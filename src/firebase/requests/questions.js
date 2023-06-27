@@ -1,5 +1,5 @@
 import { db } from "../index"
-import { collection, doc, serverTimestamp, writeBatch, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore"
+import { collection, doc, serverTimestamp, writeBatch, getDocs, limit, orderBy, query, startAfter, getDoc } from "firebase/firestore"
 
 export const PAGE_LIMIT = 4
 
@@ -42,4 +42,13 @@ export const requestGetPublicQuestions = async (lastDocRef) => {
     }))
     temp["lastDocRef"] = data.docs[data.docs.length - 1]
     return temp
+}
+
+// get question from id request
+export const requestGetPublicQuestionData = async (id) => {
+    const questionRef = doc(db, "questions", id);
+    const questionSnapshot = await getDoc(questionRef);
+    if (questionSnapshot.exists()) 
+        return questionSnapshot.data();
+    else throw new Error('Question not found');
 }

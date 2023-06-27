@@ -10,6 +10,7 @@ import theme from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyles";
 import Questions from "./pages/Questions";
 import AskQuestion from "./pages/AskQuestion";
+import QuestionDetailed from "./pages/QuestionDetailed";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="questions">
               <Route index element={<Questions />}/>
               <Route path="ask" element={<AskQuestion />} />
+              <Route path=":id" element={<QuestionDetailed />} />
             </Route>
           </Route>
         </Routes>
