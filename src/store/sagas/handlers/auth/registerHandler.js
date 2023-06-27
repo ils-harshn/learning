@@ -1,7 +1,6 @@
 import { call, put } from "redux-saga/effects";
-import { registerWithEmailAndPassword } from "../../../../firebase/requests/registerUser";
+import { registerWithEmailAndPassword, setPersistenceAtLogin } from "../../../../firebase/requests/auth";
 import { registerErrorAction, registerSuccessAction } from "../../../actions/authActions/registerActions";
-import { setPersistenceAtLogin } from "../../../../firebase/requests/loginUser";
 import { sendEmailVerification } from "firebase/auth";
 
 export function* registerHandler(action) {

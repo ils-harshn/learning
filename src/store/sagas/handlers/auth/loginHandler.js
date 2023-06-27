@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import { loginWithEmailAndPassword, setPersistenceAtLogin } from "../../../../firebase/requests/loginUser";
+import { loginWithEmailAndPassword, setPersistenceAtLogin } from "../../../../firebase/requests/auth";
 import { loginErrorAction, loginSuccessAction } from "../../../actions/authActions/loginActions";
 
 export function* loginHandler(action) {

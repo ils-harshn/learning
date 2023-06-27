@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import requestEmailToResetPassword from "../../../../firebase/requests/emailToResetPassword";
+import { requestEmailToResetPassword } from "../../../../firebase/requests/auth";
 import { sendResetPasswordEmailErrorAction, sendResetPasswordEmailSuccessAction } from "../../../actions/authActions/sendResetPasswordEmailActions";
 
 export function* verifySendResetPasswordEmailHandler(action) {

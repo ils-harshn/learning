@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import requestAddQuestion from "../../../../firebase/requests/Questions/addQuestion";
+import { requestAddQuestion } from "../../../../firebase/requests/questions";
 import { addQuestionErrorAction, addQuestionSuccessAction } from "../../../actions/questionActions/addQuestionActions";
 
 export function* addQuestionHandler(action) {

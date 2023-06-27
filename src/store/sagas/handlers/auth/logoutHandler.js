@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import requestLogoutUser from "../../../../firebase/requests/logoutUser";
+import { requestLogoutUser } from "../../../../firebase/requests/auth";
 import { logoutErrorAction, logoutSuccessAction } from "../../../actions/authActions/loginActions";
 
 export function* logoutHandler() {

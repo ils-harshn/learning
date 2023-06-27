@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import requestVerifyResetPassword from "../../../../firebase/requests/verifyResetPassword";
+import { requestVerifyResetPassword } from "../../../../firebase/requests/auth";
 import { verifyResetPasswordErrorAction, verifyResetPasswordSuccessAction } from "../../../actions/authActions/verifyResetPasswordActions";
 import { initiateLogoutAction } from "../../../actions/authActions/loginActions";
 

@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import requestVerifyEmail from "../../../../firebase/requests/verifyEmail";
+import { requestVerifyEmail } from "../../../../firebase/requests/auth";
 import { verifyEmailErrorAction, verifyEmailSuccessAction } from "../../../actions/authActions/verifyEmailActions";
 
 export function* verifyEmailHandler(action) {

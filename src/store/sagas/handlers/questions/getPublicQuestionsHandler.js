@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import requestGetPublicQuestions from "../../../../firebase/requests/Questions/getQuestions";
+import { requestGetPublicQuestions } from "../../../../firebase/requests/questions";
 import { getPublicQuestionsErrorAction, getPublicQuestionsSuccessAction } from "../../../actions/questionActions/getPublicQuestionsActions";
 
 export function* getPublicQuestionsHandler(action) {
