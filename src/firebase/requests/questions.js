@@ -49,6 +49,9 @@ export const requestGetPublicQuestionData = async (id) => {
     const questionRef = doc(db, "questions", id);
     const questionSnapshot = await getDoc(questionRef);
     if (questionSnapshot.exists()) 
-        return questionSnapshot.data();
+        return {
+            ...questionSnapshot.data(),
+            id,
+        };
     else throw new Error('Question not found');
 }

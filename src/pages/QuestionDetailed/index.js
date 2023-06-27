@@ -5,11 +5,54 @@ import { ModelContainer, ModelInfo } from "../../styles/models/models.styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initiateGetPublicQuestionAction } from "../../store/actions/questionActions/getPublicQuestionActions";
+import { QuestionDescription, QuestionDetailContainer, QuestionOptions, QuestionTimeline, QuestionTimelineDetail, QuestionTitle } from "./index.styles";
 
+
+const QuestionVoter = ({ data }) => {
+    return (
+        <QuestionOptions>
+            <div>
+                <span className="material-symbols-outlined">
+                    arrow_upward
+                </span>
+            </div>
+            <div>
+                {data.votes}
+            </div>
+            <div>
+                <span className="material-symbols-outlined">
+                    arrow_downward
+                </span>
+            </div>
+        </QuestionOptions>
+    )
+}
 
 const Question = ({ data }) => {
-    return (
-        <p>{data.description}</p>
+    return (<>
+        <QuestionTitle to={`/questions/${data.id}`}>{data.title}</QuestionTitle>
+        <QuestionTimeline>
+            <QuestionTimelineDetail>
+                <span>Asked</span>
+                <span>today</span>
+            </QuestionTimelineDetail>
+            <QuestionTimelineDetail>
+                <span>Modified</span>
+                <span>today</span>
+            </QuestionTimelineDetail>
+            <QuestionTimelineDetail>
+                <span>Viewed</span>
+                <span>8 times</span>
+            </QuestionTimelineDetail>
+        </QuestionTimeline>
+
+        <QuestionDetailContainer>
+            <QuestionVoter data={data}/>
+            <QuestionDescription>
+                {data.description}
+            </QuestionDescription>
+        </QuestionDetailContainer>
+    </>
     )
 }
 
