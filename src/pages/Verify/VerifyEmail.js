@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { initiateVerifyEmail } from "../../store/actions/authActions/verifyEmailActions"
-import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroup, FormGroupError, FormGroupLabel, FormLink, FormSubmitButton, FormTitle } from "../Login/styles/loginForm.styles"
+import { ButtonLoaderIcon, Form, FormContainer, FormFooter, FormGroupError, FormSubmitButton, FormTitle } from "../Login/styles/loginForm.styles"
 import { Link } from "react-router-dom"
 import { FullScreenInfo, InfoContainer, SuccessMessage } from "../../styles/notifiers/info.styles"
 

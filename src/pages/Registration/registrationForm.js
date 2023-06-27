@@ -1,6 +1,6 @@
 import { useFormik } from "formik"
 import validationSchema, { initialValues } from "../../formSchemas/registerationFormSchema"
-import SuccessfullRegistration from "./SuccessfullRegistration"
+import SuccessfullRegistration from "./successfullRegistration"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { initiateRegisterAction } from "../../store/actions/authActions/registerActions"
