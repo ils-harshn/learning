@@ -1,6 +1,8 @@
 import { db } from "../index"
 import { collection, doc, serverTimestamp, writeBatch, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore"
 
+export const PAGE_LIMIT = 4
+
 // add question request
 export const requestAddQuestion = (title, description, authorUID) => {
     const batch = writeBatch(db)
@@ -10,6 +12,10 @@ export const requestAddQuestion = (title, description, authorUID) => {
         description,
         author: authorUID,
         created_at: serverTimestamp(),
+        votes: 0,
+        answers: 0,
+        status: "pending",
+        views: 0,
     }
 
     const userQuestionDocRef = doc(collection(db, "users", authorUID, "questions"), questionDocRef.id)
@@ -20,8 +26,7 @@ export const requestAddQuestion = (title, description, authorUID) => {
 }
 
 // get public questions request
-export const requestGetPublicQuestions = async (lastDocRef, pageLimit=5) => {
-    const PAGE_LIMIT = pageLimit
+export const requestGetPublicQuestions = async (lastDocRef) => {
     const questionsRef = collection(db, "questions")
     let dataRef;
     if (lastDocRef) {

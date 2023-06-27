@@ -13,6 +13,10 @@ export const Title = styled.div`
     ${({ weight }) => css`
         font-size: 27px;
         font-weight: ${weight || 400};
+
+        @media screen and (max-width: 321px){
+            font-size: 22px;
+        }
     `}
 `
 
@@ -62,6 +66,10 @@ export const QuestionDetails = styled.div`
     flex-grow: 1;
     margin-left: 12px;
 
+    text-overflow: ellipse;
+    overflow: hidden;
+    word-wrap: break-word;
+
     div:first-child {
         a {
             color: hsl(206,100%,40%);
@@ -87,16 +95,18 @@ export const QuestionSummaryAnswers = styled.div`
     background-color: #2f6f44;
     color: white;
     width: fit-content;
-    padding: 2px 4px 2px 4px;
+    padding: 2px 6px 2px 2px;
     font-size: 13px;
     border-radius: 3px;
     display: flex;
-    align-items: center;
     justify-content: center;
 
-    div:first-child span {
-        display: flex;
+    @media screen and (max-width: 981px) {
+        padding: 2px 2px 2px 4px;
         align-items: center;
+    }
+
+    span:first-child {
         font-size: 20px;
     }
 
@@ -153,4 +163,10 @@ export const QuestionTag = styled.div`
 
 export const QuestionSummaryAnswerZero = styled(QuestionSummaryViews)`
     color: black;
+`
+
+export const QuestionTime = styled.div`
+    color: #6a7376;
+    text-align: right;
+    font-size: 12px;
 `

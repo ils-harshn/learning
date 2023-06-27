@@ -5,14 +5,16 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { initiateGetNextPublicQuestionsAction, initiateGetPublicQuestionsAction } from "../../store/actions/questionActions/getPublicQuestionsActions"
 import { BasicLoader, BasicLoaderContainer } from "../../styles/loaders/loaders.styles"
-import { Header, QuestionContainer, QuestionDescription, QuestionDetails, QuestionSummary, QuestionSummaryAnswerZero, QuestionSummaryAnswers, QuestionSummaryAnswersNotAccepted, QuestionSummaryViews, QuestionSummaryVotes, QuestionTag, QuestionTagsContainer, Title } from "./styles/index.styles"
+import { Header, QuestionContainer, QuestionDescription, QuestionDetails, QuestionTime, QuestionSummary, QuestionSummaryAnswerZero, QuestionSummaryAnswers, QuestionSummaryAnswersNotAccepted, QuestionSummaryViews, QuestionSummaryVotes, QuestionTag, QuestionTagsContainer, Title } from "./styles/index.styles"
 import { ModelContainer, ModelInfo } from "../../styles/models/models.styles"
+import { PAGE_LIMIT } from "../../firebase/requests/questions"
+import { getTimeFromFBTimeStamp } from "../../helpers/string"
 
 const AnswerStatus = ({ item }) => {
     if (item.status === "accepted")
         return (
             <QuestionSummaryAnswers>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     done
                 </span>
                 <div>
@@ -64,10 +66,10 @@ const Question = ({ item }) => {
             </QuestionSummary>
             <QuestionDetails>
                 <div>
-                    <Link>{item.title}</Link>
+                    <Link to={`/questions/${item.id}`}>{item.title}</Link>
                 </div>
                 <QuestionDescription>
-                    {item.description}
+                    {item.description.slice(0, 170)} {item.description.length > 170 && "..."}
                 </QuestionDescription>
                 <QuestionTagsContainer>
                     <QuestionTag>java</QuestionTag>
@@ -77,6 +79,9 @@ const Question = ({ item }) => {
                     <QuestionTag>java</QuestionTag>
                     <QuestionTag>java</QuestionTag>
                 </QuestionTagsContainer>
+                <QuestionTime>
+                        {getTimeFromFBTimeStamp(item.created_at)}
+                </QuestionTime>
             </QuestionDetails>
         </QuestionContainer>
     )
@@ -88,6 +93,7 @@ const Questions = () => {
     const dispatch = useDispatch()
     const getPublicQuestionsReducerData = useSelector(reducers => reducers.getPublicQuestionsReducer)
 
+    
     useEffect(() => {
         dispatch(initiateGetPublicQuestionsAction())
     }, [])
@@ -101,21 +107,23 @@ const Questions = () => {
                 </Header>
 
                 {
+                    getPublicQuestionsReducerData.loading === false && getPublicQuestionsReducerData.success.length === 0 ?
+                        <p>No Questions Yet</p> : <></>
+                }
+
+                {
                     getPublicQuestionsReducerData.success.map(item => (
                         <Question item={item} key={item.id} />
                     ))
                 }
 
                 {
-                    (getPublicQuestionsReducerData.nextDataAvialable && !getPublicQuestionsReducerData.loading) ?
-                        <BasicLoaderContainer>
-                            <PrimaryButton
-                                onClick={() => dispatch(initiateGetNextPublicQuestionsAction(getPublicQuestionsReducerData.lastDocRef))}>Load more</PrimaryButton>
-                        </BasicLoaderContainer> : <></>
-                }
-
-                {
-                    getPublicQuestionsReducerData.loading && <BasicLoaderContainer><BasicLoader /></BasicLoaderContainer>
+                    getPublicQuestionsReducerData.loading ? <BasicLoaderContainer><BasicLoader /></BasicLoaderContainer> :
+                        (getPublicQuestionsReducerData.success.length >= PAGE_LIMIT && getPublicQuestionsReducerData.nextDataAvialable) ?
+                            <BasicLoaderContainer>
+                                <PrimaryButton
+                                    onClick={() => dispatch(initiateGetNextPublicQuestionsAction(getPublicQuestionsReducerData.lastDocRef))}>Load more</PrimaryButton>
+                            </BasicLoaderContainer> : <></>
                 }
             </MiddleBlock>
             <RightBlock>
