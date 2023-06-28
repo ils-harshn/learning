@@ -22,6 +22,14 @@ export const SidebarLabel = styled.div`
     color: #6a737c;
 `
 
+export const SidebarButton = styled(SidebarLabel)`
+    cursor: pointer;
+
+    &:hover {
+        color: black;
+    }
+`
+
 export const SidebarLink = styled(NavLink)`
     display: flex;
     text-decoration: none;

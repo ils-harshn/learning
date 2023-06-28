@@ -93,6 +93,10 @@ export const QuestionOptions = styled.div`
         span {
             font-size: 18px;
         }
+
+        &.active {
+            background-color: #fce3cf;
+        }
     }
 
     div:nth-child(2) {

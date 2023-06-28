@@ -2,16 +2,42 @@ import { useParams } from "react-router-dom"
 import { BasicLoader, BasicLoaderContainer } from "../../styles/loaders/loaders.styles";
 import { MiddleBlock, RightBlock, RightSection } from "../../styles/containers/containers.styles";
 import { ModelContainer, ModelInfo } from "../../styles/models/models.styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initiateGetPublicQuestionAction } from "../../store/actions/questionActions/getPublicQuestionActions";
 import { QuestionDescription, QuestionDetailContainer, QuestionOptions, QuestionTimeline, QuestionTimelineDetail, QuestionTitle } from "./index.styles";
+import { reqestToVoteQuestion } from "../../firebase/requests/questions";
+import { auth } from "../../firebase";
 
 
 const QuestionVoter = ({ data }) => {
+    const [vote, setVote] = useState(data.voteType)
+    
+    const handleUpvote = async () => {
+        if (vote != 1) {
+            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 1, vote)
+            setVote(1)
+        }
+        else {
+            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 0, vote)
+            setVote(0)
+        }
+    }
+
+    const handleDownvote = async () => {
+        if (vote != 2) {
+            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 2, vote)
+            setVote(2)
+        }
+        else {
+            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 0, vote)
+            setVote(0)
+        }
+    }
+
     return (
         <QuestionOptions>
-            <div>
+            <div onClick={handleUpvote} className={vote === 1 ? "active": ""}>
                 <span className="material-symbols-outlined">
                     arrow_upward
                 </span>
@@ -19,7 +45,7 @@ const QuestionVoter = ({ data }) => {
             <div>
                 {data.votes}
             </div>
-            <div>
+            <div onClick={handleDownvote} className={vote === 2 ? "active": ""}>
                 <span className="material-symbols-outlined">
                     arrow_downward
                 </span>

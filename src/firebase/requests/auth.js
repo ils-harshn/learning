@@ -1,5 +1,6 @@
 import { sendPasswordResetEmail, browserSessionPersistence, setPersistence, signInWithEmailAndPassword, browserLocalPersistence, signOut, createUserWithEmailAndPassword, applyActionCode, confirmPasswordReset } from "firebase/auth";
-import { auth } from "../index"
+import { auth, db } from "../index"
+import { doc, setDoc } from "firebase/firestore";
 
 // login persistence request
 export const setPersistenceAtLogin = (rememberMe) => {
@@ -17,8 +18,13 @@ export const requestLogoutUser = () => {
 }
 
 // register user request
-export const registerWithEmailAndPassword = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password)
+export const registerWithEmailAndPassword = async (email, password, fullName) => {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+    await setDoc(doc(db, "users", userCredential.user.uid), {
+        points: 0,
+        fullName: fullName,
+    })
+    return userCredential
 }
 
 // verify email request

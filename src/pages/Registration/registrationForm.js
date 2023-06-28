@@ -16,7 +16,7 @@ const RegistrationForm = () => {
         validationSchema: validationSchema,
         validateOnChange: true,
         onSubmit: (values) => {
-            dispatch(initiateRegisterAction(values.email, values.password))
+            dispatch(initiateRegisterAction(values.email, values.password, values.fullName))
         }
     })
 
@@ -44,6 +44,15 @@ const RegistrationForm = () => {
                         {formik.touched.email ? formik.errors.email : ""}
                     </FormGroupError>
                 </FormGroup>
+
+                <FormGroup>
+                    <FormGroupLabel>Full name</FormGroupLabel>
+                    <FormGroupInput type="text" name="fullName" onChange={handleChange} value={formik.values.fullName} />
+                    <FormGroupError className="form-error">
+                        {formik.touched.fullName ? formik.errors.fullName : ""}
+                    </FormGroupError>
+                </FormGroup>
+
                 <FormGroup>
                     <FormGroupLabel>Password</FormGroupLabel>
                     <FormGroupInput name="password" type="password" onChange={handleChange} value={formik.values.password} />

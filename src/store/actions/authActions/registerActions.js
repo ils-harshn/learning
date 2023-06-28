@@ -1,11 +1,12 @@
 import { INITIATE_REGISTRATION, REGISTRATION_ERROR, REGISTRATION_SUCCESS } from "../types"
 
-export const initiateRegisterAction = (email, password) => {
+export const initiateRegisterAction = (email, password, fullName) => {
     return {
         type: INITIATE_REGISTRATION,
         payload: {
             email,
             password,
+            fullName,
         }
     }
 }

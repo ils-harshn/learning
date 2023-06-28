@@ -6,7 +6,7 @@ import { sendEmailVerification } from "firebase/auth";
 export function* registerHandler(action) {
     try {
         yield call(setPersistenceAtLogin, false)
-        let data = yield call(registerWithEmailAndPassword, action.payload.email, action.payload.password)
+        let data = yield call(registerWithEmailAndPassword, action.payload.email, action.payload.password, action.payload.fullName)
         yield sendEmailVerification(data.user)
         yield put(registerSuccessAction(data.user))
     } catch (error) {
