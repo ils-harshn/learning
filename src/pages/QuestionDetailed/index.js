@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { BasicLoader, BasicLoaderContainer } from "../../styles/loaders/loaders.styles";
 import { MiddleBlock, RightBlock, RightSection } from "../../styles/containers/containers.styles";
 import { ModelContainer, ModelInfo } from "../../styles/models/models.styles";
@@ -7,45 +7,49 @@ import { useDispatch, useSelector } from "react-redux";
 import { initiateGetPublicQuestionAction } from "../../store/actions/questionActions/getPublicQuestionActions";
 import { QuestionDescription, QuestionDetailContainer, QuestionOptions, QuestionTimeline, QuestionTimelineDetail, QuestionTitle } from "./index.styles";
 import { reqestToVoteQuestion } from "../../firebase/requests/questions";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
+import { doc, onSnapshot } from "firebase/firestore";
+import { getTimeFromFBTimeStampDateOnly } from "../../helpers/string";
 
 
 const QuestionVoter = ({ data }) => {
-    const [vote, setVote] = useState(data.voteType)
-    
-    const handleUpvote = async () => {
-        if (vote != 1) {
-            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 1, vote)
-            setVote(1)
+    const [voteType, setVoteType] = useState(data.voteType)
+    const [votes, setVotes] = useState(data.votes)
+    const [loading, setLoading] = useState(false)
+
+    const handleVote = async (typeOfVote) => {
+        if (loading != false || auth.currentUser.uid == data.author) {
+            alert("You can vote your own question")
         }
         else {
-            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 0, vote)
-            setVote(0)
+            setLoading(true)
+            if (typeOfVote == voteType)
+                await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 0, voteType)
+            else
+                await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, typeOfVote, voteType)
+            setVoteType(typeOfVote == voteType ? 0: typeOfVote)
+            setLoading(false)
         }
     }
 
-    const handleDownvote = async () => {
-        if (vote != 2) {
-            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 2, vote)
-            setVote(2)
-        }
-        else {
-            await reqestToVoteQuestion(data.id, auth.currentUser.uid, data.author, 0, vote)
-            setVote(0)
-        }
-    }
+    useEffect(() => {
+        const unsub = onSnapshot(doc(db, "questions", data.id), (snap) => {
+            if (snap.exists()) setVotes(snap.data().votes)
+        })
+        return () => unsub()
+    }, [])
 
     return (
         <QuestionOptions>
-            <div onClick={handleUpvote} className={vote === 1 ? "active": ""}>
+            <div onClick={() => handleVote(1)} className={voteType === 1 ? "active" : ""}>
                 <span className="material-symbols-outlined">
                     arrow_upward
                 </span>
             </div>
             <div>
-                {data.votes}
+                {votes}
             </div>
-            <div onClick={handleDownvote} className={vote === 2 ? "active": ""}>
+            <div onClick={() => handleVote(2)} className={voteType === 2 ? "active" : ""}>
                 <span className="material-symbols-outlined">
                     arrow_downward
                 </span>
@@ -60,20 +64,20 @@ const Question = ({ data }) => {
         <QuestionTimeline>
             <QuestionTimelineDetail>
                 <span>Asked</span>
-                <span>today</span>
+                <span>{getTimeFromFBTimeStampDateOnly(data.created_at)}</span>
             </QuestionTimelineDetail>
             <QuestionTimelineDetail>
                 <span>Modified</span>
-                <span>today</span>
+                <span>{getTimeFromFBTimeStampDateOnly(data.modified)}</span>
             </QuestionTimelineDetail>
             <QuestionTimelineDetail>
                 <span>Viewed</span>
-                <span>8 times</span>
+                <span>{data.views} times</span>
             </QuestionTimelineDetail>
         </QuestionTimeline>
 
         <QuestionDetailContainer>
-            <QuestionVoter data={data}/>
+            <QuestionVoter data={data} />
             <QuestionDescription>
                 {data.description}
             </QuestionDescription>
@@ -88,7 +92,7 @@ const QuestionDetailed = () => {
     const getPublicQuestionData = useSelector(reducers => reducers.getPublicQuestionReducer)
 
     useEffect(() => {
-        dispatch(initiateGetPublicQuestionAction(id))
+        dispatch(initiateGetPublicQuestionAction(id, auth.currentUser.uid))
     }, [])
 
     return (

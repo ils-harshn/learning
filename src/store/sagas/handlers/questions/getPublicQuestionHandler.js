@@ -4,7 +4,7 @@ import { getPublicQuestionErrorAction, getPublicQuestionSuccessAction } from "..
 
 export function* getPublicQuestionHandler(action) {
     try {
-        let data = yield call(requestGetPublicQuestionData, action.payload.id)
+        let data = yield call(requestGetPublicQuestionData, action.payload.id, action.payload.userID)
         yield put(getPublicQuestionSuccessAction(data))
     } catch (error) {
         yield put(getPublicQuestionErrorAction(error.message))

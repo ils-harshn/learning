@@ -18,3 +18,19 @@ export const getTimeFromFBTimeStamp = (fbTimestamp) => {
 
     return formattedDate
 }
+
+export const getTimeFromFBTimeStampDateOnly = (fbTimestamp) => {
+    const jsDate = fbTimestamp.toDate();
+
+    // Define options for date formatting
+    const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    };
+
+    // Format the date using toLocaleString()
+    const formattedDate = jsDate.toLocaleString('en-US', options);
+
+    return formattedDate
+}

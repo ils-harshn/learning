@@ -10,15 +10,17 @@ export const POINT_ON_VOTE_TYPE_2 = -2
 export const requestAddQuestion = (title, description, authorUID) => {
     const batch = writeBatch(db)
     const questionDocRef = doc(collection(db, "questions"))
+    const timestamp = serverTimestamp()
     let question = {
         title,
         description,
         author: authorUID,
-        created_at: serverTimestamp(),
+        created_at: timestamp,
         votes: 0,
         answers: 0,
         status: "pending",
         views: 0,
+        modified: timestamp,
     }
 
     const userQuestionDocRef = doc(collection(db, "users", authorUID, "questions"), questionDocRef.id)
@@ -48,8 +50,9 @@ export const requestGetPublicQuestions = async (lastDocRef) => {
 }
 
 // get question from id request
-export const requestGetPublicQuestionData = async (id) => {
+export const requestGetPublicQuestionData = async (id, userID) => {
     const questionRef = doc(db, "questions", id);
+    const viewed = await requestToUpdateViewsOfPublicQuestion(id, userID)
     const questionSnapshot = await getDoc(questionRef);
     if (questionSnapshot.exists()) {
         const data = {
@@ -57,8 +60,11 @@ export const requestGetPublicQuestionData = async (id) => {
             id,
         }
 
-        const voteType = await requestToGetVoteTypeByUserToQuestion(id, data.author)
+        const voteType = await requestToGetVoteTypeByUserToQuestion(id, userID)
+        const authorData = await requestToGetAuthorData(data.author)
         data["voteType"] = voteType
+        data["author_data"] = authorData
+        data["viewed"] = viewed
         return data;
     }
     else throw new Error('Question not found');
@@ -100,4 +106,26 @@ export const updateAuthorPointsOnVoteAQuestion = async (authorID, typeOfVote, pr
     await updateDoc(authorRef, {
         points: increment(calculatePointOnVoteAQuestion(typeOfVote, prevTypeOfVote)),
     })
+}
+
+// get author data
+export const requestToGetAuthorData = async (authorID) => {
+    let dataRef = doc(db, "users", authorID)
+    let dataSnap = await getDoc(dataRef)
+    return dataSnap.data()
+}
+
+// update public question views
+export const requestToUpdateViewsOfPublicQuestion = async (id, userID) => {
+    const viewsRef = doc(db, "questions", id, "views", userID)
+    const viewsSnap = await getDoc(viewsRef)
+    if (viewsSnap.exists()) return false
+    else {
+        await setDoc(viewsRef, {})
+        const questionRef = doc(db, "questions", id);
+        await updateDoc(questionRef, {
+            views: increment(1),
+        })
+        return true
+    }
 }

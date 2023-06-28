@@ -1,10 +1,11 @@
 import { GET_PUBLIC_QUESTION_ERROR, GET_PUBLIC_QUESTION_SUCCESS, INITIATE_GET_PUBLIC_QUESTION } from "../types"
 
-export const initiateGetPublicQuestionAction = (id) => {
+export const initiateGetPublicQuestionAction = (id, userID) => {
     return {
         type: INITIATE_GET_PUBLIC_QUESTION,
         payload: {
             id,
+            userID,
         }
     }
 }
