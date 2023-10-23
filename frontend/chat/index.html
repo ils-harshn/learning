@@ -1,0 +1,42 @@
+<!-- 
+    Before starting the server change the url with ur current IP
+    http://192.168.2.12:5500
+-->
+<html>
+  <head>
+    <title>CHAT APP</title>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script
+      defer
+      src="http://192.168.2.12:3000/socket.io/socket.io.js"
+    ></script>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div id="left-container">
+        <div id="msgs">
+        </div>
+        <form id="msg-input-form">
+          <input id="msg-value" placeholder="Write" autocomplete="off"/>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+      <div id="right-container">
+      </div>
+    </main>
+    <div id="user-showing-container">
+      <div id="users-count">1</div>
+      <div id="users-list">
+        <div id="users-list-scroller">
+        </div>
+      </div>
+      <img src="../assets/svg/users.svg">
+    </div>
+  </body>
+</html>
