@@ -18,6 +18,9 @@ io.on("connection", (socket) => {
       msg: msg,
       name: users[socket.id],
     });
+
+    delete usersTyping[socket.id];
+    io.emit("typing-user-list-updated", usersTyping);
   });
 
   socket.on("add-user", (name) => {
@@ -42,6 +45,11 @@ io.on("connection", (socket) => {
       });
 
       delete users[socket.id];
+
+      if (usersTyping[socket.id]) {
+        delete usersTyping[socket.id];
+        io.emit("typing-user-list-updated", usersTyping);
+      }
 
       io.emit("update-users-list", {
         users: users,
