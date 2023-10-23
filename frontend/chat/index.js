@@ -1,4 +1,5 @@
 var username;
+const receivedMsgAudio = document.getElementById("received-msg-audio");
 
 function getCurrentTime() {
   const now = new Date();
@@ -31,6 +32,10 @@ function appendMsg(msg, username, received = true) {
     `;
   $container.append(htmlToAppend);
   $container.scrollTop($container[0].scrollHeight);
+
+  if (received) {
+    receivedMsgAudio.play().catch(error => {});
+  }
 }
 
 function appendUsers(users, id) {
