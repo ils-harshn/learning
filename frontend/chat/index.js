@@ -8,7 +8,7 @@ if ("Notification" in window) {
     } else {
       alert("Needed permission otherwise no access!\nThank You");
       alert("To continue on chat please enable, notification for this domain.");
-      window.location.href = "/frontend/";
+      // window.location.href = "/frontend/";
     }
   });
 } else {
