@@ -7,8 +7,8 @@ if ("Notification" in window) {
   Notification.requestPermission().then(function (permission) {
     if (permission === "granted") {
     } else {
-      alert("Needed permission otherwise no access!\nThank You");
-      alert("To continue on chat please enable, notification for this domain.");
+      // alert("Needed permission otherwise no access!\nThank You");
+      // alert("To continue on chat please enable, notification for this domain.");
       // window.location.href = "/frontend/";
     }
   });
@@ -52,7 +52,6 @@ function appendMsg(msg, username, received = true) {
 
   if (received) {
     receivedMsgAudio.play().catch((error) => {});
-    console.log(document.visibilityState);
     if (document.visibilityState === "hidden") {
       if (Notification.permission === "granted") {
         var notification = new Notification(`Message from ${username}`, {
@@ -155,7 +154,6 @@ $(document).ready(function () {
   let msgInput = $("#msg-value");
   msgInput.on("keydown", function (event) {
     if (event.keyCode !== 13) {
-      console.log("Text changed to: " + msgInput.val());
       if (typing == false) {
         typing = true;
         socket.emit("add-to-typing-user", username);
@@ -168,6 +166,26 @@ $(document).ready(function () {
   });
 
   socket.on("typing-user-list-updated", (data) => {
-    console.log(data);
+    var $container = $("#users-typing-container");
+    $container.empty();
+    var i = 0;
+    var htmlToAppend = "";
+    for (const [key, value] of Object.entries(data)) {
+      if (key !== socket.id) {
+        i++;
+        htmlToAppend += `
+          <div class="users-typing-container">${value}</div>\n
+        `;
+      }
+    }
+
+    if (i) {
+      $("#msgs").css("height", "87%");
+      $("#typing-dots-container").css("display", "flex");
+    } else {
+      $("#msgs").css("height", "90%");
+      $("#typing-dots-container").css("display", "none");
+    }
+    $container.append(htmlToAppend);
   });
 });
