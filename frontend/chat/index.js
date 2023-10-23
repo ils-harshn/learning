@@ -1,5 +1,19 @@
 var username;
+
 const receivedMsgAudio = document.getElementById("received-msg-audio");
+
+if ("Notification" in window) {
+  Notification.requestPermission().then(function (permission) {
+    if (permission === "granted") {
+    } else {
+      alert("Needed permission otherwise no access!\nThank You");
+      alert("To continue on chat please enable, notification for this domain.");
+      window.location.href = "/frontend/";
+    }
+  });
+} else {
+  alert("Notifications not supported in your browser.");
+}
 
 function getCurrentTime() {
   const now = new Date();
@@ -34,7 +48,15 @@ function appendMsg(msg, username, received = true) {
   $container.scrollTop($container[0].scrollHeight);
 
   if (received) {
-    receivedMsgAudio.play().catch(error => {});
+    receivedMsgAudio.play().catch((error) => {});
+    console.log(document.visibilityState);
+    if (document.visibilityState === "hidden") {
+      if (Notification.permission === "granted") {
+        new Notification(username, {
+          body: `Message from ${username}`,
+        });
+      }
+    }
   }
 }
 
@@ -109,7 +131,6 @@ $(document).ready(function () {
   });
 
   socket.on("update-users-list", (data) => {
-    console.log(data.users);
     appendUsers(data.users, socket.id);
   });
 });
