@@ -1,4 +1,5 @@
 const users = {};
+const usersTyping = {};
 
 const io = require("socket.io")(3000, {
   cors: {
@@ -46,5 +47,16 @@ io.on("connection", (socket) => {
         users: users,
       });
     }
+  });
+
+  socket.on("add-to-typing-user", (name) => {
+    usersTyping[socket.id] = name;
+
+    io.emit("typing-user-list-updated", usersTyping);
+  });
+
+  socket.on("remove-from-typing-user", () => {
+    delete usersTyping[socket.id];
+    io.emit("typing-user-list-updated", usersTyping);
   });
 });

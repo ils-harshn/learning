@@ -2,6 +2,7 @@ var username;
 
 const receivedMsgAudio = document.getElementById("received-msg-audio");
 
+// notification
 if ("Notification" in window) {
   Notification.requestPermission().then(function (permission) {
     if (permission === "granted") {
@@ -15,6 +16,7 @@ if ("Notification" in window) {
   alert("Notifications not supported in your browser.");
 }
 
+// time
 function getCurrentTime() {
   const now = new Date();
   const day = now.getDate();
@@ -29,6 +31,7 @@ function getCurrentTime() {
   return formattedDateTime;
 }
 
+// append msg
 function appendMsg(msg, username, received = true) {
   var $container = $("#msgs");
   var htmlToAppend = `
@@ -63,6 +66,7 @@ function appendMsg(msg, username, received = true) {
   }
 }
 
+// append users
 function appendUsers(users, id) {
   var $container = $("#users-list-scroller");
   $container.empty();
@@ -83,6 +87,7 @@ function appendUsers(users, id) {
   $countContainer.text(i);
 }
 
+// append logs
 function appendLog(data) {
   var $container = $("#right-container");
   var htmlToAppend = `
@@ -92,6 +97,7 @@ function appendLog(data) {
   $container.scrollTop($container[0].scrollHeight);
 }
 
+// start writing code under this block
 $(document).ready(function () {
   const urlParams = new URLSearchParams(window.location.search);
   username = urlParams.get("name");
@@ -135,5 +141,33 @@ $(document).ready(function () {
 
   socket.on("update-users-list", (data) => {
     appendUsers(data.users, socket.id);
+  });
+
+  // typing logic
+  var typing = false;
+  var timeout = undefined;
+
+  function timeoutFunction() {
+    typing = false;
+    socket.emit("remove-from-typing-user");
+  }
+
+  let msgInput = $("#msg-value");
+  msgInput.on("keydown", function (event) {
+    if (event.keyCode !== 13) {
+      console.log("Text changed to: " + msgInput.val());
+      if (typing == false) {
+        typing = true;
+        socket.emit("add-to-typing-user", username);
+        timeout = setTimeout(timeoutFunction, 5000);
+      } else {
+        clearTimeout(timeout);
+        timeout = setTimeout(timeoutFunction, 5000);
+      }
+    }
+  });
+
+  socket.on("typing-user-list-updated", (data) => {
+    console.log(data);
   });
 });
