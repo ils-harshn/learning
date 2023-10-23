@@ -52,9 +52,12 @@ function appendMsg(msg, username, received = true) {
     console.log(document.visibilityState);
     if (document.visibilityState === "hidden") {
       if (Notification.permission === "granted") {
-        new Notification(username, {
-          body: `Message from ${username}`,
+        var notification = new Notification(`Message from ${username}`, {
+          body: `${msg}`,
         });
+        notification.onclick = () => {
+          window.focus();
+        };
       }
     }
   }
