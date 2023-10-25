@@ -169,7 +169,7 @@ $(document).ready(function () {
     var $container = $("#users-typing-container");
     $container.empty();
     var i = 0;
-    var htmlToAppend = "";
+    var htmlToAppend = '<div id="users-typing-container-centered">';
     for (const [key, value] of Object.entries(data)) {
       if (key !== socket.id) {
         i++;
@@ -178,6 +178,8 @@ $(document).ready(function () {
         `;
       }
     }
+
+    htmlToAppend += `</div>`;
 
     if (i) {
       $("#msgs").css("height", "87%");

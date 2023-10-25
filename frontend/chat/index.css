@@ -376,14 +376,26 @@ main {
   display: none;
   position: absolute;
   bottom: 16px;
-  background-color: #212530;
   width: 100%;
 }
 
 #typing-dots-container:hover + #users-typing-container {
-  display: block;
+  display: flex;
+  justify-content: center;
 }
 
 .users-typing-container {
-  padding: 4px 10px;
+  padding: 12px 18px;
+}
+
+#users-typing-container-centered {
+  background-color: #212530;
+  width: 100%;
+  max-width: 300px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 8px;
+  webkit-box-shadow: -4px 8px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -4px 8px 32px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: -4px 8px 32px -8px rgba(0, 0, 0, 0.75);
 }
