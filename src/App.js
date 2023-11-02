@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import FuncCurInEvntHndl from "./pages/FuncCurInEvntHndl";
+import BackLayout from "./pages/BackLayout";
+import Todo from "./pages/Todo";
+import ConditionalPage from "./pages/ConditionalPage";
+import CountDown from "./pages/CountDown";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route element={<BackLayout />}>
+          <Route
+            path="function-curring-in-event-handler"
+            element={<FuncCurInEvntHndl />}
+          ></Route>
+
+          <Route path="best-way-to-use-custom-hooks" element={<Todo />}></Route>
+          <Route
+            path="use-enum-for-conditional-rendering"
+            element={<ConditionalPage />}
+          ></Route>
+          <Route path="count-down-hook" element={<CountDown />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
