@@ -1,124 +1,86 @@
-const db = require("../db");
+const TodoModel = require("../models/TodoModel");
 const Joi = require("joi");
 
 module.exports = {
-  getAllUserTodos: (req, res) => {
-    const userId = req.userId;
-
-    db.query(
-      "SELECT * FROM todos WHERE user_id = ?",
-      [userId],
-      (error, results) => {
-        if (error) {
-          console.error(error);
-          res.status(500).json({ error: "Internal Server Error" });
-          return;
-        }
-        res.json(results);
-      }
-    );
-  },
-
-  createUserTodo: (req, res) => {
-    const userId = req.userId;
-    const { task, completed } = req.body;
-
-    const { error } = validateTodo({ task, completed });
-    if (error) {
-      res.status(400).json({ error: error.details[0].message });
-      return;
+  getAllUserTodos: async (req, res) => {
+    try {
+      const userId = req.userId;
+      const todos = await TodoModel.getAllUserTodos(userId);
+      res.json(todos);
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
     }
-
-    db.query(
-      "INSERT INTO todos (user_id, task, completed) VALUES (?, ?, ?)",
-      [userId, task, completed],
-      (error, result) => {
-        if (error) {
-          console.error(error);
-          res.status(500).json({ error: "Internal Server Error" });
-          return;
-        }
-        res.status(201).json({ id: result.insertId, task, completed });
-      }
-    );
   },
 
-  updateUserTodo: (req, res) => {
-    const userId = req.userId;
-    const todoId = req.params.id;
-    const { task, completed } = req.body;
+  createUserTodo: async (req, res) => {
+    try {
+      const userId = req.userId;
+      const { task, completed } = req.body;
 
-    const { error } = validateTodo({ task, completed });
-    if (error) {
-      res.status(400).json({ error: error.details[0].message });
-      return;
+      const { error } = validateTodo({ task, completed });
+      if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+      }
+
+      const result = await TodoModel.createUserTodo(userId, task, completed);
+      res.status(201).json({ id: result.insertId, task, completed });
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
     }
-
-    db.query(
-      "UPDATE todos SET task = ?, completed = ? WHERE id = ? AND user_id = ?",
-      [task, completed, todoId, userId],
-      (error, result) => {
-        if (error) {
-          console.error(error);
-          res.status(500).json({ error: "Internal Server Error" });
-          return;
-        }
-
-        if (result.affectedRows === 0) {
-          res.status(404).json({ error: "Todo not found or unauthorized" });
-          return;
-        }
-
-        res.status(200).json({ message: "Todo updated successfully" });
-      }
-    );
   },
 
-  deleteUserTodo: (req, res) => {
-    const userId = req.userId;
-    const todoId = req.params.id;
-    db.query(
-      "DELETE FROM todos WHERE id = ? AND user_id = ?",
-      [todoId, userId],
-      (error, result) => {
-        if (error) {
-          console.error(error);
-          res.status(500).json({ error: "Internal Server Error" });
-          return;
-        }
+  updateUserTodo: async (req, res) => {
+    try {
+      const userId = req.userId;
+      const todoId = req.params.id;
+      const { task, completed } = req.body;
 
-        if (result.affectedRows === 0) {
-          res.status(404).json({ error: "Todo not found or unauthorized" });
-          return;
-        }
-
-        res.status(200).json({ message: "Todo deleted successfully" });
+      const { error } = validateTodo({ task, completed });
+      if (error) {
+        return res.status(400).json({ error: error.details[0].message });
       }
-    );
-  },
 
-  clearTodos: (req, res) => {
-    const userId = req.userId;
+      const result = await TodoModel.updateUserTodo(
+        userId,
+        todoId,
+        task,
+        completed
+      );
 
-    if (!userId) {
-      return res
-        .status(401)
-        .json({ error: "Unauthorized - User ID not provided" });
+      res.status(200).json({ message: "Todo updated successfully" });
+    } catch (error) {
+      res.status(error.statusCode || 500).json({ error: error.message });
     }
+  },
 
-    db.query(
-      "DELETE FROM todos WHERE user_id = ?",
-      [userId],
-      (error, result) => {
-        if (error) {
-          console.error(error);
-          res.status(500).json({ error: "Internal Server Error" });
-          return;
-        }
+  deleteUserTodo: async (req, res) => {
+    try {
+      const userId = req.userId;
+      const todoId = req.params.id;
 
-        res.status(200).json({ message: "All todos deleted successfully" });
+      const result = await TodoModel.deleteUserTodo(userId, todoId);
+
+      res.status(200).json({ message: "Todo deleted successfully" });
+    } catch (error) {
+      res.status(error.statusCode || 500).json({ error: error.message });
+    }
+  },
+
+  clearTodos: async (req, res) => {
+    try {
+      const userId = req.userId;
+
+      if (!userId) {
+        return res
+          .status(401)
+          .json({ error: "Unauthorized - User ID not provided" });
       }
-    );
+
+      await TodoModel.clearTodos(userId);
+      res.status(200).json({ message: "All todos deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   },
 };
 
