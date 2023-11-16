@@ -60,6 +60,7 @@ const checkSubdomainMiddleWare = (req, res, next) => {
         }
 
         req.tenantdb = tenantdb;
+        req.user_config = user_config;
         req.subdomain = subdomain;
         next();
       });
