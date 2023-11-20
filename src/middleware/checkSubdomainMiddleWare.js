@@ -14,7 +14,7 @@ const checkSubdomainMiddleWare = (req, res, next) => {
   }
 
   admindb.query(
-    "SELECT * FROM tenants WHERE tenant_name = ?",
+    `SELECT * FROM ${config.DB_ADMIN_DATABASE}.tenants WHERE tenant_name = ?`,
     [subdomain],
     (err, results) => {
       if (err) {
@@ -29,7 +29,7 @@ const checkSubdomainMiddleWare = (req, res, next) => {
         });
       }
 
-      const user_config = JSON.parse(JSON.stringify(results[0]));
+      const user_config = results[0];
 
       if (user_config.can_access == false) {
         return res.status(404).json({
@@ -43,27 +43,9 @@ const checkSubdomainMiddleWare = (req, res, next) => {
         });
       }
 
-      const tenantdbConfig = {
-        host: config.DB_HOST,
-        user: config.DB_USER,
-        password: config.DB_PASSWORD,
-        database: subdomain,
-      };
-
-      const tenantdb = mysql.createConnection(tenantdbConfig);
-
-      tenantdb.connect((err) => {
-        if (err) {
-          return res.status(500).json({
-            error: `Failed to connect to tenant database: ${err.message}`,
-          });
-        }
-
-        req.tenantdb = tenantdb;
-        req.user_config = user_config;
-        req.subdomain = subdomain;
-        next();
-      });
+      req.user_config = user_config;
+      req.subdomain = subdomain;
+      next();
     }
   );
 };
