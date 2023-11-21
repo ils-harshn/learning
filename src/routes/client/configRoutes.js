@@ -5,7 +5,6 @@ const clientConfigRouter = express.Router();
 
 clientConfigRouter.use(checkSubdomainMiddleWare);
 
-clientConfigRouter.get("/", configController.domainCheck);
-clientConfigRouter.get("/settings", configController.settings);
+clientConfigRouter.get("/", configController.configuration);
 
 module.exports = clientConfigRouter;
