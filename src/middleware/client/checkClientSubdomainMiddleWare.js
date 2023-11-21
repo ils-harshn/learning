@@ -6,7 +6,7 @@ const checkClientSubdomainMiddleWare = (req, res, next) => {
   const host = req.headers.host;
   const subdomain = host.split(".")[0];
 
-  if (subdomain === config.HOST) {
+  if (subdomain === config.HOST || subdomain === config.DB_ADMIN_DATABASE) {
     return res.status(400).json({
       error: "no-sub-domain-found",
     });
