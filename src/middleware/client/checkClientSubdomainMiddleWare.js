@@ -1,8 +1,8 @@
-const admindb = require("../db/admindb");
-const config = require("../config");
-const { isExpired } = require("../utils");
+const admindb = require("../../db/admindb");
+const config = require("../../config");
+const { isExpired } = require("../../utils");
 
-const checkSubdomainMiddleWare = (req, res, next) => {
+const checkClientSubdomainMiddleWare = (req, res, next) => {
   const host = req.headers.host;
   const subdomain = host.split(".")[0];
 
@@ -49,4 +49,4 @@ const checkSubdomainMiddleWare = (req, res, next) => {
   );
 };
 
-module.exports = checkSubdomainMiddleWare;
+module.exports = checkClientSubdomainMiddleWare;

@@ -1,10 +1,11 @@
 const express = require("express");
-const checkSubdomainMiddleWare = require("../../middleware/checkSubdomainMiddleWare");
-const configController = require("../../controllers/client/configController");
+const checkClientSubdomainMiddleWare = require("../../middleware/client/checkClientSubdomainMiddleWare");
+const clientConfigController = require("../../controllers/client/configController");
+
 const clientConfigRouter = express.Router();
 
-clientConfigRouter.use(checkSubdomainMiddleWare);
+clientConfigRouter.use(checkClientSubdomainMiddleWare);
 
-clientConfigRouter.get("/", configController.configuration);
+clientConfigRouter.get("/", clientConfigController.configuration);
 
 module.exports = clientConfigRouter;
