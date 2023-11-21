@@ -1,4 +1,3 @@
-const mysql = require("mysql");
 const admindb = require("../db/admindb");
 const config = require("../config");
 const { isExpired } = require("../utils");
