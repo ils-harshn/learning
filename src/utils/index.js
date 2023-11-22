@@ -8,4 +8,19 @@ function tenantNameCheck(tenant_name) {
   const nameRegex = /^[a-zA-Z][a-zA-Z0-9]{0,99}$/;
   return nameRegex.test(tenant_name);
 }
-module.exports = { isExpired, tenantNameCheck };
+
+function generateToken(length = 40) {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charactersLength = characters.length;
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charactersLength);
+    result += characters.charAt(randomIndex);
+  }
+
+  return result;
+}
+
+module.exports = { isExpired, tenantNameCheck, generateToken };

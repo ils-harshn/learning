@@ -1,13 +1,12 @@
 const admindb = require("../../db/admindb");
 
-function authAdminMiddleware(req, res, next) {
+function authClientMiddleware(req, res, next) {
   const token = req.header("Authorization");
   const user_id = req.header("User-ID");
 
   if (!token || !user_id) {
     return res.status(401).json({ error: "Unauthorized" });
   }
-
   admindb.query(
     `SELECT * FROM ${req.subdomain}.users WHERE id = ? AND token = ?`,
     [user_id, token],
@@ -25,4 +24,4 @@ function authAdminMiddleware(req, res, next) {
   );
 }
 
-module.exports = authAdminMiddleware;
+module.exports = authClientMiddleware;

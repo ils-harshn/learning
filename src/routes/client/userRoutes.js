@@ -1,16 +1,15 @@
 const express = require("express");
-const checkAdminSubdomainMiddleWare = require("../../middleware/admin/checkAdminSubdomainMiddleWare");
+const checkClientSubdomainMiddleWare = require("../../middleware/client/checkClientSubdomainMiddleWare");
 const admindb = require("../../db/admindb");
-const adminUserRoutes = express.Router();
+const clientUserRoutes = express.Router();
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const authAdminMiddleware = require("../../middleware/admin/authAdminMiddleware");
+const authClientMiddleware = require("../../middleware/client/authClientMiddleware");
 const config = require("../../config");
 const { generateToken } = require("../../utils");
 
-adminUserRoutes.use(checkAdminSubdomainMiddleWare);
+clientUserRoutes.use(checkClientSubdomainMiddleWare);
 
-adminUserRoutes.post("/login", async (req, res) => {
+clientUserRoutes.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -60,7 +59,7 @@ adminUserRoutes.post("/login", async (req, res) => {
   );
 });
 
-adminUserRoutes.post("/register", async (req, res) => {
+clientUserRoutes.post("/register", async (req, res) => {
   if (!config.DEBUG) {
     return res.status(400).json({
       error: "Not allowed on production",
@@ -93,8 +92,8 @@ adminUserRoutes.post("/register", async (req, res) => {
   }
 });
 
-adminUserRoutes.get("/profile", authAdminMiddleware, (req, res) => {
+clientUserRoutes.get("/profile", authClientMiddleware, (req, res) => {
   return res.status(200).json(req.user);
 });
 
-module.exports = adminUserRoutes;
+module.exports = clientUserRoutes;

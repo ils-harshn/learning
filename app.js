@@ -5,6 +5,7 @@ const clientConfigRouter = require("./src/routes/client/configRoutes");
 const adminTenantRouter = require("./src/routes/admin/tenantRoutes");
 const adminUserRoutes = require("./src/routes/admin/userRoutes");
 const cookieParser = require("cookie-parser");
+const clientUserRoutes = require("./src/routes/client/userRoutes");
 
 const app = express();
 app.use(cookieParser());
@@ -17,6 +18,7 @@ app.use("/admin/tenant", adminTenantRouter);
 
 // client routes
 app.use("/client/config", clientConfigRouter);
+app.use("/client/user", clientUserRoutes);
 
 app.listen(config.PORT, () => {
   console.log(`Server is running on host: ${config.HOST}`);
