@@ -5,6 +5,7 @@ const adminUserRoutes = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authAdminMiddleware = require("../../middleware/admin/authAdminMiddleware");
+const config = require("../../config");
 
 adminUserRoutes.use(checkAdminSubdomainMiddleWare);
 
