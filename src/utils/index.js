@@ -4,4 +4,8 @@ function isExpired(valid_till) {
   return validTillDate < currentDate;
 }
 
-module.exports = { isExpired };
+function tenantNameCheck(tenant_name) {
+  const nameRegex = /^[a-zA-Z][a-zA-Z0-9]{0,99}$/;
+  return nameRegex.test(tenant_name);
+}
+module.exports = { isExpired, tenantNameCheck };

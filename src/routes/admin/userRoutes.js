@@ -2,7 +2,6 @@ const express = require("express");
 const checkAdminSubdomainMiddleWare = require("../../middleware/admin/checkAdminSubdomainMiddleWare");
 const admindb = require("../../db/admindb");
 const adminUserRoutes = express.Router();
-const config = require("../../config");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authAdminMiddleware = require("../../middleware/admin/authAdminMiddleware");
@@ -19,7 +18,7 @@ adminUserRoutes.post("/login", async (req, res) => {
   }
 
   admindb.query(
-    `SELECT * FROM ${config.DB_ADMIN_DATABASE}.users WHERE email = ?`,
+    `SELECT * FROM ${req.subdomain}.users WHERE email = ?`,
     [email],
     async (err, results) => {
       if (err) {
@@ -41,7 +40,7 @@ adminUserRoutes.post("/login", async (req, res) => {
       }
 
       admindb.query(
-        `UPDATE ${config.DB_ADMIN_DATABASE}.users SET last_login = now() where id=?`,
+        `UPDATE ${req.subdomain}.users SET last_login = now() where id=?`,
         [user.id]
       );
 
@@ -73,7 +72,7 @@ adminUserRoutes.post("/register", async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, config.SALT_ROUND);
     admindb.query(
-      `INSERT INTO ${config.DB_ADMIN_DATABASE}.users (email, password) VALUES (?, ?)`,
+      `INSERT INTO ${req.subdomain}.users (email, password) VALUES (?, ?)`,
       [email, hashedPassword],
       (err, _) => {
         if (err) {
