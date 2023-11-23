@@ -3,6 +3,21 @@ const AdminTenantModel = require("../../models/admin/TenantModel");
 const { tenantNameCheck } = require("../../utils");
 
 const adminTenantController = {
+  get: (req, res) => {
+    const tenant_id = req.params.id;
+    AdminTenantModel.getRegistry(tenant_id, req.subdomain, (err, results) => {
+      if (err) {
+        return res.status(500).json({
+          error: `Database error: ${err.message}`,
+        });
+      }
+
+      if (results.length === 0) {
+        return res.status(404).json({ error: "Not Found" });
+      }
+      res.status(200).json(results[0]);
+    });
+  },
   list: (req, res) => {
     AdminTenantModel.list(req.subdomain, (err, result) => {
       if (err) {
