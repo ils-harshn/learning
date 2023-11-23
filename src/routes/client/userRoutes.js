@@ -5,14 +5,14 @@ const clientUserRoutes = express.Router();
 const bcrypt = require("bcrypt");
 const authClientMiddleware = require("../../middleware/client/authClientMiddleware");
 const config = require("../../config");
-const { generateToken } = require("../../utils");
+const jwt = require("jsonwebtoken");
 
 clientUserRoutes.use(checkClientSubdomainMiddleWare);
 
 clientUserRoutes.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password: req_password } = req.body;
 
-  if (!email || !password) {
+  if (!email || !req_password) {
     return res.status(400).json({
       error: "Requires email and password",
     });
@@ -34,27 +34,24 @@ clientUserRoutes.post("/login", async (req, res) => {
         });
       }
 
-      const passwordMatch = await bcrypt.compare(password, user.password);
+      const passwordMatch = await bcrypt.compare(req_password, user.password);
 
       if (!passwordMatch) {
         return handleError(res, "Invalid credentials", 401);
       }
 
-      let query = "";
-      let token = generateToken();
-      if (user.token === null)
-        query = `UPDATE ${req.subdomain}.users SET last_login = now(), token="${token}", token_expiry = DATE_ADD(now(), INTERVAL 1 DAY) where id=${user.id}`;
-      else {
-        token = user.token;
-        query = `UPDATE ${req.subdomain}.users SET last_login = now(), token_expiry = DATE_ADD(now(), INTERVAL 1 DAY) where id=${user.id}`;
-      }
+      admindb.query(
+        `UPDATE ${req.subdomain}.users SET last_login = NOW() WHERE id = ${user.id}`
+      );
+      const { password, ...data } = user;
 
-      admindb.query(query, (err, results) => {
-        if (err) return res.status(500).json({ error: err.message });
-        if (results.affectedRows === 0)
-          return res.status(500).json({ error: "No row affected" });
-        res.json({ token, user_id: user.id });
-      });
+      const token = jwt.sign(
+        { ...data, subdomain: req.subdomain },
+        config.SECRET_KEY,
+        { expiresIn: config.EXP_OF_ADMIN_TOKEN }
+      );
+
+      res.status(200).json({ token });
     }
   );
 });
