@@ -8,6 +8,8 @@ adminTenantRouter.use(checkAdminSubdomainMiddleWare);
 adminTenantRouter.use(authAdminMiddleware);
 
 adminTenantRouter.get("/list", adminTenantController.list);
-adminTenantRouter.post("/update", adminTenantController.update);
+adminTenantRouter.put("/update/:id", adminTenantController.update);
+adminTenantRouter.delete("/delete/:id", adminTenantController.delete);
+adminTenantRouter.post("/create", adminTenantController.create);
 
 module.exports = adminTenantRouter;
