@@ -15,7 +15,7 @@ function authAdminMiddleware(req, res, next) {
     const { iat, exp, ...data } = decoded;
     if (data.subdomain !== req.subdomain)
       return res.status(401).json({
-        error: "Please your domain address!",
+        error: "Please check your domain address!",
       });
     req.user = data;
     next();

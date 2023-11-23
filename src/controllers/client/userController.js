@@ -2,6 +2,7 @@ const config = require("../../config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const admindb = require("../../db/admindb");
+const ClientUserModel = require("../../models/client/UserModel");
 
 const clientUserController = {
   login: async (req, res) => {
@@ -13,9 +14,9 @@ const clientUserController = {
       });
     }
 
-    admindb.query(
-      `SELECT * FROM ${req.subdomain}.users WHERE email = ?`,
-      [email],
+    ClientUserModel.findByEmail(
+      email,
+      req.subdomain,
       async (err, results) => {
         if (err) {
           return res.status(500).json({ error: err.message });
@@ -35,9 +36,7 @@ const clientUserController = {
           return handleError(res, "Invalid credentials", 401);
         }
 
-        admindb.query(
-          `UPDATE ${req.subdomain}.users SET last_login = NOW() WHERE id = ${user.id}`
-        );
+        ClientUserModel.updateLastLoginById(user.id, req.subdomain);
         const { password, ...data } = user;
 
         const token = jwt.sign(
@@ -66,9 +65,11 @@ const clientUserController = {
 
     try {
       const hashedPassword = await bcrypt.hash(password, config.SALT_ROUND);
-      admindb.query(
-        `INSERT INTO ${req.subdomain}.users (email, password) VALUES (?, ?)`,
-        [email, hashedPassword],
+
+      ClientUserModel.create(
+        email,
+        hashedPassword,
+        req.subdomain,
         (err, _) => {
           if (err) {
             return res
