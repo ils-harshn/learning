@@ -39,13 +39,6 @@ Directory.propTypes = {
         ])),
     }).isRequired,
     depth: (PropTypes.number.isRequired),
-    depth: (props, propName, componentName) => {
-        if (props[propName] < 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. It must be greater than 0.`
-            );
-        }
-    }
 }
 
 Directory.defaultProps = {
