@@ -15,9 +15,9 @@ const Home = () => {
         Use enum for conditional rendering
       </Link>
       <br />
-      <Link to={"count-down-hook"}>
-        Count Down Hook
-      </Link>
+      <Link to={"count-down-hook"}>Count Down Hook</Link>
+      <br />
+      <Link to={"drop-down-page"}>Drop Down Page</Link>
       <br />
     </div>
   );

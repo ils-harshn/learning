@@ -6,6 +6,7 @@ import BackLayout from "./pages/BackLayout";
 import Todo from "./pages/Todo";
 import ConditionalPage from "./pages/ConditionalPage";
 import CountDown from "./pages/CountDown";
+import DropDownPage from "./pages/DropDownPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             element={<ConditionalPage />}
           ></Route>
           <Route path="count-down-hook" element={<CountDown />}></Route>
+          <Route path="drop-down-page" element={<DropDownPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
