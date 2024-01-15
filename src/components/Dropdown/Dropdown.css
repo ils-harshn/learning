@@ -1,0 +1,46 @@
+.dropdown-wrapper {
+  width: fit-content;
+}
+
+.dropdown-wrapper div {
+  width: fit-content;
+  position: relative;
+}
+
+.dropdown-wrapper input {
+  padding: 10px;
+  outline: none;
+  border: 1px solid rgb(31, 31, 31);
+  border-radius: 0;
+}
+
+.dropdown-wrapper ul {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  position: absolute;
+  max-height: 300px;
+}
+
+.dropdown-wrapper ul li button {
+  text-align: left;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-wrapper ul li button:hover {
+  background-color: rgb(255, 182, 93);
+}
+
+.dropdown-wrapper ul li.selected button {
+  background-color: antiquewhite;
+}
+
+.dropdown-wrapper ul li.selected button:hover {
+  background-color: rgb(255, 217, 168);
+}

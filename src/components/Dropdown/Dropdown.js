@@ -1,5 +1,6 @@
 import { useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
+import "./Dropdown.css";
 
 const Dropdown = ({ options, onSelect, multiselect }) => {
   const [open, toggleOpen] = useState(false);
@@ -57,9 +58,12 @@ const Dropdown = ({ options, onSelect, multiselect }) => {
         {open && (
           <ul>
             {filterArrayByText(text)?.map((item, index) => (
-              <li key={index}>
+              <li
+                key={index}
+                className={`${isItemInSelection(item) ? "selected" : ""}`}
+              >
                 <button type="button" onClick={() => handleItemClick(item)}>
-                  {item.label} {isItemInSelection(item) ? "selected" : ""}
+                  {item.label}
                 </button>
               </li>
             ))}

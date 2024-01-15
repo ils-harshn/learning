@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Dropdown from "../components/Dropdown/Dropdown";
+import "../css/OverflowForElementChecker.css";
 
 const OverFlowForElementsChecker = () => {
   const options = [
@@ -85,24 +86,12 @@ const OverFlowForElementsChecker = () => {
       <div>
         <h3>Selected Options</h3>
         <div
-          className="selection-container"
-          style={{
-            border: "1px solid red",
-            padding: "10px",
-          }}
+          className="OverflowForElementChecker-selection-container"
           ref={tagContainer}
         >
           {selected?.map((item, index) => (
             <span
               key={item.value}
-              style={{
-                border: "1px solid green",
-                marginRight: index === selected.length - 1 ? "" : "10px",
-                borderRadius: "8px",
-                padding: "6px",
-                fontSize: "12px",
-                visibility: "hidden",
-              }}
             >
               {item.label}
             </span>

@@ -1,0 +1,20 @@
+.OverflowForElementChecker-selection-container {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.OverflowForElementChecker-selection-container span {
+  visibility: hidden;
+  color: white;
+  font-weight: bold;
+  font-family: sans-serif;
+  border-radius: 8px;
+  background-color: rgb(211, 243, 148);
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.OverflowForElementChecker-selection-container span:last-child {
+  margin-right: 0;
+}
