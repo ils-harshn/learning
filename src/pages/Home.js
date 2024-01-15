@@ -23,6 +23,8 @@ const Home = () => {
         Overflow For Elements Checker
       </Link>
       <br />
+      <Link to={"call-multiple-apis"}>Call Multiple APIs</Link>
+      <br />
     </div>
   );
 };

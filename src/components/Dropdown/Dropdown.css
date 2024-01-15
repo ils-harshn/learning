@@ -22,6 +22,7 @@
   overflow-y: auto;
   position: absolute;
   max-height: 300px;
+  z-index: 1000;
 }
 
 .dropdown-wrapper ul li button {

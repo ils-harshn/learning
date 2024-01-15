@@ -8,6 +8,7 @@ import ConditionalPage from "./pages/ConditionalPage";
 import CountDown from "./pages/CountDown";
 import DropDownPage from "./pages/DropDownPage";
 import OverFlowForElementsChecker from "./pages/OverflowForElementChecker";
+import CallMultipleApis from "./pages/CallMulitpleApis";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
           <Route
             path="overflow-for-elements-checker"
             element={<OverFlowForElementsChecker />}
+          ></Route>
+          <Route
+            path="call-multiple-apis"
+            element={<CallMultipleApis />}
           ></Route>
         </Route>
       </Routes>
