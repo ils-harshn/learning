@@ -7,6 +7,7 @@ import Todo from "./pages/Todo";
 import ConditionalPage from "./pages/ConditionalPage";
 import CountDown from "./pages/CountDown";
 import DropDownPage from "./pages/DropDownPage";
+import OverFlowForElementsChecker from "./pages/OverflowForElementChecker";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
           ></Route>
           <Route path="count-down-hook" element={<CountDown />}></Route>
           <Route path="drop-down-page" element={<DropDownPage />}></Route>
+          <Route
+            path="overflow-for-elements-checker"
+            element={<OverFlowForElementsChecker />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
