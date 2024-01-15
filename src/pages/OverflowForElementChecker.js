@@ -97,7 +97,7 @@ const OverFlowForElementsChecker = () => {
             </span>
           ))}
         </div>
-        <div ref={countRef}></div>
+        <div ref={countRef} className="OverflowForElementChecker-remaining-counter"></div>
       </div>
     </div>
   );

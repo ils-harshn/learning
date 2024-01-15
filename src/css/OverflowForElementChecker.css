@@ -18,3 +18,10 @@
 .OverflowForElementChecker-selection-container span:last-child {
   margin-right: 0;
 }
+
+.OverflowForElementChecker-remaining-counter {
+  color: blue;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-top: 10px;
+}

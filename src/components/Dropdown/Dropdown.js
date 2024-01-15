@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import "./Dropdown.css";
 
 const Dropdown = ({ options, onSelect, multiselect }) => {
-  const [open, toggleOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [selection, setSelection] = useState([]);
   const [text, setText] = useState("");
+  const optionsElement = useRef();
+  const parentElement = useRef();
+
+  const toggleOpen = (whatToDo = undefined) => {
+    whatToDo = whatToDo === undefined ? !open : whatToDo;
+    setOpen(whatToDo);
+  };
 
   const filterArrayByText = (searchText) => {
     return options?.filter((item) =>
@@ -43,7 +50,7 @@ const Dropdown = ({ options, onSelect, multiselect }) => {
   };
 
   return (
-    <div className="dropdown-wrapper">
+    <div className="dropdown-wrapper" ref={parentElement}>
       <OutsideClickHandler onOutsideClick={() => toggleOpen(false)}>
         <input
           className="dropdown-input"
@@ -56,7 +63,7 @@ const Dropdown = ({ options, onSelect, multiselect }) => {
           }}
         ></input>
         {open && (
-          <ul>
+          <ul ref={optionsElement}>
             {filterArrayByText(text)?.map((item, index) => (
               <li
                 key={index}
