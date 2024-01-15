@@ -13,8 +13,24 @@ const OverFlowForElementsChecker = () => {
     { value: 8, label: "Harsh" },
     { value: 9, label: "Ice" },
     { value: 10, label: "Joker" },
+    { value: 11, label: "Kite" },
+    { value: 12, label: "Lion" },
+    { value: 13, label: "Moon" },
+    { value: 14, label: "Nest" },
+    { value: 15, label: "Orange" },
+    { value: 16, label: "Penguin" },
+    { value: 17, label: "Quilt" },
+    { value: 18, label: "Rainbow" },
+    { value: 19, label: "Sun" },
+    { value: 20, label: "Tree" },
+    { value: 21, label: "Umbrella" },
+    { value: 22, label: "Violin" },
+    { value: 23, label: "Waterfall" },
+    { value: 24, label: "Xylophone" },
+    { value: 25, label: "Yak" },
+    { value: 26, label: "Zebra" },
   ];
-  
+
   const [selected, setSelected] = useState([]);
 
   const countRef = useRef();
