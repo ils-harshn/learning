@@ -25,6 +25,8 @@ const Home = () => {
       <br />
       <Link to={"call-multiple-apis"}>Call Multiple APIs</Link>
       <br />
+      <Link to={"modal-page"}>Modal Page (usage of portals)</Link>
+      <br />
     </div>
   );
 };

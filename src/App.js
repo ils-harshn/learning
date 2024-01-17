@@ -9,6 +9,7 @@ import CountDown from "./pages/CountDown";
 import DropDownPage from "./pages/DropDownPage";
 import OverFlowForElementsChecker from "./pages/OverflowForElementChecker";
 import CallMultipleApis from "./pages/CallMulitpleApis";
+import ModalPage from "./pages/ModalPage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             path="call-multiple-apis"
             element={<CallMultipleApis />}
           ></Route>
+          <Route path="modal-page" element={<ModalPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
