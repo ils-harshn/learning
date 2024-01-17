@@ -1,18 +1,13 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 import "./Dropdown.css";
 
 const Dropdown = ({ options, onSelect, multiselect }) => {
-  const [open, setOpen] = useState(false);
+  const [open, toggleOpen] = useState(false);
   const [selection, setSelection] = useState([]);
   const [text, setText] = useState("");
   const optionsElement = useRef();
   const parentElement = useRef();
-
-  const toggleOpen = (whatToDo = undefined) => {
-    whatToDo = whatToDo === undefined ? !open : whatToDo;
-    setOpen(whatToDo);
-  };
 
   const filterArrayByText = (searchText) => {
     return options?.filter((item) =>
@@ -49,6 +44,22 @@ const Dropdown = ({ options, onSelect, multiselect }) => {
       : false;
   };
 
+  useEffect(() => {
+    if (open && parentElement.current && optionsElement.current) {
+      let pos = parentElement.current.getBoundingClientRect();
+      optionsElement.current.style.width = `${parentElement.current.offsetWidth}px`;
+      let calculatedTop = pos.top + pos.height;
+      if (
+        calculatedTop + optionsElement.current.offsetHeight >
+        document.body.offsetHeight
+      ) {
+        console.log("COME");
+        calculatedTop = pos.top - optionsElement.current.offsetHeight - 2;
+      }
+      optionsElement.current.style.top = `${calculatedTop}px`;
+    }
+  }, [open]);
+
   return (
     <div className="dropdown-wrapper" ref={parentElement}>
       <OutsideClickHandler onOutsideClick={() => toggleOpen(false)}>
@@ -62,20 +73,19 @@ const Dropdown = ({ options, onSelect, multiselect }) => {
             setText(e.target.value);
           }}
         ></input>
-        {open && (
-          <ul ref={optionsElement}>
-            {filterArrayByText(text)?.map((item, index) => (
-              <li
-                key={index}
-                className={`${isItemInSelection(item) ? "selected" : ""}`}
-              >
-                <button type="button" onClick={() => handleItemClick(item)}>
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+
+        <ul ref={optionsElement} className={`${open ? "open" : "closed"}`}>
+          {filterArrayByText(text)?.map((item, index) => (
+            <li
+              key={index}
+              className={`${isItemInSelection(item) ? "selected" : ""}`}
+            >
+              <button type="button" onClick={() => handleItemClick(item)}>
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
       </OutsideClickHandler>
     </div>
   );

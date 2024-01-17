@@ -52,6 +52,7 @@ const CallMultipleApis = () => {
         <div
           style={{
             display: "flex",
+            flexWrap: "wrap"
           }}
         >
           <span>
