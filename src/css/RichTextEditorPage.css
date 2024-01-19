@@ -1,0 +1,18 @@
+.rich-text-editor-page {
+  display: flex;
+  padding: 20px;
+}
+
+.rich-text-editor-page .editor-class {
+  border: 1px solid black;
+  height: calc(100vh - 300px);
+}
+
+.DraftEditor-root {
+    height: 90% !important;
+}
+
+.rich-text-editor-page textarea {
+  min-width: 50vw;
+  margin-left: 10px;
+}

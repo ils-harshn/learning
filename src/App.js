@@ -13,6 +13,7 @@ import ModalPage from "./pages/ModalPage";
 import InfiniteScrollPage from "./pages/InfiniteScrollPage";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+import RichTextEditorPage from "./pages/RichTextEditorPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
             <Route
               path="infinite-scroll-page"
               element={<InfiniteScrollPage />}
+            ></Route>
+            <Route
+              path="rich-text-editor-page"
+              element={<RichTextEditorPage />}
             ></Route>
           </Route>
         </Routes>

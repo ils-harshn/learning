@@ -29,6 +29,8 @@ const Home = () => {
       <br />
       <Link to={"infinite-scroll-page"}>Infinite Scroll Page</Link>
       <br />
+      <Link to={"rich-text-editor-page"}>Rich Text Editor Page</Link>
+      <br />
     </div>
   );
 };
