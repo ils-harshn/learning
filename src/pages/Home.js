@@ -27,6 +27,8 @@ const Home = () => {
       <br />
       <Link to={"modal-page"}>Modal Page (usage of portals)</Link>
       <br />
+      <Link to={"infinite-scroll-page"}>Infinite Scroll Page</Link>
+      <br />
     </div>
   );
 };
