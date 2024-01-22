@@ -5,6 +5,11 @@ import OutsideClickHandler from "react-outside-click-handler";
 
 const ModalWrapper = ({ isOpen, className = "", children, onClose }) => {
   if (!isOpen) return null;
+
+  if (!onClose) {
+    onClose = () => {};
+  }
+
   return ReactDOM.createPortal(
     <div className={`modal-overlay ${className}`}>
       <OutsideClickHandler onOutsideClick={onClose}>

@@ -14,6 +14,7 @@ import InfiniteScrollPage from "./pages/InfiniteScrollPage";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import RichTextEditorPage from "./pages/RichTextEditorPage";
+import ErrorBoundaryPage from "./pages/ErrorBoundaryPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -54,6 +55,10 @@ function App() {
             <Route
               path="rich-text-editor-page"
               element={<RichTextEditorPage />}
+            ></Route>
+            <Route
+              path="error-boundary-page"
+              element={<ErrorBoundaryPage />}
             ></Route>
           </Route>
         </Routes>

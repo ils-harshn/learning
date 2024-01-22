@@ -31,6 +31,8 @@ const Home = () => {
       <br />
       <Link to={"rich-text-editor-page"}>Rich Text Editor Page</Link>
       <br />
+      <Link to={"error-boundary-page"}>Error Boundary page</Link>
+      <br />
     </div>
   );
 };
