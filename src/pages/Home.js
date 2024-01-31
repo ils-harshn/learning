@@ -33,6 +33,8 @@ const Home = () => {
       <br />
       <Link to={"error-boundary-page"}>Error Boundary page</Link>
       <br />
+      <Link to={"date-picker-page"}>Date picker page</Link>
+      <br />
     </div>
   );
 };

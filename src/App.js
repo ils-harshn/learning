@@ -15,6 +15,7 @@ import InfiniteScrollPage from "./pages/InfiniteScrollPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import RichTextEditorPage from "./pages/RichTextEditorPage";
 import ErrorBoundaryPage from "./pages/ErrorBoundaryPage";
+import DatePickerPage from "./pages/DatePickerPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
               path="error-boundary-page"
               element={<ErrorBoundaryPage />}
             ></Route>
+            <Route path="date-picker-page" element={<DatePickerPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
