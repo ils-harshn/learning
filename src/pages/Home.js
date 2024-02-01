@@ -35,6 +35,8 @@ const Home = () => {
       <br />
       <Link to={"date-picker-page"}>Date picker page</Link>
       <br />
+      <Link to={"pdf-generation-from-html"}>Generate PDF from HTML</Link>
+      <br />
     </div>
   );
 };

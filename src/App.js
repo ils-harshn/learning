@@ -16,6 +16,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import RichTextEditorPage from "./pages/RichTextEditorPage";
 import ErrorBoundaryPage from "./pages/ErrorBoundaryPage";
 import DatePickerPage from "./pages/DatePickerPage";
+import PdfGenerationFromHTML from "./pages/PdfGenerationFromHTML";
 const queryClient = new QueryClient();
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
               element={<ErrorBoundaryPage />}
             ></Route>
             <Route path="date-picker-page" element={<DatePickerPage />}></Route>
+            <Route path="pdf-generation-from-html" element={<PdfGenerationFromHTML />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
