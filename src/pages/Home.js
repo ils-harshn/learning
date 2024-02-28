@@ -37,6 +37,8 @@ const Home = () => {
       <br />
       <Link to={"pdf-generation-from-html"}>Generate PDF from HTML</Link>
       <br />
+      <Link to={"table-with-checkboxes"}>Table with checkboxes</Link>
+      <br />
     </div>
   );
 };

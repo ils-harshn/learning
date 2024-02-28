@@ -17,6 +17,7 @@ import RichTextEditorPage from "./pages/RichTextEditorPage";
 import ErrorBoundaryPage from "./pages/ErrorBoundaryPage";
 import DatePickerPage from "./pages/DatePickerPage";
 import PdfGenerationFromHTML from "./pages/PdfGenerationFromHTML";
+import TableWithCheckboxes from "./pages/TableWithCheckboxes";
 const queryClient = new QueryClient();
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
             ></Route>
             <Route path="date-picker-page" element={<DatePickerPage />}></Route>
             <Route path="pdf-generation-from-html" element={<PdfGenerationFromHTML />}></Route>
+            <Route path="table-with-checkboxes" element={<TableWithCheckboxes />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
