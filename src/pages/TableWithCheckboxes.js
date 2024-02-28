@@ -8,8 +8,8 @@ const TableWithCheckboxes = () => {
   const [comments, setComments] = useState(null);
   const [selectedComments, setSelectedComments] = useState({});
   const [selectAllChecked, setSelectAllChecked] = useState(false);
-  const queryParams = new URLSearchParams(useLocation());
-  const [limit, setLimit] = useState(queryParams.get("limit") || 10);
+  const queryParams = new URLSearchParams(useLocation().search);
+  const [limit, setLimit] = useState(parseInt(queryParams.get("limit")) || 10);
 
   useEffect(() => {
     const getCommentsApi = async () => {
