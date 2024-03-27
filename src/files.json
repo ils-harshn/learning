@@ -1,165 +1,272 @@
 {
-    "users": {
-        "0": {
-            "email": "harsh@synapases.com",
-            "password": "Testing@321",
-            "spaces": {
-                "0": {
-                    "id": 0,
-                    "space_name": "School Friends"
+    "name": "MyDjangoProject",
+    "type": "folder",
+    "items": [
+        {
+            "name": "myapp",
+            "type": "folder",
+            "items": [
+                {
+                    "name": "__init__.py",
+                    "type": "file"
                 },
-                "1": {
-                    "id": 1,
-                    "space_name": "Collage Friends"
+                {
+                    "name": "admin.py",
+                    "type": "file"
                 },
-                "2": {
-                    "id": 2,
-                    "space_name": "Ram Pyari Nivaas"
-                }
-            },
-            "default_space": 0,
-            "id": 0
-        },
-        "1": {
-            "email": "anushka@synapases.com",
-            "password": "Testing@321",
-            "spaces": {
-                "0": {
-                    "id": 0,
-                    "space_name": "School Friends"
+                {
+                    "name": "apps.py",
+                    "type": "file"
                 },
-                "2": {
-                    "id": 2,
-                    "space_name": "Ram Pyari Nivaas"
-                }
-            },
-            "default_space": 2,
-            "id": 1
-        },
-        "2": {
-            "email": "dev@gmail.com",
-            "password": "Testing@321",
-            "spaces": {},
-            "default_space": null,
-            "id": 2
-        },
-        "3": {
-            "email": "jay@gmail.com",
-            "password": "Testing@321",
-            "spaces": {
-                "0": {
-                    "id": 0,
-                    "space_name": "School Friends"
-                }
-            },
-            "default_space": null,
-            "id": 3
-        },
-        "4": {
-            "email": "abhi@gmail.com",
-            "password": "Testing@321",
-            "spaces": {
-                "0": {
-                    "id": 0,
-                    "space_name": "School Friends"
-                }
-            },
-            "default_space": null,
-            "id": 4
-        },
-        "5": {
-            "email": "shiv@gmail.com",
-            "password": "Testing@321",
-            "spaces": {},
-            "default_space": null,
-            "id": 5
-        },
-        "6": {
-            "email": "jyoti@gmail.com",
-            "password": "Testing@321",
-            "spaces": {
-                "0": {
-                    "id": 0,
-                    "space_name": "School Friends"
+                {
+                    "name": "models.py",
+                    "type": "file"
                 },
-                "2": {
-                    "id": 2,
-                    "space_name": "Ram Pyari Nivaas"
+                {
+                    "name": "serializers.py",
+                    "type": "file"
+                },
+                {
+                    "name": "urls.py",
+                    "type": "file"
+                },
+                {
+                    "name": "views.py",
+                    "type": "file"
                 }
-            },
-            "default_space": null,
-            "id": 6
+            ]
+        },
+        {
+            "name": "myproject",
+            "type": "folder",
+            "items": [
+                {
+                    "name": "__init__.py",
+                    "type": "file"
+                },
+                {
+                    "name": "settings.py",
+                    "type": "file"
+                },
+                {
+                    "name": "urls.py",
+                    "type": "file"
+                },
+                {
+                    "name": "wsgi.py",
+                    "type": "file"
+                }
+            ]
+        },
+        {
+            "name": "venv",
+            "type": "folder",
+            "items": [
+                {
+                    "name": "bin",
+                    "type": "folder",
+                    "items": [
+                        {
+                            "name": "activate",
+                            "type": "file"
+                        },
+                        {
+                            "name": "deactivate",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "include",
+                    "type": "folder",
+                    "items": [
+                        {
+                            "name": "Python.h",
+                            "type": "file"
+                        }
+                    ]
+                },
+                {
+                    "name": "lib",
+                    "type": "folder",
+                    "items": [
+                        {
+                            "name": "python3.9",
+                            "type": "folder",
+                            "items": [
+                                {
+                                    "name": "site-packages",
+                                    "type": "folder",
+                                    "items": [
+                                        {
+                                            "name": "django",
+                                            "type": "folder",
+                                            "items": [
+                                                {
+                                                    "name": "__init__.py",
+                                                    "type": "file"
+                                                },
+                                                {
+                                                    "name": "conf",
+                                                    "type": "folder",
+                                                    "items": [
+                                                        {
+                                                            "name": "__init__.py",
+                                                            "type": "file"
+                                                        },
+                                                        {
+                                                            "name": "urls.py",
+                                                            "type": "file"
+                                                        },
+                                                        {
+                                                            "name": "settings.py",
+                                                            "type": "file"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "contrib",
+                                                    "type": "folder",
+                                                    "items": [
+                                                        {
+                                                            "name": "__init__.py",
+                                                            "type": "file"
+                                                        },
+                                                        {
+                                                            "name": "admin",
+                                                            "type": "folder",
+                                                            "items": [
+                                                                {
+                                                                    "name": "__init__.py",
+                                                                    "type": "file"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "auth",
+                                                            "type": "folder",
+                                                            "items": [
+                                                                {
+                                                                    "name": "__init__.py",
+                                                                    "type": "file"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "name": "venv",
+                                                            "type": "folder",
+                                                            "items": [
+                                                                {
+                                                                    "name": "lib",
+                                                                    "type": "folder",
+                                                                    "items": [
+                                                                        {
+                                                                            "name": "python3.9",
+                                                                            "type": "folder",
+                                                                            "items": [
+                                                                                {
+                                                                                    "name": "site-packages",
+                                                                                    "type": "folder",
+                                                                                    "items": [
+                                                                                        {
+                                                                                            "name": "django",
+                                                                                            "type": "folder",
+                                                                                            "items": [
+                                                                                                {
+                                                                                                    "name": "__init__.py",
+                                                                                                    "type": "file"
+                                                                                                },
+                                                                                                {
+                                                                                                    "name": "conf",
+                                                                                                    "type": "folder",
+                                                                                                    "items": [
+                                                                                                        {
+                                                                                                            "name": "__init__.py",
+                                                                                                            "type": "file"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "urls.py",
+                                                                                                            "type": "file"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "settings.py",
+                                                                                                            "type": "file"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                {
+                                                                                                    "name": "contrib",
+                                                                                                    "type": "folder",
+                                                                                                    "items": [
+                                                                                                        {
+                                                                                                            "name": "__init__.py",
+                                                                                                            "type": "file"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "admin",
+                                                                                                            "type": "folder",
+                                                                                                            "items": [
+                                                                                                                {
+                                                                                                                    "name": "__init__.py",
+                                                                                                                    "type": "file"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "auth",
+                                                                                                            "type": "folder",
+                                                                                                            "items": [
+                                                                                                                {
+                                                                                                                    "name": "__init__.py",
+                                                                                                                    "type": "file"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "name": "rest_framework",
+                                                                                                            "type": "folder",
+                                                                                                            "items": [
+                                                                                                                {
+                                                                                                                    "name": "__init__.py",
+                                                                                                                    "type": "file"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "name": "views.py",
+                                                                                                                    "type": "file"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "name": "serializers.py",
+                                                                                                                    "type": "file"
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "name": "manage.py",
+                                                                    "type": "file"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
-    },
-    "spaces": {
-        "0": {
-            "space_name": "School Friends",
-            "admin": {
-                "id": 1,
-                "email": "anushka@synapases.com"
-            },
-            "domain": "synapases.com",
-            "users": {
-                "0": {
-                    "id": 0,
-                    "type": "MEMBER"
-                },
-                "1": {
-                    "id": 1,
-                    "type": "ADMIN"
-                },
-                "3": {
-                    "id": 3,
-                    "type": "MEMBER"
-                },
-                "4": {
-                    "id": 4,
-                    "type": "MEMBER"
-                },
-                "6": {
-                    "id": 6,
-                    "type": "MEMBER"
-                }
-            },
-            "id": 0
-        },
-        "1": {
-            "space_name": "Collage Friends",
-            "admin": {
-                "id": 0,
-                "email": "harsh@synapases.com"
-            },
-            "domain": "synapases.com",
-            "users": {
-                "0": {
-                    "id": 0,
-                    "type": "ADMIN"
-                }
-            },
-            "id": 1
-        },
-        "2": {
-            "space_name": "Ram Pyari Nivaas",
-            "admin": {
-                "id": 0,
-                "email": "harsh@synapases.com"
-            },
-            "domain": "synapases.com",
-            "users": {
-                "0": {
-                    "id": 0,
-                    "type": "ADMIN"
-                },
-                "1": {
-                    "id": 1,
-                    "type": "MEMBER"
-                },
-                "6": {
-                    "id": 6,
-                    "type": "MEMBER"
-                }
-            },
-            "id": 2
-        }
-    }
+    ]
 }
