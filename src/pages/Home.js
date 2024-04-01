@@ -39,6 +39,8 @@ const Home = () => {
       <br />
       <Link to={"table-with-checkboxes"}>Table with checkboxes</Link>
       <br />
+      <Link to={"msg-with-files"}>Message with files</Link>
+      <br />
     </div>
   );
 };

@@ -18,6 +18,7 @@ import ErrorBoundaryPage from "./pages/ErrorBoundaryPage";
 import DatePickerPage from "./pages/DatePickerPage";
 import PdfGenerationFromHTML from "./pages/PdfGenerationFromHTML";
 import TableWithCheckboxes from "./pages/TableWithCheckboxes";
+import MsgWithFiles from "./pages/MsgWithFiles";
 const queryClient = new QueryClient();
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
             <Route path="date-picker-page" element={<DatePickerPage />}></Route>
             <Route path="pdf-generation-from-html" element={<PdfGenerationFromHTML />}></Route>
             <Route path="table-with-checkboxes" element={<TableWithCheckboxes />}></Route>
+            <Route path="msg-with-files" element={<MsgWithFiles />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
