@@ -1,0 +1,47 @@
+.MsgWithFiles_main-container {
+  display: flex;
+  justify-content: center;
+}
+
+.MsgWithFiles_main {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  margin: 0 10px 0 10px;
+  height: 94vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 51px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 51px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 51px 0px rgba(0, 0, 0, 0.75);
+}
+
+.MsgWithFiles_msg-container {
+  flex: 1;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.MsgWithFiles_input-container {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.MsgWithFiles_editor-class .DraftEditor-editorContainer {
+  padding: 10px;
+  min-height: 35px;
+  max-height: 400px;
+  cursor: text;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.MsgWithFiles_toolbar-class {
+  margin: 0;
+}
+
+.MsgWithFiles_editor-class .public-DraftEditorPlaceholder-root {
+  padding: 25px 10px 20px 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
