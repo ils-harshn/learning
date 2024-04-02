@@ -19,6 +19,7 @@ import DatePickerPage from "./pages/DatePickerPage";
 import PdfGenerationFromHTML from "./pages/PdfGenerationFromHTML";
 import TableWithCheckboxes from "./pages/TableWithCheckboxes";
 import MsgWithFiles from "./pages/MsgWithFiles";
+import ReactVRDOM from "./pages/ReactVRDOMPage";
 const queryClient = new QueryClient();
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
             <Route path="pdf-generation-from-html" element={<PdfGenerationFromHTML />}></Route>
             <Route path="table-with-checkboxes" element={<TableWithCheckboxes />}></Route>
             <Route path="msg-with-files" element={<MsgWithFiles />}></Route>
+            <Route path="react-VR-DOM" element={<ReactVRDOM />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

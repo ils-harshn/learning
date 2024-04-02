@@ -41,6 +41,8 @@ const Home = () => {
       <br />
       <Link to={"msg-with-files"}>Message with files</Link>
       <br />
+      <Link to={"react-VR-DOM"}>React Virtual DOM concept</Link>
+      <br />
     </div>
   );
 };

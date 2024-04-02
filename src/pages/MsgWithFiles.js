@@ -1,12 +1,10 @@
 import {
   addDoc,
   collection,
-  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
-  setDoc,
 } from "firebase/firestore";
 import draftToHtml from "draftjs-to-html";
 import "../css/MsgWithFiles.css";
