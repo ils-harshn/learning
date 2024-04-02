@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useState } from "react";
+
 const ReactVRDOM = () => {
   const [number, setNumber] = useState(0);
   const [changesCount, setChangesCount] = useState(-1);
