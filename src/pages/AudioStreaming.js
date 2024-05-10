@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 
 const socket = io(process.env.REACT_APP_AUDIO_STREAM_SOCKET_URL);
@@ -70,15 +70,11 @@ function AudioStream() {
       <button onClick={callPeer}>Call Peer</button>
       <div>
         <h2>Your Audio</h2>
-        {localStream && (
-          <audio src={window.URL.createObjectURL(localStream)} autoPlay muted />
-        )}
+        {localStream && <audio srcObject={localStream} autoPlay muted />}
       </div>
       <div>
         <h2>Remote Audio</h2>
-        {remoteStream && (
-          <audio src={window.URL.createObjectURL(remoteStream)} autoPlay />
-        )}
+        {remoteStream && <audio srcObject={remoteStream} autoPlay />}
       </div>
     </div>
   );
