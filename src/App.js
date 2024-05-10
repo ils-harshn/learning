@@ -20,6 +20,7 @@ import PdfGenerationFromHTML from "./pages/PdfGenerationFromHTML";
 import TableWithCheckboxes from "./pages/TableWithCheckboxes";
 import MsgWithFiles from "./pages/MsgWithFiles";
 import ReactVRDOM from "./pages/ReactVRDOMPage";
+import SocketMouseMover from "./pages/SocketMouseMover";
 const queryClient = new QueryClient();
 
 function App() {
@@ -66,10 +67,20 @@ function App() {
               element={<ErrorBoundaryPage />}
             ></Route>
             <Route path="date-picker-page" element={<DatePickerPage />}></Route>
-            <Route path="pdf-generation-from-html" element={<PdfGenerationFromHTML />}></Route>
-            <Route path="table-with-checkboxes" element={<TableWithCheckboxes />}></Route>
+            <Route
+              path="pdf-generation-from-html"
+              element={<PdfGenerationFromHTML />}
+            ></Route>
+            <Route
+              path="table-with-checkboxes"
+              element={<TableWithCheckboxes />}
+            ></Route>
             <Route path="msg-with-files" element={<MsgWithFiles />}></Route>
             <Route path="react-VR-DOM" element={<ReactVRDOM />}></Route>
+            <Route
+              path="socket-mouse-mover"
+              element={<SocketMouseMover />}
+            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>

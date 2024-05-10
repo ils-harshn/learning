@@ -43,6 +43,8 @@ const Home = () => {
       <br />
       <Link to={"react-VR-DOM"}>React Virtual DOM concept</Link>
       <br />
+      <Link to={"socket-mouse-mover"}>Socket Mouse Mover</Link>
+      <br />
     </div>
   );
 };
