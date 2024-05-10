@@ -3,80 +3,85 @@ import io from "socket.io-client";
 
 const socket = io(process.env.REACT_APP_AUDIO_STREAM_SOCKET_URL);
 
-const App = () => {
-  const peerRef = useRef();
-  const audioRef = useRef();
+function AudioStream() {
+  const [peerConnection, setPeerConnection] = useState(null);
+  const [localStream, setLocalStream] = useState(null);
+  const [remoteStream, setRemoteStream] = useState(null);
 
   useEffect(() => {
-    socket.on("offer", (offer) => {
-      const peer = new RTCPeerConnection();
-      peerRef.current = peer;
-
-      peer.ontrack = (event) => {
-        if (event.streams && event.streams[0]) {
-          audioRef.current.srcObject = event.streams[0];
-        }
-      };
-
-      const desc = new RTCSessionDescription(offer);
-      peer.setRemoteDescription(desc);
-
-      navigator.mediaDevices
-        .getUserMedia({ audio: true })
-        .then((stream) => {
-          stream.getTracks().forEach((track) => peer.addTrack(track, stream));
-          return peer.createAnswer();
-        })
-        .then((answer) => {
-          peer.setLocalDescription(answer);
-          socket.emit("answer", answer);
-        })
-        .catch((error) => {
-          console.error("Error adding stream:", error);
-        });
-    });
-
-    return () => {
-      if (peerRef.current) {
-        peerRef.current.close();
-      }
-    };
+    initPeerConnection();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleOffer = () => {
-    const peer = new RTCPeerConnection();
-    peerRef.current = peer;
+  const initPeerConnection = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    setLocalStream(stream);
 
-    peer.ontrack = (event) => {
-      if (event.streams && event.streams[0]) {
-        audioRef.current.srcObject = event.streams[0];
+    const peerConnection = new RTCPeerConnection();
+    peerConnection.addStream(stream);
+
+    peerConnection.onaddstream = (event) => {
+      setRemoteStream(event.stream);
+    };
+
+    peerConnection.onicecandidate = (event) => {
+      if (event.candidate) {
+        socket.emit("icecandidate", event.candidate, socket.id);
       }
     };
 
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then((stream) => {
-        stream.getTracks().forEach((track) => peer.addTrack(track, stream));
-        return peer.createOffer();
-      })
-      .then((offer) => {
-        peer.setLocalDescription(offer);
-        socket.emit("offer", offer, (answer) => {
-          const desc = new RTCSessionDescription(answer);
-          peer.setRemoteDescription(desc);
-        });
-      })
-      .catch((error) => {
-        console.error("Error adding stream:", error);
-      });
+    socket.on("offer", async (offer, senderId) => {
+      if (senderId !== socket.id) {
+        await peerConnection.setRemoteDescription(
+          new RTCSessionDescription(offer)
+        );
+        const answer = await peerConnection.createAnswer();
+        await peerConnection.setLocalDescription(answer);
+        socket.emit("answer", answer, socket.id);
+      }
+    });
+
+    socket.on("answer", async (answer, senderId) => {
+      if (senderId !== socket.id) {
+        await peerConnection.setRemoteDescription(
+          new RTCSessionDescription(answer)
+        );
+      }
+    });
+
+    socket.on("icecandidate", async (candidate, senderId) => {
+      if (senderId !== socket.id) {
+        await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+      }
+    });
+
+    setPeerConnection(peerConnection);
+  };
+
+  const callPeer = async () => {
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(offer);
+    socket.emit("offer", offer, socket.id);
   };
 
   return (
     <div>
-      <button onClick={handleOffer}>Offer</button>
-      <audio ref={audioRef} controls />
+      <h1>Real-time Audio Call</h1>
+      <button onClick={callPeer}>Call Peer</button>
+      <div>
+        <h2>Your Audio</h2>
+        {localStream && (
+          <audio src={window.URL.createObjectURL(localStream)} autoPlay muted />
+        )}
+      </div>
+      <div>
+        <h2>Remote Audio</h2>
+        {remoteStream && (
+          <audio src={window.URL.createObjectURL(remoteStream)} autoPlay />
+        )}
+      </div>
     </div>
   );
-};
+}
 
-export default App;
+export default AudioStream;
