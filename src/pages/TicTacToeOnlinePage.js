@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { socket } from "../sockets/tic_tac_toe_socket";
 import { v4 as uuidv4 } from "uuid";
 
-const Board = ({ game, pinIndex }) => {
+const Board = ({ game, pinIndex, setCode }) => {
   const [board, setBoard] = useState(game.state);
   const [currentChance, setCurrentChance] = useState(game.current_mover);
 
   const updateState = (row, col) => {
-    console.log(socket.id === currentChance);
     if (board[row][col] === 0 && socket.id === currentChance) {
       setBoard((prev) => {
         const newBoard = [...prev];
@@ -22,14 +21,33 @@ const Board = ({ game, pinIndex }) => {
   useEffect(() => {
     const handleBoardChange = (state) => {
       setBoard(state.board);
-      console.log(state.current_mover, socket.id);
       setCurrentChance(state.current_mover);
     };
 
+    const handleUserLeft = (userID) => {
+      alert(`User Left:\n${userID}`);
+      setCode("");
+    };
+
+    const handleGameState = (game_state) => {
+      if (game_state === 0) {
+        alert("GAME OVER");
+        setCode("");
+      } else if (game_state === 1 || game_state === 2) {
+        alert(`${game_state === (pinIndex + 1) ? "You Won" : "You Lost"}`);
+        setCode("");
+      }
+    };
+
     socket.on("update-game", handleBoardChange);
+    socket.on("user-left", handleUserLeft);
+    socket.on("game_state", handleGameState);
 
     return () => {
       socket.off("update-game", handleBoardChange);
+      socket.off("user-left", handleUserLeft);
+      socket.off("game_state", handleGameState);
+      socket.emit("leave-game", { code: game.id });
     };
   }, []);
 
@@ -98,6 +116,7 @@ const Game = ({ code, setCode }) => {
         <Board
           game={game}
           pinIndex={game.members.findIndex((id) => id === socket.id)}
+          setCode={setCode}
         />
       </>
     );
