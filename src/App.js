@@ -82,10 +82,6 @@ function App() {
               path="socket-mouse-mover"
               element={<SocketMouseMover />}
             ></Route>
-            <Route
-              path="audio-streaming"
-              element={<AudioStream />}
-            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>
