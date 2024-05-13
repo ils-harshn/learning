@@ -21,7 +21,8 @@ import TableWithCheckboxes from "./pages/TableWithCheckboxes";
 import MsgWithFiles from "./pages/MsgWithFiles";
 import ReactVRDOM from "./pages/ReactVRDOMPage";
 import SocketMouseMover from "./pages/SocketMouseMover";
-import AudioStream from "./pages/AudioStreaming";
+import TicTacToeOnlinePage from "./pages/TicTacToeOnlinePage";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -81,6 +82,10 @@ function App() {
             <Route
               path="socket-mouse-mover"
               element={<SocketMouseMover />}
+            ></Route>
+            <Route
+              path="tic-tac-toe-online"
+              element={<TicTacToeOnlinePage />}
             ></Route>
           </Route>
         </Routes>

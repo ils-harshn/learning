@@ -45,6 +45,8 @@ const Home = () => {
       <br />
       <Link to={"socket-mouse-mover"}>Socket Mouse Mover</Link>
       <br />
+      <Link to={"tic-tac-toe-online"}>Tic Tac Toe Online</Link>
+      <br />
     </div>
   );
 };
