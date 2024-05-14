@@ -18,7 +18,7 @@ import ErrorBoundaryPage from "./pages/ErrorBoundaryPage";
 import DatePickerPage from "./pages/DatePickerPage";
 import PdfGenerationFromHTML from "./pages/PdfGenerationFromHTML";
 import TableWithCheckboxes from "./pages/TableWithCheckboxes";
-import MsgWithFiles from "./pages/MsgWithFiles";
+import MsgWithFirebase from "./pages/MsgWithFirebase";
 import ReactVRDOM from "./pages/ReactVRDOMPage";
 import SocketMouseMover from "./pages/SocketMouseMover";
 import TicTacToeOnlinePage from "./pages/TicTacToeOnlinePage";
@@ -77,7 +77,7 @@ function App() {
               path="table-with-checkboxes"
               element={<TableWithCheckboxes />}
             ></Route>
-            <Route path="msg-with-files" element={<MsgWithFiles />}></Route>
+            <Route path="msg-with-firebase" element={<MsgWithFirebase />}></Route>
             <Route path="react-VR-DOM" element={<ReactVRDOM />}></Route>
             <Route
               path="socket-mouse-mover"

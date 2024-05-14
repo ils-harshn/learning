@@ -7,7 +7,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import draftToHtml from "draftjs-to-html";
-import "../css/MsgWithFiles.css";
+import "../css/MsgWithFirebase.css";
 import db from "../db";
 import { useEffect } from "react";
 const { EditorState, convertToRaw } = require("draft-js");
@@ -42,12 +42,12 @@ const MsgContainer = () => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="MsgWithFiles_msg-container">
+    <div className="MsgWithFirebase_msg-container">
       {messages.map((data, index) => (
-        <div key={index} className="MsgWithFiles_msg-msg">
-          <div className="MsgWithFiles_msg-time"></div>
+        <div key={index} className="MsgWithFirebase_msg-msg">
+          <div className="MsgWithFirebase_msg-time"></div>
           <div
-            className="MsgWithFiles_msg-content"
+            className="MsgWithFirebase_msg-content"
             dangerouslySetInnerHTML={{
               __html: data.content,
             }}
@@ -85,14 +85,14 @@ const MsgInput = ({ editorText, setEditorText }) => {
 
   return (
     <>
-      <div className="MsgWithFiles_input-container">
+      <div className="MsgWithFirebase_input-container">
         <Editor
           placeholder="Make a note of something"
           editorState={editorText}
           onEditorStateChange={handleEditorChange}
-          wrapperClassName="MsgWithFiles_wrapper-class"
-          editorClassName="MsgWithFiles_editor-class"
-          toolbarClassName="MsgWithFiles_toolbar-class"
+          wrapperClassName="MsgWithFirebase_wrapper-class"
+          editorClassName="MsgWithFirebase_editor-class"
+          toolbarClassName="MsgWithFirebase_toolbar-class"
           toolbar={toolbarOptions}
           editorStyle={editorStyle}
         />
@@ -121,9 +121,9 @@ const ExtraOptions = ({
     setLoading(false);
   };
   return (
-    <div className="MsgWithFiles_extra-options">
-      <div className="MsgWithFiles_extra-options-left"></div>
-      <div className="MsgWithFiles_extra-options-right">
+    <div className="MsgWithFirebase_extra-options">
+      <div className="MsgWithFirebase_extra-options-left"></div>
+      <div className="MsgWithFirebase_extra-options-right">
         <button onClick={sendMessage} disabled={loading}>
           Send
         </button>
@@ -132,14 +132,14 @@ const ExtraOptions = ({
   );
 };
 
-const MsgWithFiles = () => {
+const MsgWithFirebase = () => {
   const [editorText, setEditorText] = useState(() => EditorState.createEmpty());
   // const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="MsgWithFiles_main-container">
-      <div className="MsgWithFiles_main">
+    <div className="MsgWithFirebase_main-container">
+      <div className="MsgWithFirebase_main">
         <MsgContainer />
         <MsgInput editorText={editorText} setEditorText={setEditorText} />
         <ExtraOptions
@@ -153,4 +153,4 @@ const MsgWithFiles = () => {
   );
 };
 
-export default MsgWithFiles;
+export default MsgWithFirebase;

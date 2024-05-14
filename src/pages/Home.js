@@ -39,7 +39,7 @@ const Home = () => {
       <br />
       <Link to={"table-with-checkboxes"}>Table with checkboxes</Link>
       <br />
-      <Link to={"msg-with-files"}>Message with files</Link>
+      <Link to={"msg-with-firebase"}>Message with firebase</Link>
       <br />
       <Link to={"react-VR-DOM"}>React Virtual DOM concept</Link>
       <br />
