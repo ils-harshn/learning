@@ -47,6 +47,8 @@ const Home = () => {
       <br />
       <Link to={"tic-tac-toe-online"}>Tic Tac Toe Online</Link>
       <br />
+      <Link to={"wfc-example"}>Tic Tac Toe Online</Link>
+      <br />
     </div>
   );
 };

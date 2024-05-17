@@ -22,6 +22,7 @@ import MsgWithFirebase from "./pages/MsgWithFirebase";
 import ReactVRDOM from "./pages/ReactVRDOMPage";
 import SocketMouseMover from "./pages/SocketMouseMover";
 import TicTacToeOnlinePage from "./pages/TicTacToeOnlinePage";
+import WaveFunctionCollapseExample from "./pages/WaveFunctionCollapseExample";
 
 const queryClient = new QueryClient();
 
@@ -77,7 +78,10 @@ function App() {
               path="table-with-checkboxes"
               element={<TableWithCheckboxes />}
             ></Route>
-            <Route path="msg-with-firebase" element={<MsgWithFirebase />}></Route>
+            <Route
+              path="msg-with-firebase"
+              element={<MsgWithFirebase />}
+            ></Route>
             <Route path="react-VR-DOM" element={<ReactVRDOM />}></Route>
             <Route
               path="socket-mouse-mover"
@@ -86,6 +90,10 @@ function App() {
             <Route
               path="tic-tac-toe-online"
               element={<TicTacToeOnlinePage />}
+            ></Route>
+            <Route
+              path="wfc-example"
+              element={<WaveFunctionCollapseExample />}
             ></Route>
           </Route>
         </Routes>
