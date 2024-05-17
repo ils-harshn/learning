@@ -1,22 +1,28 @@
 // WaveFunctionCollapseExample
 
 import React, { useRef, useEffect, useState } from "react";
-import io from "socket.io-client";
+import { socket } from "../sockets/wfc_example_socket";
 
-const socket = io(process.env.REACT_APP_WFC_EXAMPLE_SOCKET_URL);
+// const socket = io(process.env.REACT_APP_WFC_EXAMPLE_SOCKET_URL);
 
 const WaveFunctionCollapseExample = () => {
   const canvasRef = useRef(null);
+  const countRef = useRef(null);
   const [grid, setGrid] = useState([]);
   const gridSize = 20; // Define gridSize here
 
   useEffect(() => {
-    socket.on("gridUpdate", (newGrid) => {
-      setGrid(newGrid);
+    socket.connect();
+    socket.on("gridUpdate", (data) => {
+      setGrid(data.grid);
+      if (countRef.current) {
+        countRef.current.innerText = data.count;
+      }
     });
 
     return () => {
       socket.off("gridUpdate");
+      socket.close();
     };
   }, []);
 
@@ -40,7 +46,12 @@ const WaveFunctionCollapseExample = () => {
   }, [grid, gridSize]);
 
   return (
-    <canvas ref={canvasRef} width={gridSize * 50} height={gridSize * 30} />
+    <>
+      <div>
+        Loop: <span ref={countRef}></span>
+      </div>
+      <canvas ref={canvasRef} width={gridSize * 50} height={gridSize * 30} />
+    </>
   );
 };
 

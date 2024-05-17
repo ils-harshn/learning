@@ -47,7 +47,7 @@ const Home = () => {
       <br />
       <Link to={"tic-tac-toe-online"}>Tic Tac Toe Online</Link>
       <br />
-      <Link to={"wfc-example"}>Tic Tac Toe Online</Link>
+      <Link to={"wfc-example"}>Wave Function Collapse Example (Live Socket)</Link>
       <br />
     </div>
   );
