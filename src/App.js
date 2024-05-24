@@ -23,6 +23,7 @@ import ReactVRDOM from "./pages/ReactVRDOMPage";
 import SocketMouseMover from "./pages/SocketMouseMover";
 import TicTacToeOnlinePage from "./pages/TicTacToeOnlinePage";
 import WaveFunctionCollapseExample from "./pages/WaveFunctionCollapseExample";
+import AudioStream from "./pages/AudioStreaming";
 
 const queryClient = new QueryClient();
 
@@ -95,6 +96,7 @@ function App() {
               path="wfc-example"
               element={<WaveFunctionCollapseExample />}
             ></Route>
+            <Route path="audio-streaming" element={<AudioStream />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

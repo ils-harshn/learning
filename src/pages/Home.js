@@ -49,6 +49,8 @@ const Home = () => {
       <br />
       <Link to={"wfc-example"}>Wave Function Collapse Example (Live Socket)</Link>
       <br />
+      <Link to={"audio-streaming"}>Live Audio Streaming (PassThrough node.js)</Link>
+      <br />
     </div>
   );
 };
