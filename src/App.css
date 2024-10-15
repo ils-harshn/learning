@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #0F0F0F;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reels {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;
+
+  scroll-snap-type: y mandatory;
+}
+
+.reels::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.reel {
+  opacity: 0.2;
+  position: relative;
+  color: white;
+  height: 90vh;
+  max-width: 90vw;
+  aspect-ratio: 9/16;
+  /* margin: 10px; */
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px 0;
+  scroll-snap-align: center;
+  transition: opacity 300ms ease;
+}
+
+.reel.active {
+  opacity: 1;
+}
+
+.loading {
+  font-size: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 90vh;
+  max-width: 90vw;
+  aspect-ratio: 9/16;
+  margin: 10px;
+  scroll-snap-align: center;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reel-title {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  padding: 20px;
+  width: calc(100% - 10px);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.reel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.loader-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #3498db;
+  width: 24px;
+  height: 24px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.reel-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(255, 25, 120, 0.5); */
+  color: black;
+  background-color: white;
+}
