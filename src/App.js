@@ -12,6 +12,18 @@ function shuffleArray(array) {
   return array;
 }
 
+function get_video_url(id) {
+  const url = `https://raw.githubusercontent.com/harshcore/shorts/refs/heads/main/videos/${id}.mp4`;
+  // const url = `https://raw.githubusercontent.com/harshcore/shorts/refs/heads/main/videos/compressed_${id}.mp4`;
+  // const url = `https://45edac4e-022e-4d0d-9e0e-ea8c7606af64-00-2l2eobbktulnc.pike.replit.dev/stream?id=${id}`;
+  return url;
+}
+
+function get_thumbnail_url(id) {
+  const url = `https://raw.githubusercontent.com/harshcore/shorts/refs/heads/main/thumbnails/${id}.png`;
+  return url;
+}
+
 // const complete_data = _dd_;
 const complete_data = shuffleArray(_dd_);
 
@@ -21,7 +33,7 @@ const fetchNumbers = (nextBatch) => {
       // const newNumbers = Array.from({ length: 5 }, (_, i) => nextBatch + i);
       const newNumbers = complete_data.slice(nextBatch, nextBatch + 5);
       resolve(newNumbers);
-    }, 1000);
+    }, 10);
   });
 };
 
@@ -30,7 +42,14 @@ const useReelIndex = create((set) => ({
   setIndex: (index) => set({ index: index }),
 }));
 
-const Video = ({ data, index, current_index, setIsBuffering, setIsError }) => {
+const Video = ({
+  data,
+  index,
+  current_index,
+  setIsBuffering,
+  setIsError,
+  setFirstTimeLoaded,
+}) => {
   const videoRef = useRef(null);
 
   const handleWaiting = () => {
@@ -39,6 +58,7 @@ const Video = ({ data, index, current_index, setIsBuffering, setIsError }) => {
 
   const handlePlaying = () => {
     setIsBuffering(false);
+    setFirstTimeLoaded(true);
   };
 
   const handleVideoEnd = () => {
@@ -52,24 +72,55 @@ const Video = ({ data, index, current_index, setIsBuffering, setIsError }) => {
   };
 
   useEffect(() => {
-    if (videoRef.current) {
+    const video = videoRef.current;
+    if (video) {
       if (current_index === index) {
-        videoRef.current.play();
-      } else videoRef.current.pause();
+        video.src = get_video_url(data.id);
+        video.load();
+        video.play();
+      } else {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      }
     }
+
+    return () => {
+      if (video) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      }
+    };
   }, [current_index, videoRef]);
 
   return (
     <video
       ref={videoRef}
-      src={data.videoUrl}
       onWaiting={handleWaiting}
       onPlaying={handlePlaying}
       onEnded={handleVideoEnd}
       onError={handleVideoError}
-      // preload="none"
     />
   );
+};
+
+const Thumbnail = ({ data }) => {
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+
+    img.src = get_thumbnail_url(data.id);
+
+    return () => {
+      if (img) {
+        img.removeAttribute("src"); // Clear the src on unmount
+      }
+    };
+  }, [imgRef]);
+
+  return <img ref={imgRef} />;
 };
 
 const Reel = ({ data, index }) => {
@@ -79,6 +130,7 @@ const Reel = ({ data, index }) => {
     threshold: 0.7, // 1.0 means the component is fully in view
   });
   const [isBuffering, setIsBuffering] = useState(false);
+  const [isFirstTimeLoaded, setFirstTimeLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -94,23 +146,23 @@ const Reel = ({ data, index }) => {
           <h2>Error Loading Video</h2>
         </div>
       )}
-      <div className="reel-title truncate">{data.title}</div>
-      {current_index === index - 1 ||
-      current_index === index ||
-      current_index === index + 1 ? (
+      {(!inView || !isFirstTimeLoaded) &&
+        (current_index === index ||
+          current_index === index - 1 ||
+          current_index === index + 1) && <Thumbnail data={data} />}
+      <div className="reel-title truncate">
+        {data.title} | {data.id}
+      </div>
+      {current_index === index ? (
         <Video
           index={index}
           current_index={current_index}
           data={data}
           setIsBuffering={setIsBuffering}
+          setFirstTimeLoaded={setFirstTimeLoaded}
           setIsError={setIsError}
         />
       ) : null}
-      {isBuffering && (
-        <div className="loader-container">
-          <div className="loader"></div>
-        </div>
-      )}
     </div>
   );
 };
@@ -160,7 +212,6 @@ function Reels() {
         {numbers.map((item, index) => (
           <Reel key={index} data={item} index={index} />
         ))}
-        {isFetching && <div className="loading">#</div>}
       </div>
     </>
   );
