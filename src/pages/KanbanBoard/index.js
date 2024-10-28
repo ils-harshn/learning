@@ -68,7 +68,7 @@ const Task = ({ task }) => {
       layout
       className={`${
         LIST_ITEM_COLOR_TITLE_MAP[task.status]
-      } p-2 border-b flex items-center justify-between cursor-grab`}
+      } p-2 border-b flex items-center justify-between cursor-grabbing`}
       draggable
       onDragStart={handleDragStart}
       initial={{ height: 0 }}
@@ -104,7 +104,7 @@ const Board = ({ id, title }) => {
 
   return (
     <div
-      className="min-w-[280px] w-[400px] h-[600px] border rounded-md bg-slate-400 flex flex-col"
+      className="h-[600px] border rounded-md bg-slate-400 flex flex-col"
       onDrop={handleDrop}
       onDragOver={handleDragOver}
     >
@@ -146,7 +146,7 @@ const Board = ({ id, title }) => {
 
 const KanbanBoard = () => {
   return (
-    <div className="flex p-10 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-10">
       <Board id={TODO_STATUS.TODO} title={"Todo"} />
       <Board id={TODO_STATUS.INPROGRESS} title={"In Progress"} />
       <Board id={TODO_STATUS.DONE} title={"Completed"} />
