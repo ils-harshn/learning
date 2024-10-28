@@ -54,11 +54,11 @@ const MarkdownStream = () => {
 
   return (
     <>
-      <div className="absolute">
-        <Link to={"/"} className="mr-5">
+      <div className="absolute top-5 right-10">
+        <Link to={"/"} className="mr-5 text-white">
           Home
         </Link>
-        <Link onClick={handleGoBack}>Back</Link>
+        <Link onClick={handleGoBack} className="text-white">Back</Link>
       </div>
       <article
         ref={markdownRef} // Attach the ref to the article element
