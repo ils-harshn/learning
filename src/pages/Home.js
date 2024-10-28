@@ -53,6 +53,8 @@ const Home = () => {
       <br />
       <Link to={"markddown-chatgpt-poc"}>Markddown Chatgpt POC</Link>
       <br />
+      <Link to={"kanban-board"}>Kanban Board</Link>
+      <br />
     </div>
   );
 };
