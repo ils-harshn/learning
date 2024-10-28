@@ -63,13 +63,7 @@ const MarkdownStream = () => {
       <article
         ref={markdownRef} // Attach the ref to the article element
         dangerouslySetInnerHTML={{ __html: marked(markdown) }}
-        className="markdown-body"
-        style={{
-          overflowY: "auto",
-          minHeight: "100vh",
-          maxHeight: "100vh",
-          padding: "20px",
-        }} // Optional: Set a max height and overflow
+        className="markdown-body overflow-y-auto min-h-screen max-h-screen p-5"
       />
     </>
   );
