@@ -51,6 +51,8 @@ const Home = () => {
       <br />
       <Link to={"audio-streaming"}>Live Audio Streaming (PassThrough node.js)</Link>
       <br />
+      <Link to={"markddown-chatgpt-poc"}>Markddown Chatgpt POC</Link>
+      <br />
     </div>
   );
 };

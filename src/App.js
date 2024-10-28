@@ -24,6 +24,7 @@ import SocketMouseMover from "./pages/SocketMouseMover";
 import TicTacToeOnlinePage from "./pages/TicTacToeOnlinePage";
 import WaveFunctionCollapseExample from "./pages/WaveFunctionCollapseExample";
 import AudioStream from "./pages/AudioStreaming";
+import MarkdownChatGPTPOC from "./pages/MarkdownChatGPTPOC";
 
 const queryClient = new QueryClient();
 
@@ -98,6 +99,10 @@ function App() {
             ></Route>
             <Route path="audio-streaming" element={<AudioStream />}></Route>
           </Route>
+          <Route
+            path="markddown-chatgpt-poc"
+            element={<MarkdownChatGPTPOC />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
