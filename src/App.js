@@ -10,7 +10,7 @@ export const useBoardStore = create((set) => ({
   tasks: [],
   addTask: (newTask) =>
     set((state) => ({
-      tasks: [newTask, ...state.tasks],
+      tasks: [...state.tasks, newTask],
     })),
   deleteTask: (taskId) =>
     set((state) => ({
