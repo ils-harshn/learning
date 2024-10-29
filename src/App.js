@@ -6,29 +6,8 @@ import { IoAdd } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { motion } from "framer-motion";
 
-const DUMMY_TASKS = [
-  { columnId: "backlog", title: "Gather Requirements" },
-  { columnId: "backlog", title: "Research Competitors" },
-  { columnId: "backlog", title: "Create Project Proposal" },
-
-  { columnId: "todo", title: "Design Homepage" },
-  { columnId: "todo", title: "Set Up Database" },
-  { columnId: "todo", title: "Write User Stories" },
-  { columnId: "todo", title: "Plan Sprint" },
-
-  { columnId: "inprogress", title: "Develop Login Feature" },
-  { columnId: "inprogress", title: "Implement User Profiles" },
-  { columnId: "inprogress", title: "Build API Endpoints" },
-
-  { columnId: "done", title: "Initial Project Setup" },
-  { columnId: "done", title: "Configure Linter and Formatter" },
-  { columnId: "done", title: "Set Up Version Control" },
-  { columnId: "done", title: "Complete Documentation" },
-  { columnId: "done", title: "Deploy to Staging" },
-];
-
 export const useBoardStore = create((set) => ({
-  tasks: DUMMY_TASKS.map((task) => ({ ...task, id: uuidv4() })),
+  tasks: [],
   addTask: (newTask) =>
     set((state) => ({
       tasks: [newTask, ...state.tasks],
@@ -108,12 +87,23 @@ const Task = ({ task, className, dropIndicatorClass }) => {
   );
 };
 
-const TextArea = ({ text, setText }) => {
+const TextArea = ({ text, setText, submitForm }) => {
   const textareaRef = useRef(null);
 
   const handleInput = () => {
     textareaRef.current.style.height = "auto";
     textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (e.shiftKey) {
+        return;
+      } else {
+        e.preventDefault();
+        submitForm();
+      }
+    }
   };
 
   useEffect(() => {
@@ -127,10 +117,11 @@ const TextArea = ({ text, setText }) => {
       value={text}
       onChange={(e) => setText(e.target.value)}
       onInput={handleInput}
+      onKeyDown={handleKeyDown}
       className="bg-transparent border border-gray-600 w-full rounded p-2 text-sm text-gray-200 placeholder-gray-500 transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 overflow-hidden resize-none"
       placeholder="Add Task"
       rows={1}
-    ></textarea>
+    />
   );
 };
 
@@ -141,19 +132,25 @@ const AddTask = ({ id }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTask({
-      id: uuidv4(),
-      columnId: id,
-      title: text,
-    });
-    setText("");
-    setIsAdding(false);
+    submitForm();
+  };
+
+  const submitForm = () => {
+    if (text.trim()) {
+      addTask({
+        id: uuidv4(),
+        columnId: id,
+        title: text,
+      });
+      setText("");
+      setIsAdding(false);
+    }
   };
 
   return isAdding ? (
     <motion.form layout onSubmit={handleSubmit}>
       <div className="px-4">
-        <TextArea text={text} setText={setText} />
+        <TextArea text={text} setText={setText} submitForm={submitForm} />
         <div className="flex justify-end items-center mt-1">
           <button
             type="button"
