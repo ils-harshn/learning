@@ -285,34 +285,19 @@ const Column = ({
       </div>
 
       <div className="h-full w-full">
-        {tasks.length ? (
-          <>
-            {tasks.map((task) => (
-              <Task
-                key={task.id}
-                task={task}
-                className={taskClass}
-                dropIndicatorClass={dropIndicatorClass}
-              />
-            ))}
-            <DropIndicator
-              columnId={id}
-              className={dropIndicatorClass}
-              before="-1"
-            />
-          </>
-        ) : (
-          <>
-            <DropIndicator
-              columnId={id}
-              className={dropIndicatorClass}
-              before="-1"
-            />
-            <div className="mx-4 border rounded mb-2 p-3 text-sm border-gray-700 text-center">
-              No Task Found
-            </div>
-          </>
-        )}
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            task={task}
+            className={taskClass}
+            dropIndicatorClass={dropIndicatorClass}
+          />
+        ))}
+        <DropIndicator
+          columnId={id}
+          className={dropIndicatorClass}
+          before="-1"
+        />
         <AddTask id={id} />
       </div>
     </div>
