@@ -5,16 +5,22 @@ import { create } from "zustand";
 import { IoAdd } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { motion } from "framer-motion";
+import { FaSave } from "react-icons/fa";
+import { IoIosCloudDone } from "react-icons/io";
 
 export const useBoardStore = create((set) => ({
-  tasks: [],
+  tasks: JSON.parse(localStorage.getItem("data")) || [],
+  savedChanges: true,
+  toggleSavedChanges: (value) => set({ savedChanges: value }),
   addTask: (newTask) =>
     set((state) => ({
       tasks: [...state.tasks, newTask],
+      savedChanges: false,
     })),
   deleteTask: (taskId) =>
     set((state) => ({
       tasks: state.tasks.filter((task) => task.id !== taskId),
+      savedChanges: false,
     })),
 
   moveTask: (taskToBeMovedId, beforeWhichTaskId, columnId) =>
@@ -31,6 +37,7 @@ export const useBoardStore = create((set) => ({
       if (beforeWhichTaskId === "-1") {
         return {
           tasks: [...updatedTasks, { ...taskToMove, columnId: columnId }],
+          savedChanges: false,
         };
       }
 
@@ -48,6 +55,7 @@ export const useBoardStore = create((set) => ({
           { ...taskToMove, columnId: columnId },
           ...updatedTasks.slice(insertIndex),
         ],
+        savedChanges: false,
       };
     }),
 }));
@@ -298,6 +306,46 @@ const Column = ({
   );
 };
 
+const SaveChange = ({ className }) => {
+  const savedChanges = useBoardStore((state) => state.savedChanges);
+  const toggleSavedChanges = useBoardStore((state) => state.toggleSavedChanges);
+
+  const saveChange = () => {
+    localStorage.setItem(
+      "data",
+      JSON.stringify(useBoardStore.getState().tasks)
+    );
+    toggleSavedChanges(true);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === "s") {
+        event.preventDefault();
+        saveChange();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  return savedChanges ? (
+    <div
+      className={`flex justify-center items-center aspect-square mx-4 border rounded ${className} border-green-400`}
+    >
+      <IoIosCloudDone size={30} className="text-green-400" />
+    </div>
+  ) : (
+    <div
+      onClick={saveChange}
+      className={`flex justify-center items-center aspect-square mx-4 border rounded ${className} border-yellow-400`}
+    >
+      <FaSave size={30} className="text-yellow-400" />
+    </div>
+  );
+};
+
 const Bin = () => {
   const deleteTask = useBoardStore((state) => state.deleteTask);
   const [isActive, setActive] = useState(false);
@@ -310,7 +358,7 @@ const Bin = () => {
   };
 
   return (
-    <div className="w-64 shrink-0">
+    <>
       <div className="p-4">
         <h3
           className={`font-medium text-lg ${
@@ -336,7 +384,7 @@ const Bin = () => {
           className={`${isActive ? "text-red-600" : "text-gray-600"}`}
         />
       </div>
-    </div>
+    </>
   );
 };
 
@@ -387,7 +435,10 @@ const Board = () => {
           tasks={tasks.filter((task) => task.columnId === col.id)}
         />
       ))}
-      <Bin />
+      <div className="w-64 shrink-0">
+        <Bin />
+        <SaveChange className="mt-2" />
+      </div>
     </div>
   );
 };
