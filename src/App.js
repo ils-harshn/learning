@@ -36,10 +36,56 @@ export const useBoardStore = create((set) => ({
     set((state) => ({
       tasks: state.tasks.filter((task) => task.id !== taskId),
     })),
+
+  moveTask: (taskToBeMovedId, beforeWhichTaskId, columnId) =>
+    set((state) => {
+      // Find the task we want to move
+      const taskToMove = state.tasks.find(
+        (task) => task.id === taskToBeMovedId
+      );
+      if (!taskToMove) return state;
+
+      // Remove the task from its current position
+      const updatedTasks = state.tasks.filter(
+        (task) => task.id !== taskToBeMovedId
+      );
+
+      // If beforeWhichTaskId is -1, append to end of column
+      if (beforeWhichTaskId === "-1") {
+        return {
+          tasks: [...updatedTasks, { ...taskToMove, columnId: columnId }],
+        };
+      }
+
+      // Find the index where we should insert the task
+      const insertIndex = updatedTasks.findIndex(
+        (task) => task.id === beforeWhichTaskId
+      );
+
+      if (insertIndex === -1) {
+        // If we couldn't find the beforeWhichTaskId, return unchanged state
+        return state;
+      }
+
+      // Insert the task at the correct position with the new columnId
+      return {
+        tasks: [
+          ...updatedTasks.slice(0, insertIndex),
+          { ...taskToMove, columnId: columnId },
+          ...updatedTasks.slice(insertIndex),
+        ],
+      };
+    }),
 }));
 
 const DropIndicator = ({ before, columnId, className }) => {
-  return <div className={className}></div>;
+  return (
+    <div
+      data-beforeid={before}
+      data-columnid={columnId}
+      className={className}
+    ></div>
+  );
 };
 
 const Task = ({ task, className, dropIndicatorClass }) => {
@@ -158,16 +204,66 @@ const Column = ({
   dropIndicatorClass,
 }) => {
   const [isActive, setActive] = useState(false);
+  const moveTask = useBoardStore((state) => state.moveTask);
+
+  const getIndicators = () =>
+    Array.from(document.querySelectorAll(`[data-columnid="${id}"]`));
+
+  const findNearestIndicator = (e, indicators) => {
+    const closestIndicator = [...indicators].reduce(
+      (closest, indicator) => {
+        const box = indicator.getBoundingClientRect();
+        const offset = e.clientY - (box.top + box.height / 2);
+        if (
+          closest.offset === null ||
+          Math.abs(offset) < Math.abs(closest.offset)
+        ) {
+          return { offset, element: indicator };
+        }
+        return closest;
+      },
+      { offset: null, element: null }
+    );
+
+    return closestIndicator.element;
+  };
+
+  const clearHighlightIndicator = (eles) => {
+    const indicators = eles || getIndicators();
+
+    indicators.forEach((ele) => {
+      ele.style.opacity = "0";
+    });
+  };
+
+  const highlightIndicator = (e) => {
+    const indicators = getIndicators();
+    clearHighlightIndicator(indicators);
+    const nearestIndicator = findNearestIndicator(e, indicators);
+    nearestIndicator.style.opacity = 1;
+  };
 
   const handleDragStart = (e) => {
     e.preventDefault();
     setActive(true);
+    highlightIndicator(e);
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData("taskId");
-    console.log(taskId);
+
+    const indicators = getIndicators();
+    clearHighlightIndicator(indicators);
+
+    const nearestIndicator = findNearestIndicator(e, indicators);
+    const beforeId = nearestIndicator.dataset.beforeid;
+    const columnId = nearestIndicator.dataset.columnid;
+
+    if (beforeId !== taskId) {
+      moveTask(taskId, beforeId, columnId);
+    }
+
     setActive(false);
   };
 
@@ -178,7 +274,10 @@ const Column = ({
       }`}
       onDrop={handleDrop}
       onDragOver={handleDragStart}
-      onDragLeave={() => setActive(false)}
+      onDragLeave={() => {
+        setActive(false);
+        clearHighlightIndicator();
+      }}
     >
       <div className={`p-4 flex justify-between items-center ${headingColor}`}>
         <h3 className="font-medium text-lg">{title}</h3>
@@ -203,9 +302,16 @@ const Column = ({
             />
           </>
         ) : (
-          <div className="mx-4 border rounded mb-2 p-3 text-sm border-gray-700 text-center">
-            No Task Found
-          </div>
+          <>
+            <DropIndicator
+              columnId={id}
+              className={dropIndicatorClass}
+              before="-1"
+            />
+            <div className="mx-4 border rounded mb-2 p-3 text-sm border-gray-700 text-center">
+              No Task Found
+            </div>
+          </>
         )}
         <AddTask id={id} />
       </div>
