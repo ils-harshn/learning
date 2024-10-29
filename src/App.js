@@ -38,19 +38,30 @@ export const useBoardStore = create((set) => ({
     })),
 }));
 
-const Task = ({ task, className }) => {
+const DropIndicator = ({ before, columnId, className }) => {
+  return <div className={className}></div>;
+};
+
+const Task = ({ task, className, dropIndicatorClass }) => {
   const handleDragStart = (e) => {
     e.dataTransfer.setData("taskId", task.id);
   };
 
   return (
-    <div
-      draggable
-      onDragStart={handleDragStart}
-      className={`mx-4 mb-2 p-3 text-sm active:cursor-grabbing ${className}`}
-    >
-      {task.title}
-    </div>
+    <>
+      <DropIndicator
+        before={task.id}
+        columnId={task.columnId}
+        className={dropIndicatorClass}
+      />
+      <div
+        draggable
+        onDragStart={handleDragStart}
+        className={`mx-4 p-3 text-sm active:cursor-grabbing ${className}`}
+      >
+        {task.title}
+      </div>
+    </>
   );
 };
 
@@ -138,9 +149,37 @@ const AddTask = ({ id }) => {
   );
 };
 
-const Column = ({ id, title, tasks, headingColor, taskClass }) => {
+const Column = ({
+  id,
+  title,
+  tasks,
+  headingColor,
+  taskClass,
+  dropIndicatorClass,
+}) => {
+  const [isActive, setActive] = useState(false);
+
+  const handleDragStart = (e) => {
+    e.preventDefault();
+    setActive(true);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const taskId = e.dataTransfer.getData("taskId");
+    console.log(taskId);
+    setActive(false);
+  };
+
   return (
-    <div className="w-64 shrink-0 h-full rounded">
+    <div
+      className={`w-64 shrink-0 h-full rounded transition-colors duration-300 ${
+        isActive ? "bg-slate-900" : ""
+      }`}
+      onDrop={handleDrop}
+      onDragOver={handleDragStart}
+      onDragLeave={() => setActive(false)}
+    >
       <div className={`p-4 flex justify-between items-center ${headingColor}`}>
         <h3 className="font-medium text-lg">{title}</h3>
         <span className="text-sm">{tasks.length}</span>
@@ -148,9 +187,21 @@ const Column = ({ id, title, tasks, headingColor, taskClass }) => {
 
       <div>
         {tasks.length ? (
-          tasks.map((task) => (
-            <Task key={task.id} task={task} className={taskClass} />
-          ))
+          <>
+            {tasks.map((task) => (
+              <Task
+                key={task.id}
+                task={task}
+                className={taskClass}
+                dropIndicatorClass={dropIndicatorClass}
+              />
+            ))}
+            <DropIndicator
+              columnId={id}
+              className={dropIndicatorClass}
+              before="-1"
+            />
+          </>
         ) : (
           <div className="mx-4 border rounded mb-2 p-3 text-sm border-gray-700 text-center">
             No Task Found
@@ -214,6 +265,7 @@ const Board = () => {
       headingColor: "text-gray-400",
       taskClass:
         "border border-slate-600 text-slate-200 bg-slate-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400",
+      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-gray-700",
     },
     {
       id: "todo",
@@ -221,6 +273,7 @@ const Board = () => {
       headingColor: "text-blue-500",
       taskClass:
         "border border-blue-600 text-blue-200 bg-blue-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400",
+      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-blue-700",
     },
     {
       id: "inprogress",
@@ -228,6 +281,7 @@ const Board = () => {
       headingColor: "text-yellow-500",
       taskClass:
         "border border-yellow-600 text-yellow-200 bg-yellow-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-yellow-800 focus:outline-none focus:ring-2 focus:ring-yellow-400",
+      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-yellow-700",
     },
     {
       id: "done",
@@ -235,6 +289,7 @@ const Board = () => {
       headingColor: "text-green-500",
       taskClass:
         "border border-green-600 text-green-200 bg-green-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400",
+      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-green-700",
     },
   ];
 
