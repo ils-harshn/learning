@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { create } from "zustand";
 import { IoAdd } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const DUMMY_TASKS = [
   { columnId: "backlog", title: "Gather Requirements" },
@@ -39,35 +40,29 @@ export const useBoardStore = create((set) => ({
 
   moveTask: (taskToBeMovedId, beforeWhichTaskId, columnId) =>
     set((state) => {
-      // Find the task we want to move
       const taskToMove = state.tasks.find(
         (task) => task.id === taskToBeMovedId
       );
       if (!taskToMove) return state;
 
-      // Remove the task from its current position
       const updatedTasks = state.tasks.filter(
         (task) => task.id !== taskToBeMovedId
       );
 
-      // If beforeWhichTaskId is -1, append to end of column
       if (beforeWhichTaskId === "-1") {
         return {
           tasks: [...updatedTasks, { ...taskToMove, columnId: columnId }],
         };
       }
 
-      // Find the index where we should insert the task
       const insertIndex = updatedTasks.findIndex(
         (task) => task.id === beforeWhichTaskId
       );
 
       if (insertIndex === -1) {
-        // If we couldn't find the beforeWhichTaskId, return unchanged state
         return state;
       }
 
-      // Insert the task at the correct position with the new columnId
       return {
         tasks: [
           ...updatedTasks.slice(0, insertIndex),
@@ -100,13 +95,15 @@ const Task = ({ task, className, dropIndicatorClass }) => {
         columnId={task.columnId}
         className={dropIndicatorClass}
       />
-      <div
+      <motion.div
+        layout
+        layoutId={task.id}
         draggable
         onDragStart={handleDragStart}
         className={`mx-4 p-3 text-sm active:cursor-grabbing ${className}`}
       >
         {task.title}
-      </div>
+      </motion.div>
     </>
   );
 };
@@ -154,7 +151,7 @@ const AddTask = ({ id }) => {
   };
 
   return isAdding ? (
-    <form onSubmit={handleSubmit}>
+    <motion.form layout onSubmit={handleSubmit}>
       <div className="px-4">
         <TextArea text={text} setText={setText} />
         <div className="flex justify-end items-center mt-1">
@@ -179,9 +176,9 @@ const AddTask = ({ id }) => {
           </button>
         </div>
       </div>
-    </form>
+    </motion.form>
   ) : (
-    <div className="px-4">
+    <motion.div layout className="px-4">
       <button
         onClick={() => setIsAdding(true)}
         className="flex justify-center items-center border rounded mb-2 p-3 w-full text-sm border-gray-700 text-gray-200 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
@@ -191,7 +188,7 @@ const AddTask = ({ id }) => {
           <IoAdd />
         </span>
       </button>
-    </div>
+    </motion.div>
   );
 };
 
@@ -355,7 +352,7 @@ const Board = () => {
       title: "Backlog",
       headingColor: "text-gray-400",
       taskClass:
-        "border border-slate-600 text-slate-200 bg-slate-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400",
+        "border border-slate-600 text-slate-200 bg-slate-900 rounded hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400",
       dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-gray-700",
     },
     {
@@ -363,7 +360,7 @@ const Board = () => {
       title: "Todo",
       headingColor: "text-blue-500",
       taskClass:
-        "border border-blue-600 text-blue-200 bg-blue-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400",
+        "border border-blue-600 text-blue-200 bg-blue-900 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400",
       dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-blue-700",
     },
     {
@@ -371,7 +368,7 @@ const Board = () => {
       title: "In Progress",
       headingColor: "text-yellow-500",
       taskClass:
-        "border border-yellow-600 text-yellow-200 bg-yellow-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-yellow-800 focus:outline-none focus:ring-2 focus:ring-yellow-400",
+        "border border-yellow-600 text-yellow-200 bg-yellow-900 rounded hover:bg-yellow-800 focus:outline-none focus:ring-2 focus:ring-yellow-400",
       dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-yellow-700",
     },
     {
@@ -379,7 +376,7 @@ const Board = () => {
       title: "Done",
       headingColor: "text-green-500",
       taskClass:
-        "border border-green-600 text-green-200 bg-green-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400",
+        "border border-green-600 text-green-200 bg-green-900 rounded hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400",
       dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-green-700",
     },
   ];
