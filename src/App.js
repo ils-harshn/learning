@@ -284,7 +284,7 @@ const Column = ({
         <span className="text-sm">{tasks.length}</span>
       </div>
 
-      <div>
+      <div className="h-full w-full">
         {tasks.length ? (
           <>
             {tasks.map((task) => (
@@ -371,7 +371,7 @@ const Board = () => {
       headingColor: "text-gray-400",
       taskClass:
         "border border-slate-600 text-slate-200 bg-slate-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400",
-      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-gray-700",
+      dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-gray-700",
     },
     {
       id: "todo",
@@ -379,7 +379,7 @@ const Board = () => {
       headingColor: "text-blue-500",
       taskClass:
         "border border-blue-600 text-blue-200 bg-blue-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400",
-      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-blue-700",
+      dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-blue-700",
     },
     {
       id: "inprogress",
@@ -387,7 +387,7 @@ const Board = () => {
       headingColor: "text-yellow-500",
       taskClass:
         "border border-yellow-600 text-yellow-200 bg-yellow-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-yellow-800 focus:outline-none focus:ring-2 focus:ring-yellow-400",
-      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-yellow-700",
+      dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-yellow-700",
     },
     {
       id: "done",
@@ -395,7 +395,7 @@ const Board = () => {
       headingColor: "text-green-500",
       taskClass:
         "border border-green-600 text-green-200 bg-green-900 rounded shadow-md transition duration-200 ease-in-out hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400",
-      dropIndicatorClass: "mx-4 h-1 opacity-0 bg-green-700",
+      dropIndicatorClass: "my-0.5 h-0.5 mx-4 opacity-0 bg-green-700",
     },
   ];
 
