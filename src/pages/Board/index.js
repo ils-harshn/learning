@@ -455,6 +455,9 @@ const Board = () => {
     if (selectedBoard) {
       setBoard(selectedBoard);
       setTasks(selectedBoard.id);
+    } else {
+      alert("No board found for this!");
+      navigate("/");
     }
     return () => {
       clearTasksFromStore();
