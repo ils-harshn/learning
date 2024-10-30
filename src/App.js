@@ -148,7 +148,7 @@ const Task = ({ task, className, dropIndicatorClass }) => {
           onDragStart={handleDragStart}
           className={`mx-4 p-3 text-sm active:cursor-grabbing ${className} flex group items-center`}
         >
-          <div className="flex-grow whitespace-pre-wrap break-all">
+          <div className="flex-grow whitespace-pre-wrap break-words truncate">
             {task.title}
           </div>
           <div className="opacity-0 group-hover:opacity-100 transition-opacity ml-1.5 cursor-pointer">
