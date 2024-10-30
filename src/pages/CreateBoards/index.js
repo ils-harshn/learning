@@ -89,11 +89,13 @@ const BoardCard = ({ board, index }) => {
         <span className="text-slate-500 group-hover:text-slate-400">
           #{index + 1}{" "}
         </span>
-        <span className="text-zinc-400 group-hover:text-zinc-300">
+        <span className="text-zinc-400 group-hover:text-zinc-300 break-words whitespace-pre-wrap truncate">
           {board.title}
         </span>
       </h2>
-      <p className="text-sm text-gray-500">{board.description}</p>
+      <p className="text-sm text-gray-500 break-words whitespace-pre-wrap truncate">
+        {board.description}
+      </p>
     </div>
   );
 };
