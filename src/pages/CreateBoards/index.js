@@ -121,7 +121,7 @@ const Boards = () => {
 
 const CreateBoards = () => {
   return (
-    <div className="h-screen w-full flex justify-center items-center px-2">
+    <div className="h-screen w-full flex justify-center items-center px-2 bg-neutral-900 text-neutral-50">
       <Boards />
     </div>
   );

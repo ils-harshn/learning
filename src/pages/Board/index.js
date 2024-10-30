@@ -468,7 +468,7 @@ const Board = () => {
   }, []);
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full bg-neutral-900 text-neutral-50">
       <div className="absolute top-4 left-16 flex items-center">
         <button
           className="border p-1 rounded mr-3 opacity-50 hover:opacity-100 transition-opacity"
