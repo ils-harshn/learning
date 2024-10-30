@@ -10,7 +10,12 @@ export const useBoardStore = create((set) => ({
       return { boards: newBoards };
     });
   },
-  tasks: JSON.parse(localStorage.getItem("data")) || [],
+
+  tasks: [],
+  setTasks: (boardId) =>
+    set({ tasks: JSON.parse(localStorage.getItem(boardId)) || [] }),
+  clearTasksFromStore: () => set({ tasks: [], savedChanges: true }),
+
   savedChanges: true,
   toggleSavedChanges: (value) => set({ savedChanges: value }),
 

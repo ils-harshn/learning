@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { IoAdd } from "react-icons/io5";
+import { IoAdd, IoChevronBackOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { motion } from "framer-motion";
 import { FaEdit, FaSave } from "react-icons/fa";
 import { IoIosCloudDone } from "react-icons/io";
 import { useBoardStore } from "../../store/useBoardStore";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DropIndicator = ({ before, columnId, className }) => {
   return (
@@ -404,9 +404,13 @@ const Bin = () => {
 
 const Board = () => {
   const { id } = useParams();
-
-  console.log(id);
+  const navigate = useNavigate();
+  const [board, setBoard] = useState(null);
   const tasks = useBoardStore((state) => state.tasks);
+  const setTasks = useBoardStore((state) => state.setTasks);
+  const clearTasksFromStore = useBoardStore(
+    (state) => state.clearTasksFromStore
+  );
 
   const COLUMNS = [
     {
@@ -443,8 +447,33 @@ const Board = () => {
     },
   ];
 
+  useEffect(() => {
+    const selectedBoard = useBoardStore
+      .getState()
+      .boards.find((board) => board.id === id);
+
+    if (selectedBoard) {
+      setBoard(selectedBoard);
+      setTasks(selectedBoard.id);
+    }
+    return () => {
+      clearTasksFromStore();
+    };
+  }, []);
+
   return (
     <div className="h-screen w-full">
+      <div className="absolute top-4 left-16 flex items-center">
+        <button
+          className="border p-1 rounded mr-3 opacity-50 hover:opacity-100 transition-opacity"
+          onClick={() => navigate("/")}
+        >
+          <IoChevronBackOutline />
+        </button>
+        <h3 className="text-lg text-slate-400 font-bold opacity-50 hover:opacity-100 transition-opacity">
+          {board?.title}
+        </h3>
+      </div>
       <div className="flex gap-3 h-full w-full overflow-scroll p-12 scrollbar-hide">
         {COLUMNS.map((col) => (
           <Column
