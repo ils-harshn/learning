@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { FaEdit, FaSave } from "react-icons/fa";
 import { IoIosCloudDone } from "react-icons/io";
 import { useBoardStore } from "../../store/useBoardStore";
+import { useParams } from "react-router-dom";
 
 const DropIndicator = ({ before, columnId, className }) => {
   return (
@@ -402,6 +403,9 @@ const Bin = () => {
 };
 
 const Board = () => {
+  const { id } = useParams();
+
+  console.log(id);
   const tasks = useBoardStore((state) => state.tasks);
 
   const COLUMNS = [

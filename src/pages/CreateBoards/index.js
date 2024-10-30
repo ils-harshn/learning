@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TextArea } from "../Board";
 import { FaSave } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isAdding, setIsAdding] = useState(false);
@@ -78,8 +79,12 @@ const Header = () => {
 };
 
 const BoardCard = ({ board, index }) => {
+  const navigate = useNavigate();
   return (
-    <div className="border border-gray-800 p-3 mb-2 group cursor-pointer">
+    <div
+      className="border border-gray-800 p-3 mb-2 group cursor-pointer"
+      onClick={() => navigate(`/board/${board.id}`)}
+    >
       <h2 className="font-semibold text-lg mb-2">
         <span className="text-slate-500 group-hover:text-slate-400">
           #{index + 1}{" "}
@@ -99,7 +104,7 @@ const List = () => {
   return (
     <div className="px-4 flex-grow overflow-auto custom-scrollbar">
       {boards.map((board, index) => (
-        <BoardCard board={board} index={index} />
+        <BoardCard key={board} board={board} index={index} />
       ))}
     </div>
   );
