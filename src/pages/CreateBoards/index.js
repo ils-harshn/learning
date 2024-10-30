@@ -104,7 +104,7 @@ const List = () => {
   return (
     <div className="px-4 flex-grow overflow-auto custom-scrollbar">
       {boards.map((board, index) => (
-        <BoardCard key={board} board={board} index={index} />
+        <BoardCard key={board.id} board={board} index={index} />
       ))}
     </div>
   );

@@ -320,16 +320,19 @@ const Column = ({
   );
 };
 
-const SaveChange = ({ className }) => {
+const SaveChange = ({ className, board }) => {
   const savedChanges = useBoardStore((state) => state.savedChanges);
   const toggleSavedChanges = useBoardStore((state) => state.toggleSavedChanges);
 
   const saveChange = () => {
-    localStorage.setItem(
-      "data",
-      JSON.stringify(useBoardStore.getState().tasks)
-    );
-    toggleSavedChanges(true);
+    console.log(board);
+    if (board?.id) {
+      localStorage.setItem(
+        board.id,
+        JSON.stringify(useBoardStore.getState().tasks)
+      );
+      toggleSavedChanges(true);
+    }
   };
 
   useEffect(() => {
@@ -487,7 +490,7 @@ const Board = () => {
         ))}
         <div className="w-64 shrink-0">
           <Bin />
-          <SaveChange className="mt-2" />
+          <SaveChange key={board?.id} className="mt-2" board={board} />
         </div>
       </div>
     </div>
