@@ -5,7 +5,7 @@ import { create } from "zustand";
 import { IoAdd } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { motion } from "framer-motion";
-import { FaSave } from "react-icons/fa";
+import { FaEdit, FaSave } from "react-icons/fa";
 import { IoIosCloudDone } from "react-icons/io";
 
 export const useBoardStore = create((set) => ({
@@ -70,7 +70,48 @@ const DropIndicator = ({ before, columnId, className }) => {
   );
 };
 
+const EditTask = ({ task, setIsEditing }) => {
+  const [text, setText] = useState(task.title);
+
+  const submitForm = () => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <motion.form onSubmit={handleSubmit}>
+      <div className="px-4">
+        <TextArea text={text} setText={setText} submitForm={submitForm} />
+        <div className="flex justify-end items-center mt-1">
+          <button
+            type="button"
+            onClick={() => {
+              setText("");
+              setIsEditing(false);
+            }}
+            className="text-orange-600 mr-2"
+          >
+            discard
+          </button>
+          <button
+            type="submit"
+            className="flex justify-center items-center border rounded px-3 py-2 text-xs border-yellow-500 text-yellow-500 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+          >
+            <span>Save</span>
+            <span className="ml-2">
+              <FaSave />
+            </span>
+          </button>
+        </div>
+      </div>
+    </motion.form>
+  );
+};
+
 const Task = ({ task, className, dropIndicatorClass }) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const handleDragStart = (e) => {
     e.dataTransfer.setData("taskId", task.id);
   };
@@ -82,15 +123,22 @@ const Task = ({ task, className, dropIndicatorClass }) => {
         columnId={task.columnId}
         className={dropIndicatorClass}
       />
-      <motion.div
-        layout
-        layoutId={task.id}
-        draggable
-        onDragStart={handleDragStart}
-        className={`mx-4 p-3 text-sm active:cursor-grabbing ${className}`}
-      >
-        {task.title}
-      </motion.div>
+      {isEditing ? (
+        <EditTask task={task} setIsEditing={setIsEditing} />
+      ) : (
+        <motion.div
+          layout
+          layoutId={task.id}
+          draggable
+          onDragStart={handleDragStart}
+          className={`mx-4 p-3 text-sm active:cursor-grabbing ${className} flex group items-center`}
+        >
+          <div className="flex-grow">{task.title}</div>
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity ml-1.5 cursor-pointer">
+            <FaEdit onClick={() => setIsEditing(true)} />
+          </div>
+        </motion.div>
+      )}
     </>
   );
 };
@@ -116,6 +164,10 @@ const TextArea = ({ text, setText, submitForm }) => {
 
   useEffect(() => {
     handleInput();
+    if (textareaRef.current) {
+      textareaRef.current.selectionStart = text.length;
+      textareaRef.current.selectionEnd = text.length;
+    }
   }, []);
 
   return (
