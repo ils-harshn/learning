@@ -1,58 +1,15 @@
 import { create } from "zustand";
 
 export const useBoardStore = create((set) => ({
-  boards: [
-    {
-      id: "1",
-      title: "Home Works",
-      description: "A board to keep track of home tasks sad A board to keep track of home tasks sad A board to keep track of home tasks sad A board to keep track of home tasks sad A board to keep track of home tasks sad ",
-    },
-    {
-      id: "2",
-      title: "Work Projects",
-      description: "A board to organize work-related tasks and projects",
-    },
-    {
-      id: "3",
-      title: "Personal Goals",
-      description: "A board to set and monitor personal goals",
-    },
-    {
-      id: "4",
-      title: "Fitness Plan",
-      description: "A board to track fitness routines and goals",
-    },
-    {
-      id: "5",
-      title: "Reading List",
-      description: "A board to keep track of books and articles to read",
-    },
-    {
-      id: "6",
-      title: "Travel Planning",
-      description: "A board for planning and organizing travel details",
-    },
-    {
-      id: "7",
-      title: "Shopping List",
-      description: "A board for managing shopping needs and wishlist items",
-    },
-    {
-      id: "8",
-      title: "Event Organization",
-      description: "A board to plan and manage events and gatherings",
-    },
-    {
-      id: "9",
-      title: "Learning Tracker",
-      description: "A board to track learning progress and resources",
-    },
-    {
-      id: "10",
-      title: "Health & Wellness",
-      description: "A board to monitor health and wellness activities",
-    },
-  ],
+  boards: JSON.parse(localStorage.getItem("boards")) || [],
+
+  addBoard: (newBoard) => {
+    set((state) => {
+      const newBoards = [newBoard, ...state.boards];
+      localStorage.setItem("boards", JSON.stringify(newBoards));
+      return { boards: newBoards };
+    });
+  },
   tasks: JSON.parse(localStorage.getItem("data")) || [],
   savedChanges: true,
   toggleSavedChanges: (value) => set({ savedChanges: value }),

@@ -3,11 +3,25 @@ import { useBoardStore } from "../../store/useBoardStore";
 import { useState } from "react";
 import { TextArea } from "../Board";
 import { FaSave } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 
 const Header = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const addBoard = useBoardStore((state) => state.addBoard);
+
+  const handleAddBoard = () => {
+    addBoard({
+      id: uuidv4(),
+      title: title,
+      description: description,
+    });
+
+    setTitle("");
+    setDescription("");
+    setIsAdding(false);
+  };
 
   return (
     <>
@@ -47,7 +61,10 @@ const Header = () => {
             >
               discard
             </button>
-            <button className="flex justify-center items-center border rounded px-3 py-2 text-xs border-yellow-500 text-yellow-500 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+            <button
+              onClick={handleAddBoard}
+              className="flex justify-center items-center border rounded px-3 py-2 text-xs border-yellow-500 text-yellow-500 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+            >
               <span>Save</span>
               <span className="ml-2">
                 <FaSave />
