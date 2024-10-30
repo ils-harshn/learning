@@ -12,11 +12,21 @@ export const useBoardStore = create((set) => ({
   tasks: JSON.parse(localStorage.getItem("data")) || [],
   savedChanges: true,
   toggleSavedChanges: (value) => set({ savedChanges: value }),
+
   addTask: (newTask) =>
     set((state) => ({
       tasks: [...state.tasks, newTask],
       savedChanges: false,
     })),
+
+  editTask: (taskId, updatedTaskData) =>
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task.id === taskId ? { ...task, ...updatedTaskData } : task
+      ),
+      savedChanges: false,
+    })),
+
   deleteTask: (taskId) =>
     set((state) => ({
       tasks: state.tasks.filter((task) => task.id !== taskId),
@@ -72,11 +82,16 @@ const DropIndicator = ({ before, columnId, className }) => {
 
 const EditTask = ({ task, setIsEditing }) => {
   const [text, setText] = useState(task.title);
+  const editTask = useBoardStore((state) => state.editTask);
 
-  const submitForm = () => {};
+  const submitForm = () => {
+    editTask(task.id, { title: text });
+    setIsEditing(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    submitForm();
   };
 
   return (
