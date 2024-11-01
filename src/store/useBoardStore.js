@@ -17,6 +17,7 @@ export const useBoardStore = create((set) => ({
         (board) => board.id !== boardId
       );
       localStorage.setItem("boards", JSON.stringify(updatedBoards));
+      localStorage.removeItem(boardId);
       return { boards: updatedBoards };
     }),
 
