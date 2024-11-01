@@ -20,6 +20,15 @@ export const useBoardStore = create((set) => ({
       return { boards: updatedBoards };
     }),
 
+  editBoard: (boardId, updatedboardData) =>
+    set((state) => {
+      const updatedBoards = state.boards.map((board) =>
+        board.id === boardId ? { ...board, ...updatedboardData } : board
+      );
+      localStorage.setItem("boards", JSON.stringify(updatedBoards));
+      return { boards: updatedBoards };
+    }),
+
   tasks: [],
   setTasks: (boardId) =>
     set({ tasks: JSON.parse(localStorage.getItem(boardId)) || [] }),

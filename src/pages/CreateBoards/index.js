@@ -79,9 +79,58 @@ const Header = () => {
   );
 };
 
+const BoardCardEdit = ({ board, setEditing }) => {
+  const [title, setTitle] = useState(board.title);
+  const [description, setDescription] = useState(board.description);
+  const editBoard = useBoardStore((state) => state.editBoard);
+
+  const handleEditBoard = () => {
+    editBoard(board.id, {
+      title: title,
+      description: description,
+    });
+    setEditing(false);
+  };
+
+  return (
+    <div className="px-4 my-3">
+      <TextArea text={title} setText={setTitle} placeholder="Board title" />
+      <TextArea
+        text={description}
+        setText={setDescription}
+        autoFocus={false}
+        className="min-h-20"
+        placeholder="Description"
+      />
+
+      <div className="flex justify-end items-center mt-1">
+        <button
+          type="button"
+          onClick={() => {
+            setEditing(false);
+          }}
+          className="text-orange-600 mr-2"
+        >
+          discard
+        </button>
+        <button
+          onClick={handleEditBoard}
+          className="flex justify-center items-center border rounded px-3 py-2 text-xs border-yellow-500 text-yellow-500 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+        >
+          <span>Save</span>
+          <span className="ml-2">
+            <FaSave />
+          </span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const BoardCard = ({ board, index }) => {
   const navigate = useNavigate();
   const deleteBoard = useBoardStore((state) => state.deleteBoard);
+  const [isEditing, setEditing] = useState(false);
 
   const handleDelete = (event) => {
     event.stopPropagation();
@@ -90,9 +139,12 @@ const BoardCard = ({ board, index }) => {
 
   const handleEdit = (event) => {
     event.stopPropagation();
+    setEditing(true);
   };
 
-  return (
+  return isEditing ? (
+    <BoardCardEdit board={board} setEditing={setEditing} />
+  ) : (
     <div
       className="border border-gray-800 p-3 mb-2 group cursor-pointer relative group"
       onClick={() => navigate(`/board/${board.id}`)}
