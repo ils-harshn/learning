@@ -5,6 +5,7 @@ import { TextArea } from "../Board";
 import { FaSave } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const Header = () => {
   const [isAdding, setIsAdding] = useState(false);
@@ -80,9 +81,20 @@ const Header = () => {
 
 const BoardCard = ({ board, index }) => {
   const navigate = useNavigate();
+  const deleteBoard = useBoardStore((state) => state.deleteBoard);
+
+  const handleDelete = (event) => {
+    event.stopPropagation();
+    deleteBoard(board.id);
+  };
+
+  const handleEdit = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <div
-      className="border border-gray-800 p-3 mb-2 group cursor-pointer"
+      className="border border-gray-800 p-3 mb-2 group cursor-pointer relative group"
       onClick={() => navigate(`/board/${board.id}`)}
     >
       <h2 className="font-semibold text-lg mb-2">
@@ -96,6 +108,14 @@ const BoardCard = ({ board, index }) => {
       <p className="text-sm text-gray-500 break-words whitespace-pre-wrap truncate">
         {board.description}
       </p>
+      <div className="absolute flex flex-col gap-1 top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="opacity-30 hover:opacity-100" onClick={handleDelete}>
+          <MdDelete />
+        </div>
+        <div className="opacity-30 hover:opacity-100" onClick={handleEdit}>
+          <MdEdit />
+        </div>
+      </div>
     </div>
   );
 };

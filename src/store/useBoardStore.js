@@ -11,6 +11,15 @@ export const useBoardStore = create((set) => ({
     });
   },
 
+  deleteBoard: (boardId) =>
+    set((state) => {
+      const updatedBoards = state.boards.filter(
+        (board) => board.id !== boardId
+      );
+      localStorage.setItem("boards", JSON.stringify(updatedBoards));
+      return { boards: updatedBoards };
+    }),
+
   tasks: [],
   setTasks: (boardId) =>
     set({ tasks: JSON.parse(localStorage.getItem(boardId)) || [] }),
