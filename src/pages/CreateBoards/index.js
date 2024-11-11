@@ -1,17 +1,19 @@
 import { IoAdd } from "react-icons/io5";
 import { useBoardStore } from "../../store/useBoardStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextArea } from "../Board";
 import { FaSave } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { IoMdExit } from "react-icons/io";
 
 const Header = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const addBoard = useBoardStore((state) => state.addBoard);
+  const removeAppId = useBoardStore((state) => state.removeAppId);
 
   const handleAddBoard = () => {
     addBoard({
@@ -29,16 +31,27 @@ const Header = () => {
     <>
       <div className="flex justify-between items-center p-4">
         <h2 className="text-2xl">Boards</h2>
-        <button
-          disabled={isAdding}
-          onClick={() => setIsAdding(true)}
-          className="flex justify-center items-center border rounded px-3 py-2 text-xs border-gray-700 text-gray-200 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
-        >
-          <span>Add Board</span>
-          <span className="ml-2">
-            <IoAdd />
-          </span>
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            disabled={isAdding}
+            onClick={() => setIsAdding(true)}
+            className="flex justify-center items-center border rounded px-3 py-2 text-xs border-gray-700 text-gray-200 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+          >
+            <span>Add Board</span>
+            <span className="ml-2">
+              <IoAdd />
+            </span>
+          </button>
+          <button
+            onClick={() => removeAppId()}
+            className="flex justify-center items-center border rounded px-3 py-2 text-xs border-gray-700 text-gray-200 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+          >
+            <span>Exit</span>
+            <span className="ml-2">
+              <IoMdExit />
+            </span>
+          </button>
+        </div>
       </div>
       {isAdding ? (
         <div className="px-4 mb-3">
@@ -185,6 +198,13 @@ const List = () => {
 };
 
 const Boards = () => {
+  const app_id = useBoardStore((state) => state.app_id);
+  const getBoards = useBoardStore((state) => state.getBoards);
+
+  useEffect(() => {
+    getBoards(app_id);
+  }, []);
+
   return (
     <div className="h-[80vh] min-w-64 max-w-96 w-full border rounded border-gray-600 flex flex-col">
       <Header />
@@ -193,29 +213,41 @@ const Boards = () => {
   );
 };
 
+const AskAppId = () => {
+  const [appid, setAppid] = useState("");
+  const enterAppwithId = useBoardStore((state) => state.setAppId);
+
+  const handleSetAppId = (e) => {
+    e.preventDefault();
+    if (appid.trim()) {
+      enterAppwithId(appid.trim());
+    }
+  };
+
+  return (
+    <form className="flex flex-col gap-2" onSubmit={handleSetAppId}>
+      <input
+        value={appid}
+        onChange={(e) => setAppid(e.target.value)}
+        placeholder="Enter App Id"
+        className="bg-transparent border border-gray-600 rounded p-2 text-sm text-gray-200 placeholder-gray-500 transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+      />
+      <button
+        type="submit"
+        className="flex justify-center items-center border rounded px-3 py-2 text-xs border-yellow-500 text-yellow-500 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+      >
+        <span>Submit</span>
+      </button>
+    </form>
+  );
+};
+
 const CreateBoards = () => {
   const app_id = useBoardStore((state) => state.app_id);
 
-  console.log(app_id);
-
   return (
     <div className="h-screen w-full flex justify-center items-center px-2 bg-neutral-900 text-neutral-50">
-      {app_id ? (
-        <Boards />
-      ) : (
-        <div className="flex flex-col gap-2">
-          <input
-            placeholder="Enter App Id"
-            className="bg-transparent border border-gray-600 rounded p-2 text-sm text-gray-200 placeholder-gray-500 transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
-          />
-          <button
-            type="submit"
-            className="flex justify-center items-center border rounded px-3 py-2 text-xs border-yellow-500 text-yellow-500 bg-gray-800 transition duration-200 ease-in-out hover:bg-gray-700 hover:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
-          >
-            <span>Submit</span>
-          </button>
-        </div>
-      )}
+      {app_id ? <Boards /> : <AskAppId />}
     </div>
   );
 };

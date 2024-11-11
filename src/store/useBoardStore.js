@@ -1,9 +1,23 @@
 import { create } from "zustand";
 
-export const useBoardStore = create((set) => ({
-  app_id: localStorage.getItem("app_id") || "",
+const APIURI = "https://lean-pickled-crustacean.glitch.me";
 
-  boards: JSON.parse(localStorage.getItem("boards")) || [],
+const API_ENDPOINTS = {
+  GET_BOARDS: (app_id) => `${APIURI}/${app_id}/boards`,
+};
+
+export const useBoardStore = create((set, get) => ({
+  app_id: localStorage.getItem("app_id") || "",
+  setAppId: (id) => {
+    localStorage.setItem("app_id", id);
+    set({ app_id: id });
+  },
+  removeAppId: () => {
+    localStorage.removeItem("app_id");
+    set({ app_id: "" });
+  },
+
+  boards: [],
 
   addBoard: (newBoard) => {
     set((state) => {
@@ -95,4 +109,22 @@ export const useBoardStore = create((set) => ({
         savedChanges: false,
       };
     }),
+
+  // apis
+  getBoards: () => {
+    const app_id = get().app_id;
+    fetch(API_ENDPOINTS.GET_BOARDS(app_id))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        set({ boards: data });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  },
 }));
