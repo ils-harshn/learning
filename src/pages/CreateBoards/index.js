@@ -199,10 +199,10 @@ const List = () => {
 
 const Boards = () => {
   const app_id = useBoardStore((state) => state.app_id);
-  const getBoards = useBoardStore((state) => state.getBoards);
+  const getBoardsApi = useBoardStore((state) => state.getBoardsApi);
 
   useEffect(() => {
-    getBoards(app_id);
+    getBoardsApi(app_id);
   }, []);
 
   return (

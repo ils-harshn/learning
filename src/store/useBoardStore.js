@@ -1,9 +1,13 @@
+import axios from "axios";
 import { create } from "zustand";
 
 const APIURI = "https://lean-pickled-crustacean.glitch.me";
 
 const API_ENDPOINTS = {
   GET_BOARDS: (app_id) => `${APIURI}/${app_id}/boards`,
+  ADD_BOARD: (app_id) => `${APIURI}/${app_id}/board`,
+  DELETE_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
+  EDIT_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
 };
 
 export const useBoardStore = create((set, get) => ({
@@ -22,7 +26,7 @@ export const useBoardStore = create((set, get) => ({
   addBoard: (newBoard) => {
     set((state) => {
       const newBoards = [newBoard, ...state.boards];
-      localStorage.setItem("boards", JSON.stringify(newBoards));
+      get().addBoardApi(newBoard);
       return { boards: newBoards };
     });
   },
@@ -32,8 +36,7 @@ export const useBoardStore = create((set, get) => ({
       const updatedBoards = state.boards.filter(
         (board) => board.id !== boardId
       );
-      localStorage.setItem("boards", JSON.stringify(updatedBoards));
-      localStorage.removeItem(boardId);
+      get().deleteBoardApi(boardId);
       return { boards: updatedBoards };
     }),
 
@@ -42,7 +45,7 @@ export const useBoardStore = create((set, get) => ({
       const updatedBoards = state.boards.map((board) =>
         board.id === boardId ? { ...board, ...updatedboardData } : board
       );
-      localStorage.setItem("boards", JSON.stringify(updatedBoards));
+      get().editBoardApi(boardId, updatedboardData);
       return { boards: updatedBoards };
     }),
 
@@ -111,20 +114,49 @@ export const useBoardStore = create((set, get) => ({
     }),
 
   // apis
-  getBoards: () => {
+  getBoardsApi: () => {
     const app_id = get().app_id;
-    fetch(API_ENDPOINTS.GET_BOARDS(app_id))
+    axios
+      .get(API_ENDPOINTS.GET_BOARDS(app_id))
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        set({ boards: data });
+        set({ boards: response.data });
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      });
+  },
+  addBoardApi: (newBoard) => {
+    const app_id = get().app_id;
+    console.log(newBoard);
+    axios
+      .post(API_ENDPOINTS.ADD_BOARD(app_id), newBoard)
+      .then((response) => {
+        console.log("Board added:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error adding board:", error);
+      });
+  },
+  deleteBoardApi: (boardId) => {
+    const app_id = get().app_id;
+    axios
+      .delete(API_ENDPOINTS.DELETE_BOARD(app_id, boardId))
+      .then((response) => {
+        console.log("Board deleted:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error deleting board:", error);
+      });
+  },
+  editBoardApi: (boardId, updatedBoardData) => {
+    const app_id = get().app_id;
+    axios
+      .put(API_ENDPOINTS.EDIT_BOARD(app_id, boardId), updatedBoardData)
+      .then((response) => {
+        console.log("Board updated:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating board:", error);
       });
   },
 }));
