@@ -410,7 +410,7 @@ const Board = () => {
   const navigate = useNavigate();
   const [board, setBoard] = useState(null);
   const tasks = useBoardStore((state) => state.tasks);
-  const setTasks = useBoardStore((state) => state.setTasks);
+  const getTasksApi = useBoardStore((state) => state.getTasksApi);
   const clearTasksFromStore = useBoardStore(
     (state) => state.clearTasksFromStore
   );
@@ -451,17 +451,8 @@ const Board = () => {
   ];
 
   useEffect(() => {
-    const selectedBoard = useBoardStore
-      .getState()
-      .boards.find((board) => board.id === id);
-
-    if (selectedBoard) {
-      setBoard(selectedBoard);
-      setTasks(selectedBoard.id);
-    } else {
-      alert("No board found for this!");
-      navigate("/");
-    }
+    setBoard(id);
+    getTasksApi(id);
     return () => {
       clearTasksFromStore();
     };

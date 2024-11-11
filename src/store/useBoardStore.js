@@ -8,6 +8,7 @@ const API_ENDPOINTS = {
   ADD_BOARD: (app_id) => `${APIURI}/${app_id}/board`,
   DELETE_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
   EDIT_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
+  GET_TASKS: (app_id, board_id) => `${APIURI}/${app_id}/${board_id}/tasks`,
 };
 
 export const useBoardStore = create((set, get) => ({
@@ -50,8 +51,6 @@ export const useBoardStore = create((set, get) => ({
     }),
 
   tasks: [],
-  setTasks: (boardId) =>
-    set({ tasks: JSON.parse(localStorage.getItem(boardId)) || [] }),
   clearTasksFromStore: () => set({ tasks: [], savedChanges: true }),
 
   savedChanges: true,
@@ -157,6 +156,17 @@ export const useBoardStore = create((set, get) => ({
       })
       .catch((error) => {
         console.error("Error updating board:", error);
+      });
+  },
+  getTasksApi: (boardId) => {
+    const app_id = get().app_id;
+    axios
+      .get(API_ENDPOINTS.GET_TASKS(app_id, boardId))
+      .then((response) => {
+        set({ tasks: response.data });
+      })
+      .catch((error) => {
+        console.error("Error fetching tasks:", error);
       });
   },
 }));
