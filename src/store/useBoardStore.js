@@ -1,7 +1,8 @@
 import axios from "axios";
 import { create } from "zustand";
 
-const APIURI = "https://lean-pickled-crustacean.glitch.me";
+// const APIURI = "https://lean-pickled-crustacean.glitch.me";
+const APIURI = "https://harshkanbanapi.pythonanywhere.com";
 
 const API_ENDPOINTS = {
   GET_BOARDS: (app_id) => `${APIURI}/${app_id}/boards`,
