@@ -216,6 +216,9 @@ const Boards = () => {
 const AskAppId = () => {
   const [appid, setAppid] = useState("");
   const enterAppwithId = useBoardStore((state) => state.setAppId);
+  const clearBoardsFromStore = useBoardStore(
+    (state) => state.clearBoardsFromStore
+  );
 
   const handleSetAppId = (e) => {
     e.preventDefault();
@@ -223,6 +226,10 @@ const AskAppId = () => {
       enterAppwithId(appid.trim());
     }
   };
+
+  useEffect(() => {
+    clearBoardsFromStore();
+  }, []);
 
   return (
     <form className="flex flex-col gap-2" onSubmit={handleSetAppId}>

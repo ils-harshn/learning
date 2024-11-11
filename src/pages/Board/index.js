@@ -322,16 +322,18 @@ const Column = ({
 
 const SaveChange = ({ className, board }) => {
   const savedChanges = useBoardStore((state) => state.savedChanges);
-  const toggleSavedChanges = useBoardStore((state) => state.toggleSavedChanges);
+  const saveChangesApi = useBoardStore((state) => state.saveTaskChangesApi);
 
   const saveChange = () => {
     console.log(board);
+    // console.log(board);
     if (board?.id) {
-      localStorage.setItem(
-        board.id,
-        JSON.stringify(useBoardStore.getState().tasks)
-      );
-      toggleSavedChanges(true);
+      // localStorage.setItem(
+      //   board.id,
+      //   JSON.stringify(useBoardStore.getState().tasks)
+      // );
+      // toggleSavedChanges(true);
+      saveChangesApi(board.id, useBoardStore.getState().tasks);
     }
   };
 
@@ -407,6 +409,7 @@ const Bin = () => {
 
 const Board = () => {
   const { id } = useParams();
+  const app_id = useBoardStore((state) => state.app_id);
   const navigate = useNavigate();
   const [board, setBoard] = useState(null);
   const tasks = useBoardStore((state) => state.tasks);
@@ -451,7 +454,10 @@ const Board = () => {
   ];
 
   useEffect(() => {
-    setBoard(id);
+    if (!app_id) navigate("/");
+    setBoard({
+      id: id,
+    });
     getTasksApi(id);
     return () => {
       clearTasksFromStore();

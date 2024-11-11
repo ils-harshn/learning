@@ -9,6 +9,7 @@ const API_ENDPOINTS = {
   DELETE_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
   EDIT_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
   GET_TASKS: (app_id, board_id) => `${APIURI}/${app_id}/${board_id}/tasks`,
+  UPDATE_TASKS: (app_id, board_id) => `${APIURI}/${app_id}/${board_id}/tasks`,
 };
 
 export const useBoardStore = create((set, get) => ({
@@ -51,7 +52,6 @@ export const useBoardStore = create((set, get) => ({
     }),
 
   tasks: [],
-  clearTasksFromStore: () => set({ tasks: [], savedChanges: true }),
 
   savedChanges: true,
   toggleSavedChanges: (value) => set({ savedChanges: value }),
@@ -120,43 +120,29 @@ export const useBoardStore = create((set, get) => ({
       .then((response) => {
         set({ boards: response.data });
       })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+      .catch((error) => {});
   },
   addBoardApi: (newBoard) => {
     const app_id = get().app_id;
-    console.log(newBoard);
+
     axios
       .post(API_ENDPOINTS.ADD_BOARD(app_id), newBoard)
-      .then((response) => {
-        console.log("Board added:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error adding board:", error);
-      });
+      .then((response) => {})
+      .catch((error) => {});
   },
   deleteBoardApi: (boardId) => {
     const app_id = get().app_id;
     axios
       .delete(API_ENDPOINTS.DELETE_BOARD(app_id, boardId))
-      .then((response) => {
-        console.log("Board deleted:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error deleting board:", error);
-      });
+      .then((response) => {})
+      .catch((error) => {});
   },
   editBoardApi: (boardId, updatedBoardData) => {
     const app_id = get().app_id;
     axios
       .put(API_ENDPOINTS.EDIT_BOARD(app_id, boardId), updatedBoardData)
-      .then((response) => {
-        console.log("Board updated:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error updating board:", error);
-      });
+      .then((response) => {})
+      .catch((error) => {});
   },
   getTasksApi: (boardId) => {
     const app_id = get().app_id;
@@ -165,8 +151,19 @@ export const useBoardStore = create((set, get) => ({
       .then((response) => {
         set({ tasks: response.data });
       })
-      .catch((error) => {
-        console.error("Error fetching tasks:", error);
-      });
+      .catch((error) => {});
   },
+  saveTaskChangesApi: (boardId, tasks) => {
+    const app_id = get().app_id;
+    axios
+      .post(API_ENDPOINTS.UPDATE_TASKS(app_id, boardId), tasks)
+      .then((response) => {
+        set({ savedChanges: true });
+      })
+      .catch((error) => {});
+  },
+
+  // clear store functions
+  clearTasksFromStore: () => set({ tasks: [], savedChanges: true }),
+  clearBoardsFromStore: () => set({ boards: [] }),
 }));
