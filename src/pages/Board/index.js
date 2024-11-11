@@ -411,11 +411,18 @@ const Board = () => {
   const { id } = useParams();
   const app_id = useBoardStore((state) => state.app_id);
   const navigate = useNavigate();
-  const [board, setBoard] = useState(null);
+  const board = useBoardStore((state) => state.selectedBoard);
+  const getSelectedBoard = useBoardStore((state) => state.getSelectedBoard);
+  const errorInSelectingBoard = useBoardStore(
+    (state) => state.errorInSelectingBoard
+  );
   const tasks = useBoardStore((state) => state.tasks);
   const getTasksApi = useBoardStore((state) => state.getTasksApi);
   const clearTasksFromStore = useBoardStore(
     (state) => state.clearTasksFromStore
+  );
+  const clearSelectedBoardStore = useBoardStore(
+    (state) => state.clearSelectedBoardStore
   );
 
   const COLUMNS = [
@@ -454,17 +461,16 @@ const Board = () => {
   ];
 
   useEffect(() => {
-    if (!app_id) navigate("/");
-    setBoard({
-      id: id,
-    });
+    if (!app_id || errorInSelectingBoard) navigate("/");
+    getSelectedBoard(id);
     getTasksApi(id);
     return () => {
       clearTasksFromStore();
+      clearSelectedBoardStore();
     };
   }, []);
 
-  return (
+  return board ? (
     <div className="h-screen w-full bg-neutral-900 text-neutral-50">
       <div className="absolute top-4 left-16 flex items-center">
         <button
@@ -490,6 +496,10 @@ const Board = () => {
           <SaveChange key={board?.id} className="mt-2" board={board} />
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="h-screen w-full bg-neutral-900 text-neutral-50 flex justify-center items-center">
+      Loading
     </div>
   );
 };

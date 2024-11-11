@@ -5,6 +5,7 @@ const APIURI = "https://lean-pickled-crustacean.glitch.me";
 
 const API_ENDPOINTS = {
   GET_BOARDS: (app_id) => `${APIURI}/${app_id}/boards`,
+  GET_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
   ADD_BOARD: (app_id) => `${APIURI}/${app_id}/board`,
   DELETE_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
   EDIT_BOARD: (app_id, boardId) => `${APIURI}/${app_id}/board/${boardId}`,
@@ -166,4 +167,22 @@ export const useBoardStore = create((set, get) => ({
   // clear store functions
   clearTasksFromStore: () => set({ tasks: [], savedChanges: true }),
   clearBoardsFromStore: () => set({ boards: [] }),
+
+  // set selected board
+  selectedBoard: null,
+  errorInSelectingBoard: false,
+  getSelectedBoard: (boardId) => {
+    const app_id = get().app_id;
+    axios
+      .get(API_ENDPOINTS.GET_BOARD(app_id, boardId))
+      .then((response) => {
+        set({ selectedBoard: response.data, errorInSelectingBoard: false });
+      })
+      .catch((error) => {
+        set({ errorInSelectingBoard: true });
+      });
+  },
+  clearSelectedBoardStore: () => {
+    set({ selectedBoard: null, errorInSelectingBoard: false });
+  },
 }));
