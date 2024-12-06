@@ -26,6 +26,7 @@ import WaveFunctionCollapseExample from "./pages/WaveFunctionCollapseExample";
 import AudioStream from "./pages/AudioStreaming";
 import MarkdownChatGPTPOC from "./pages/MarkdownChatGPTPOC";
 import KanbanBoard from "./pages/KanbanBoard";
+import QuaggaScanner from "./pages/QuaggaScanner";
 
 const queryClient = new QueryClient();
 
@@ -107,6 +108,10 @@ function App() {
           <Route
             path="kanban-board"
             element={<KanbanBoard />}
+          ></Route>
+          <Route
+            path="quagga-scanner"
+            element={<QuaggaScanner />}
           ></Route>
         </Routes>
       </BrowserRouter>

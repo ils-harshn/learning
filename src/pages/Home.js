@@ -55,6 +55,8 @@ const Home = () => {
       <br />
       <Link to={"kanban-board"}>Kanban Board</Link>
       <br />
+      <Link to={"quagga-scanner"}>Quagga Scanner</Link>
+      <br />
     </div>
   );
 };
