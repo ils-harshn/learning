@@ -41,12 +41,12 @@ function App() {
   const [editId, setEditId] = useState(null);
   const [editName, setEditName] = useState("");
 
+  const namesQuery = query(
+    collection(db, "names"),
+    orderBy("timestamp", "asc")
+  );
+
   useEffect(() => {
-    const namesQuery = query(
-      collection(db, "names"),
-      orderBy("timestamp", "asc")
-    );
-    
     const unsubscribe = onSnapshot(namesQuery, (snapshot) => {
       const namesList = snapshot.docs.map((doc) => ({
         id: doc.id,
