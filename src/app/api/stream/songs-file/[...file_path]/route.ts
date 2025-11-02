@@ -3,25 +3,24 @@ import { NextResponse } from "next/server";
 const GITHUB_RAW_BASE_URL =
   "https://raw.githubusercontent.com/harshcore/arsongs-src-copy/main/";
 
-
 export async function GET(
   req: Request,
   context: { params: Promise<{ file_path: string[] }> }
 ) {
-  // ✅ Await the params Promise
   const { file_path } = await context.params;
   const filePath = file_path.join("/");
 
   const githubUrl = `${GITHUB_RAW_BASE_URL}songs-file/${filePath}`;
 
-  // Get file info first
+  // Get file info
   const headRes = await fetch(githubUrl, { method: "HEAD" });
   if (!headRes.ok) {
     return NextResponse.json({ error: "File not found" }, { status: 404 });
   }
 
   const fileSize = parseInt(headRes.headers.get("content-length") || "0");
-  const contentType = headRes.headers.get("content-type") || "application/octet-stream";
+  const contentType =
+    headRes.headers.get("content-type") || "application/octet-stream";
   const range = req.headers.get("range");
 
   let start = 0;
@@ -41,14 +40,33 @@ export async function GET(
     return NextResponse.json({ error: "File not found" }, { status: 404 });
   }
 
+  const resHeaders = {
+    "Content-Type": contentType,
+    "Content-Length": String(end - start + 1),
+    "Accept-Ranges": "bytes",
+    ...(range ? { "Content-Range": `bytes ${start}-${end}/${fileSize}` } : {}),
+    "Content-Disposition": `inline; filename="${filePath.split("/").pop()}"`,
+
+    // 💥 The CORS fix
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, Range",
+  };
+
   return new NextResponse(response.body, {
     status: range ? 206 : 200,
+    headers: resHeaders,
+  });
+}
+
+// 👇 Handle preflight requests
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
     headers: {
-      "Content-Type": contentType,
-      "Content-Length": String(end - start + 1),
-      "Accept-Ranges": "bytes",
-      ...(range ? { "Content-Range": `bytes ${start}-${end}/${fileSize}` } : {}),
-      "Content-Disposition": `inline; filename="${filePath.split("/").pop()}"`,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization, Range",
     },
   });
 }
